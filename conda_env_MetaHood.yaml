@@ -23,3 +23,4 @@ dependencies:
     - pathos
     - ete3
     - bwa
+    - bedtools
