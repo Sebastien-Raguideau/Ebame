@@ -4,9 +4,15 @@
 source /etc/profile.d/conda.sh 
 
 # conda install may fail due to use of metachannel, so rerun it until it works
-conda env create -f $APP_REPO/conda_env.yaml 
+conda env create -f $APP_REPO/conda_env_MetaHood.yaml 
 while [ $? -ne 0 ]; do
-    conda env create -f $APP_REPO/conda_env.yaml 
+    conda env create -f $APP_REPO/conda_env_MetaHood.yaml 
+done
+
+# conda install may fail due to use of metachannel, so rerun it until it works
+conda env create -f $APP_REPO/conda_env_LongReads.yaml.yaml 
+while [ $? -ne 0 ]; do
+    conda env create -f $APP_REPO/conda_env_LongReads.yaml.yaml 
 done
 
 # fix conda ownership, so that user can create stuffs

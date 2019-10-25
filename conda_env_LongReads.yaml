@@ -1,0 +1,12 @@
+name: LongReads
+channels:
+    - https://metachannel.conda-forge.org/rmg,bioconda/--max-build-no
+dependencies:
+    - guppy
+    - minimap2
+    - miniasm
+    - racon
+    - kraken2
+    - krona
+    - flye
+    - samtools
