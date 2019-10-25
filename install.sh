@@ -1,10 +1,17 @@
 #!/usr/bin/env bash
 
-# get repos
-mkdir -p $HOME/repos
-git clone https://github.com/Sebastien-Raguideau/Ebame19-Quince.git $HOME/repos/Ebame19-Quince/
-
-# conda install everything else
+# conda install 
 source /etc/profile.d/conda.sh 
-conda env create -f $HOME/repos/Ebame19-Quince/conda_env.yaml 
+
+# conda install may fail due to use of metachannel, so rerun it until it works
+conda env create -f $APP_REPO/conda_env.yaml 
+while [ $? -ne 0 ]; do
+    conda env create -f $APP_REPO/conda_env.yaml 
+done
+
+# fix conda ownership, so that user can create stuffs
+chown -R 1000:1000 /var/lib/miniconda3/*
+
+# fix concoct install, so that concoct_refine works
+sed -i 's/original_data.values()/original_data.values/g' /var/lib/miniconda3/envs/MetaHood2/bin/concoct_refine 
 
