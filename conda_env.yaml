@@ -1,0 +1,24 @@
+name: MetaHood
+channels:
+    - https://metachannel.conda-forge.org/bioconda,anaconda,conda-forge/--max-build-no
+dependencies:
+    - snakemake >=5.5.4
+    - python
+    - biopython
+    - bowtie2 
+    - samtools
+    - prodigal
+    - megahit
+    - spades
+    - blast
+    - concoct
+    - mafft
+    - trimal
+    - fasttree
+    - gfapy
+    - future
+    - pysam
+    - pygam
+    - statsmodels
+    - pathos
+    - ete3
