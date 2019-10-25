@@ -10,9 +10,9 @@ while [ $? -ne 0 ]; do
 done
 
 # conda install may fail due to use of metachannel, so rerun it until it works
-conda env create -f $APP_REPO/conda_env_LongReads.yaml.yaml 
+conda env create -f $APP_REPO/conda_env_LongReads.yaml 
 while [ $? -ne 0 ]; do
-    conda env create -f $APP_REPO/conda_env_LongReads.yaml.yaml 
+    conda env create -f $APP_REPO/conda_env_LongReads.yaml 
 done
 
 # fix conda ownership, so that user can create stuffs
