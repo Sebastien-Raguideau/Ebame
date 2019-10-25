@@ -21,4 +21,15 @@ chown -R 1000:1000 /var/lib/miniconda3/*
 # fix concoct install, so that concoct_refine works
 sed -i 's/original_data.values()/original_data.values/g' /var/lib/miniconda3/envs/MetaHood/bin/concoct_refine 
 
+mkdir ~/repos
+
+cd ~/repos
+
+git clone https://github.com/BinPro/CONCOCT.git
+
+git clone https://github.com/chrisquince/DESMAN.git
+
+export CONCOCT=~/repos/CONCOCT
+export DESMAN=~/repos/DESMAN
+
 export PATH=$APP_DIR/scripts:$PATH
