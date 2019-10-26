@@ -26,5 +26,5 @@ dependencies:
     - bedtools
     - parallel
     - bcbio-gff
-    - kraken-biom
+    - kraken
     - bam-readcount
