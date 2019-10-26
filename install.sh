@@ -31,10 +31,12 @@ git clone https://github.com/chrisquince/DESMAN.git
 
 git clone https://github.com/chrisquince/Ebame5.git
 
+git clone https://github.com/chrisquince/MAGAnalysis.git
 
 export CONCOCT=~/repos/CONCOCT
 export DESMAN=~/repos/DESMAN
 export EBAME5=~/repos/Ebame5
+export MAGAnalysis=~/repos/MAGAnalysis
 
 export PATH=$APP_DIR/scripts:$PATH
 
