@@ -28,3 +28,4 @@ dependencies:
     - bcbio-gff
     - kraken
     - bam-readcount
+    - cython
