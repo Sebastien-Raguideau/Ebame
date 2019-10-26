@@ -1,0 +1,8 @@
+Day	Sample
+15a	sample1
+15b	sample2
+17a	sample3
+17b	sample4
+19	sample5
+22b	sample6
+23	sample7
