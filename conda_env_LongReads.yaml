@@ -2,7 +2,7 @@ name: LongReads
 channels:
     - https://metachannel.conda-forge.org/rmg,bioconda/--max-build-no
 dependencies:
-    - guppy
+    - scrappie
     - minimap2
     - miniasm
     - racon
