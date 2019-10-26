@@ -10,7 +10,7 @@ dependencies:
     - prodigal
     - megahit
     - spades
-    - blast
+    - blast =2.5.0
     - concoct
     - mafft
     - trimal
@@ -25,3 +25,4 @@ dependencies:
     - bwa
     - bedtools
     - parallel
+    - bcbio-gff

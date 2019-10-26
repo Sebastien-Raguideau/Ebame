@@ -33,3 +33,13 @@ export CONCOCT=~/repos/CONCOCT
 export DESMAN=~/repos/DESMAN
 
 export PATH=$APP_DIR/scripts:$PATH
+
+mkdir ~/Databases
+
+cd ~/Databases
+
+wget https://desmandatabases.s3.climb.ac.uk/rpsblast_cog_db.tar.gz
+
+tar -xvzf rpsblast_cog_db.tar.gz
+
+export COGSDB_DIR=~/Databases/rpsblast_cog_db
