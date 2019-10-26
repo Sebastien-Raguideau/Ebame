@@ -21,34 +21,6 @@ chown -R 1000:1000 /var/lib/miniconda3/*
 # fix concoct install, so that concoct_refine works
 sed -i 's/original_data.values()/original_data.values/g' /var/lib/miniconda3/envs/MetaHood/bin/concoct_refine 
 
-mkdir ~/repos
-
-cd ~/repos
-
-git clone https://github.com/BinPro/CONCOCT.git
-
-git clone https://github.com/chrisquince/DESMAN.git
-
-git clone https://github.com/chrisquince/Ebame5.git
-
-git clone https://github.com/chrisquince/MAGAnalysis.git
-
-export CONCOCT=~/repos/CONCOCT
-export DESMAN=~/repos/DESMAN
-export EBAME5=~/repos/Ebame5
-export MAGAnalysis=~/repos/MAGAnalysis
-
-export PATH=$APP_DIR/scripts:$PATH
-
-mkdir ~/Databases
-
-cd ~/Databases
-
-wget https://desmandatabases.s3.climb.ac.uk/rpsblast_cog_db.tar.gz
-
-tar -xvzf rpsblast_cog_db.tar.gz
-
-export COGSDB_DIR=~/Databases/rpsblast_cog_db
 
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 
