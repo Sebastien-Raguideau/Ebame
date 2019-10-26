@@ -27,3 +27,4 @@ dependencies:
     - parallel
     - bcbio-gff
     - kraken-biom
+    - bam-readcount
