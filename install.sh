@@ -29,8 +29,12 @@ git clone https://github.com/BinPro/CONCOCT.git
 
 git clone https://github.com/chrisquince/DESMAN.git
 
+git clone https://github.com/chrisquince/Ebame5.git
+
+
 export CONCOCT=~/repos/CONCOCT
 export DESMAN=~/repos/DESMAN
+export EBAME5=~/repos/Ebame5
 
 export PATH=$APP_DIR/scripts:$PATH
 
@@ -49,6 +53,8 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD
 sudo add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/'
 
 sudo apt-get update
+
+sudo apt-get install --assume-yes evince
 
 sudo apt-get install --assume-yes r-base r-base-dev
 
