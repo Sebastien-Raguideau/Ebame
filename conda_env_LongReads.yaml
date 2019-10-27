@@ -10,3 +10,4 @@ dependencies:
     - krona
     - flye
     - samtools
+    - canu
