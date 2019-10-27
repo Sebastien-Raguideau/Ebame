@@ -25,6 +25,9 @@ chown -R 1000:1000 /var/lib/miniconda3/*
 # fix concoct install, so that concoct_refine works
 sed -i 's/original_data.values()/original_data.values/g' /var/lib/miniconda3/envs/MetaHood/bin/concoct_refine 
 
+# get rpsblast+
+apt install ncbi-blast+
+
 # ---- install R libraries ----
 # add repo serverkey
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
