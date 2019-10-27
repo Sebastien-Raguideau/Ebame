@@ -2,7 +2,7 @@
 
 # get repos 
 mkdir -p $HOME/repos
-git clone https://github.com/Sebastien-Raguideau/EBAME19-MetaHood.git $HOME/repos/EBAME19-MetaHood/
+git clone https://github.com/Sebastien-Raguideau/EBAME19-MetaHood.git $HOME/repos/Ebame19-Quince/
 
 # conda install 
 source /etc/profile.d/conda.sh 
@@ -24,10 +24,6 @@ chown -R 1000:1000 /var/lib/miniconda3/*
 
 # fix concoct install, so that concoct_refine works
 sed -i 's/original_data.values()/original_data.values/g' /var/lib/miniconda3/envs/MetaHood/bin/concoct_refine 
-
-# add -h to ll 
-sed -i "s/alias ll='ls -alF'/alias ll='ls -alhF'/g" .bashrc 
-
 
 # ---- install R libraries ----
 # add repo serverkey
@@ -54,4 +50,20 @@ sudo $APP_DIR/scripts/RPInstall.sh ellipse
 sudo $APP_DIR/scripts/RPInstall.sh plyr
 sudo $APP_DIR/scripts/RPInstall.sh grid
 sudo $APP_DIR/scripts/RPInstall.sh gridExtra
+
+# ---------- modify .bashrc ------------------
+# add -h to ll 
+sed -i "s/alias ll='ls -alF'/alias ll='ls -alhF'/g" $HOME/.bashrc 
+
+# add multitude of export to .bashrc
+echo -e "\n\n #------ export path to repos/db -------">>$HOME/.bashrc 
+echo "export CONCOCT=~/repos/CONCOCT">>$HOME/.bashrc 
+echo "export DESMAN=~/repos/DESMAN">>$HOME/.bashrc 
+echo "export EBAME5=~/repos/Ebame5">>$HOME/.bashrc 
+echo "export MAGAnalysis=~/repos/MAGAnalysis">>$HOME/.bashrc 
+echo "export COGSDB_DIR=~/Databases/rpsblast_cog_db">>$HOME/.bashrc 
+
+# to be able to launch conda 
+echo -e "\n\n #------ necessary to use conda -------">>$HOME/.bashrc 
+echo -e "source /etc/profile.d/conda.sh ">>$HOME/.bashrc
 

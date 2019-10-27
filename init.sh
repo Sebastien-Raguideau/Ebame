@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-mkdir ~/repos
+mkdir -p ~/repos
 
 cd ~/repos
 

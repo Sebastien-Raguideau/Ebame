@@ -23,3 +23,6 @@ dependencies:
     - pathos
     - ete3
     - bam-readcount
+    - fastqc 
+    - multiqc
+    - trim-galore
