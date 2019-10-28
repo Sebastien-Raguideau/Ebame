@@ -79,7 +79,7 @@ cd $HOME2/repos
 wget https://mirror.oxfordnanoportal.com/software/analysis/ont-guppy-cpu_3.3.0_linux64.tar.gz
 tar -xvzf ont-guppy-cpu_3.3.0_linux64.tar.gz 
 
-export PATH=~/ont-guppy-cpu/bin:$PATH
+export PATH=~/repos/ont-guppy-cpu/bin:$PATH
 
 # ---------- modify .bashrc ------------------
 # add -h to ll 
@@ -96,4 +96,9 @@ echo "export COGSDB_DIR=~/Databases/rpsblast_cog_db">>$HOME2/.bashrc
 # to be able to launch conda 
 echo -e "\n\n #------ necessary to use conda -------">>$HOME2/.bashrc 
 echo -e "source /etc/profile.d/conda.sh ">>$HOME2/.bashrc
+
+# guppy install
+echo -e "\n\n #------ guppy path -------">>$HOME2/.bashrc 
+echo -e "export PATH=~/repos/ont-guppy-cpu/bin:$PATH ">>$HOME2/.bashrc
+
 
