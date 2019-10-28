@@ -17,17 +17,11 @@ git clone https://github.com/chrisquince/MAGAnalysis.git
 # conda install 
 source /etc/profile.d/conda.sh 
 
-# conda install may fail due to use of metachannel, so rerun it until it works
+# conda install for MetaHood
 conda env create -f $APP_DIR/conda_env_MetaHood.yaml 
-# while [ $? -ne 0 ]; do
-#     conda env create -f $APP_DIR/conda_env_MetaHood.yaml 
-# done
 
-# conda install may fail due to use of metachannel, so rerun it until it works
+# conda install for LongReads tuto
 conda env create -f $APP_DIR/conda_env_LongReads.yaml 
-# while [ $? -ne 0 ]; do
-#     conda env create -f $APP_DIR/conda_env_LongReads.yaml 
-# done
 
 
 # fix concoct install, so that concoct_refine works
@@ -72,6 +66,10 @@ wget https://mirror.oxfordnanoportal.com/software/analysis/ont-guppy-cpu_3.3.0_l
 tar -xvzf ont-guppy-cpu_3.3.0_linux64.tar.gz 
 
 export PATH=~/repos/ont-guppy-cpu/bin:$PATH
+
+# ---------install COG db -------------------
+mkdir -p /home/ubuntu/Databases/
+tar -xvzf /home/ubuntu/data/public/teachdata/ebame/2019/rpsblast_cog_db.tar.gz -C /home/ubuntu/Databases/
 
 # ---------- modify .bashrc ------------------
 # add -h to ll 
