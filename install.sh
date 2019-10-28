@@ -36,12 +36,6 @@ sed -i 's/original_data.values()/original_data.values/g' /var/lib/miniconda3/env
 # get rpsblast+
 apt install ncbi-blast+ --assume-yes
 
-# ----- COG databases ------
-mkdir $HOME2/Databases
-cd $HOME2/Databases
-wget https://desmandatabases.s3.climb.ac.uk/rpsblast_cog_db.tar.gz
-tar -xvzf rpsblast_cog_db.tar.gz
-
 # Make Metahood run with old cod db....
 cp $HOME2/repos/CONCOCT/scgs/cdd_to_cog.tsv $HOME2/repos/Metahood/scg_data/cdd_to_cog.tsv
 
@@ -98,6 +92,7 @@ echo -e "source /etc/profile.d/conda.sh ">>$HOME2/.bashrc
 # guppy install
 echo -e "\n\n #------ guppy path -------">>$HOME2/.bashrc 
 echo -e "export PATH=~/repos/ont-guppy-cpu/bin:$PATH ">>$HOME2/.bashrc
+
 
 # ------------ fix rigths --------------------
 # fix conda ownership, so that user can create stuffs
