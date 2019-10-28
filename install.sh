@@ -37,8 +37,8 @@ sed -i 's/original_data.values()/original_data.values/g' /var/lib/miniconda3/env
 apt install ncbi-blast+ --assume-yes
 
 # ----- COG databases ------
-mkdir ~/Databases
-cd ~/Databases
+mkdir $HOME2/Databases
+cd $HOME2/Databases
 wget https://desmandatabases.s3.climb.ac.uk/rpsblast_cog_db.tar.gz
 tar -xvzf rpsblast_cog_db.tar.gz
 
