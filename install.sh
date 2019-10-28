@@ -67,6 +67,9 @@ tar -xvzf ont-guppy-cpu_3.3.0_linux64.tar.gz
 
 export PATH=~/repos/ont-guppy-cpu/bin:$PATH
 
+export PATH=~/repos/Ebame5/scripts:$PATH
+
+
 # ---------- modify .bashrc ------------------
 # add -h to ll 
 sed -i "s/alias ll='ls -alF'/alias ll='ls -alhF'/g" $HOME2/.bashrc 
