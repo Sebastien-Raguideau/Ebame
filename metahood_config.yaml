@@ -10,7 +10,7 @@ assembly:
       InfantGut:
         ['sample*']
 # ------ Annotation parameters ------ 
-cog_database: ~/Databases/rpsblast_cog_db
+cog_database: ~/Databases/rpsblast_cog_db/Cog
 # ------ Binning parameters------ 
 binning :
   concoct :
