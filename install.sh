@@ -43,7 +43,7 @@ wget https://desmandatabases.s3.climb.ac.uk/rpsblast_cog_db.tar.gz
 tar -xvzf rpsblast_cog_db.tar.gz
 
 # Make Metahood run with old cod db....
-cp CONCOCT/scgs/cdd_to_cog.tsv Metahood/scg_data/cdd_to_cog.tsv
+cp $HOME2/repos/CONCOCT/scgs/cdd_to_cog.tsv $HOME2/repos/Metahood/scg_data/cdd_to_cog.tsv
 
 
 # ---- install R libraries ----
