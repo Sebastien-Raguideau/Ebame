@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # define home
-export HOME2=/user/ubuntu
+export HOME2=/home/ubuntu
 
 # ----- get all repos ----- 
 mkdir -p $HOME2/repos
@@ -29,8 +29,6 @@ while [ $? -ne 0 ]; do
     conda env create -f $APP_DIR/conda_env_LongReads.yaml 
 done
 
-# fix conda ownership, so that user can create stuffs
-chown -R 1000:1000 /var/lib/miniconda3/*
 
 # fix concoct install, so that concoct_refine works
 sed -i 's/original_data.values()/original_data.values/g' /var/lib/miniconda3/envs/MetaHood/bin/concoct_refine 
@@ -101,3 +99,9 @@ echo -e "source /etc/profile.d/conda.sh ">>$HOME2/.bashrc
 echo -e "\n\n #------ guppy path -------">>$HOME2/.bashrc 
 echo -e "export PATH=~/repos/ont-guppy-cpu/bin:$PATH ">>$HOME2/.bashrc
 
+# ------------ fix rigths --------------------
+# fix conda ownership, so that user can create stuffs
+chown -R 1000:1000 /var/lib/miniconda3/*
+
+# fix HOME2 ownership, so that user can create stuffs
+chown -R 1000:1000 $HOME2/*
