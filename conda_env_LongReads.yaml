@@ -1,6 +1,6 @@
 name: LongReads
 channels:
-    - https://metachannel.conda-forge.org/rmg,bioconda/--max-build-no
+    - bioconda
 dependencies:
     - scrappie
     - minimap2

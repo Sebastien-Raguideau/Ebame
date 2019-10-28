@@ -1,6 +1,10 @@
-name: MetaHood
+name: Metahood
 channels:
-    - https://metachannel.conda-forge.org/bioconda,anaconda,conda-forge,default,ursky/--max-build-no
+    - bioconda
+    - anaconda
+    - conda-forge
+    - default
+    - ursky
 dependencies:
     - snakemake >=5.5.4
     - python
