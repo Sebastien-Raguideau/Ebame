@@ -11,10 +11,13 @@ List_All_files=list(map(dirname,glob.glob(PATH)))
 rule results:
 	input: expand("{genome}/{genome}_KEGG.tsv",genome=List_All_files)
 
-rule extract:
-    input: "{path}.fna.gz"
-    output: "{path}.fa"
-    shell: "zcat {input} > {output}"
+rule output_bins:
+    input:   contigs="{group}/contigs/contigs.fa",
+             clustering="{group}/binning/concoct/clustering_concoct.csv"
+    output:  touch("{group}/binning/concoct/bins/done")
+    params:  "{group}/binning/concoct/bins/"
+    shell :"""
+    ~/repos/MetaHood/scripts/Split_fasta_by_bin.py {input.contigs} {input.clustering} {params}"""
 
 rule prodigal:
     input: "{path}/{genome}.fa"
