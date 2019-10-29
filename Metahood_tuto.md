@@ -63,7 +63,7 @@ Hardest step is to generate the configuration file :
 <details><summary>Alternative </summary>
 <p>
 
-    cp ~/repos/Metahood/config.yaml ~/Projects/InfantGut_Metahood/
+    cp ~/repos/Ebame19-Quince/metahood_config.yaml ~/Projects/InfantGut_Metahood/config.yaml
 
 </p>
 </details>
