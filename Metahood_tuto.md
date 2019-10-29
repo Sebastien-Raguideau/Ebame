@@ -47,7 +47,7 @@ Example : [https://github.com/Sebastien-Raguideau/Metahood/blob/master/Samples.c
 <p>
 Yes, the file is at  
 
-`~/repos/Ebame19-Quince/Sample.csv` 
+`~/repos/Ebame19-Quince/Samples.csv` 
 
 </p>
 </details>
