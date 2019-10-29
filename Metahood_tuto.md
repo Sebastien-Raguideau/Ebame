@@ -84,6 +84,6 @@ As it was already created you need just to activate the MetaHood conda env :
 #### Finally launch Metahood
 First with the --dryrun option, what is the output?
 
-    ./start.py ~/Projects/InfantGut_Metahood/ --config ~/Projects/InfantGut_Metahood/config.yaml -t <nb> -s --dryrun        
+    ~/repos/Metahood/start.py ~/Projects/InfantGut_Metahood/ --config ~/Projects/InfantGut_Metahood/config.yaml -t <nb> -s --dryrun        
 
 
