@@ -27,7 +27,7 @@ Metahood is a pipeline entirely based on snakemake.
     ~/repos/Metahood/start.py <output folder> --config <config file> -t <nb threads> -s <snakemake options> 
 
  **Configuration file**
- The apparent lack of parameter is 
+ The apparent lack of parameter is misleading
 [https://github.com/Sebastien-Raguideau/Metahood/blob/master/config.yaml](https://github.com/Sebastien-Raguideau/Metahood/blob/master/config.yaml)
 
  **Samples Setup**
