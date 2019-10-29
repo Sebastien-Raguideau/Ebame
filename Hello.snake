@@ -1,0 +1,5 @@
+
+rule write_hello:
+  output : "{path}/output.txt"
+  shell : "echo Hello world > {output}"
+

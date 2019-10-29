@@ -1,0 +1,52 @@
+import glob
+from os.path import dirname
+
+PRODIGAL_MODE="single"
+KEGG_DB=""
+KEGG_ANNOTATION=""
+PATH="*/"
+List_All_files=list(map(dirname,glob.glob(PATH)))
+
+
+rule results:
+	input: expand("{genome}/{genome}_KEGG.tsv",genome=List_All_files)
+
+rule extract:
+    input: "{path}.fna.gz"
+    output: "{path}.fa"
+    shell: "zcat {input} > {output}"
+
+rule prodigal:
+    input: "{path}/{genome}.fa"
+    output: faa="{path}/{genome}.faa",
+            fna="{path}/{genome}.fna",
+            gff="{path}/{genome}.gff"
+    params: mode=PRODIGAL_MODE
+    log:    "{path}/{genome}.log"
+    shell:
+        "prodigal -i {input} -a {output.faa} -d {output.fna} -f gff -o {output.gff} -p {params.mode} &>> {log}"
+
+
+#------- KEGG on each bin, custom output --------------------
+rule diamond:
+    input :  "{filename}.faa"
+    output : "{filename}_KEGG.m8"
+    params : db=KEGG_DB,
+    log:     "{filename}_KEGG.log"
+    threads:  3
+    shell :   "diamond blastp -d {params.db}  -q {input} -p {threads} -o {output} -f6 qseqid sseqid qstart qend qlen sstart send slen length pident evalue bitscore &>{log}"
+
+rule annotation:
+    input :  "{filename}_KEGG.m8"
+    output : "{filename}_KEGG.tsv"
+    params : annotation=KEGG_ANNOTATION,
+             Bitscore=0,
+             Evalue=1e-5,
+             PID=0.50,
+             subject_pid=0.5,
+             subject_coverage=0.1,
+             querry_coverage=0.8
+    log:     "{filename}_KEGG.log"             
+    shell :   "~/repos/Metahood/scripts/M8_Filtering.py {input} -D {params.annotation} -B {params.Bitscore} -E {params.Evalue} -P {params.PID} -R {params.subject_pid} -C {params.subject_coverage} -Q {params.querry_coverage}  >{output} 2>{log}"
+
+
