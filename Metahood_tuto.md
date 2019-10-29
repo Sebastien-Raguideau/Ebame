@@ -21,7 +21,7 @@ Metahood is a pipeline entirely based on snakemake.
  - documentation
  
  **Overview of the rules workflows**
-Insert png here :)
+![alt tag](./Binning.png)
 
 ###  How to run Metahood:
     ~/repos/Metahood/start.py <output folder> --config <config file> -t <nb threads> -s <snakemake options> 
