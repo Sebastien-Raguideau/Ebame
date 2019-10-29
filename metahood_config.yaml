@@ -8,7 +8,7 @@ data: /home/ubuntu/Project/InfantGut_Metahood/Data/ # path to data folder,
 samples :
   setup : 1 
   file : /home/ubuntu/repos/Ebame19-Quince/Samples.csv
-  folder: /home/ubuntu/Project/InfantGut_Metahood/Data/
+  folder: /mnt/ReadsSub
 # ------ Assembly parameters ------
 assembly: 
   assembler: megahit # only option so far, won't change in the near future
