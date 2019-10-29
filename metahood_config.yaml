@@ -14,7 +14,7 @@ assembly:
   assembler: megahit # only option so far, won't change in the near future
   groups: 
       Coassembly:
-        ['sample(?([0-7])']
+        ['Sample?([0-7])']
 # ------ Binning parameters------ 
 binning :
   concoct :
