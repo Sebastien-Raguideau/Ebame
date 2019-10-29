@@ -2,13 +2,13 @@
 Percent_memory: 0.5 # maximum quantity of memory the snakemake can take
 threads : 8 # single task nb threads
 # ------ Path to data folder ------ 
-data: /home/ubuntu/Project/InfantGut_Metahood/Data/ # path to data folder,   
+data: /home/ubuntu/Projects/InfantGut_Metahood/Data/ # path to data folder,   
 # ------ Samples ------
 # each sample need to have its own folder, with only 2 fastq files. Also, "fq.gz" are not detected. 
 samples :
   setup : 1 
   file : /home/ubuntu/repos/Ebame19-Quince/Samples.csv
-  folder: /mnt/ReadsSub
+  folder: /mnt/ReadsSub/
 # ------ Assembly parameters ------
 assembly: 
   assembler: megahit # only option so far, won't change in the near future
@@ -28,7 +28,7 @@ maganalysis : 1 # execution either 1 or 0 for yes or no
 # ------ DESMAN anaysis------ 
 desman : 
   execution : 0 # execution either 1 or 0 for yes or no
-  scripts : "/home/ubuntu/repos/DESMAN/scripts"
+  scripts : "/home/ubuntu/repos/DESMAN/scripts/"
   nb_haplotypes: 10
   nb_repeat: 5
   min_cov: 1
