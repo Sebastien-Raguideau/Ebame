@@ -35,7 +35,14 @@ Metahood will look into the data folder for, samples folders containing only 2 f
 Example : [https://github.com/Sebastien-Raguideau/Metahood/blob/master/Samples.csv](https://github.com/Sebastien-Raguideau/Metahood/blob/master/Samples.csv)
 
 ###  Let's Run MetaHood:
-Do we need to setup samples?
+#### Last Minute fix
+
+    cd ~/repos/Metahood/
+    git pull
+    cd ~/repos/Ebame19-Quince/
+    git pull
+
+
 <details><summary>Do we need to setup samples? </summary>
 <p>
 Yes, the file is at  
@@ -73,15 +80,10 @@ As it was already created you need just to activate the MetaHood conda env :
 
     conda activate MetaHood
 
-#### Last Minute fix
-
-    cd ~/repos/Metahood/
-    git pull
 
 #### Finally launch Metahood
 First with the --dryrun option, what is the output?
 
-    ./start.py ~/Projects/InfantGut_Metahood/ --config ~/Projects/InfantGut_Metahood/config.yaml -t <nb> -s --dryrun
-
+    ./start.py ~/Projects/InfantGut_Metahood/ --config ~/Projects/InfantGut_Metahood/config.yaml -t <nb> -s --dryrun        
 
 
