@@ -32,3 +32,5 @@ desman :
   nb_haplotypes: 10
   nb_repeat: 5
   min_cov: 1
+# ------ Annotation parameters ------   
+cog_database: /mnt/Databases/rpsblast_cog_db/Cog
