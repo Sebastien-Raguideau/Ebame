@@ -1,89 +1,100 @@
-# Metahood / snakemake tutorial
-
-## Metahood
-Metahood is a pipeline entirely based on snakemake. 
-
-**What the pipline do :**
- - sample qualitycheck/trimming
-- assemblies / co-assemblies
-- binning (Concoct/Metabat2)
-- de novo tree construction for mags
-- diamond annotation and profiles
-- output annotated orf graphs (derived from assembly graph)
-- Strain resolution (Desman)
-
- **What we want to add :**
- - human Dna/contamination removal 
- - taxonomy profiling (CAT, kraken, ...)
- - other options for  binning, e.g. maxbins2  
- - other bins assessment tools, e.g CheckM, Busco 
- - mags annotation and profiles
- - documentation
- 
- **Overview of the rules workflows**
-![alt tag](./Binning.png)
-
-###  How to run Metahood:
-    ~/repos/Metahood/start.py <output folder> --config <config file> -t <nb threads> -s <snakemake options> 
-
- **Configuration file**
- The apparent lack of parameter is misleading
-[https://github.com/Sebastien-Raguideau/Metahood/blob/master/config.yaml](https://github.com/Sebastien-Raguideau/Metahood/blob/master/config.yaml)
-
- **Samples Setup**
-Metahood will look into the data folder for, samples folders containing only 2 fastq files (.fastq or .fastq.gz). This folder structure can be made beforehand, or it can be build with the sample setup step of metahood. It then require a .csv file with filename,R1_or_R2,sample name.
-Example : [https://github.com/Sebastien-Raguideau/Metahood/blob/master/Samples.csv](https://github.com/Sebastien-Raguideau/Metahood/blob/master/Samples.csv)
-
-###  Let's Run MetaHood:
-#### Last Minute fix
-
-    cd ~/repos/Metahood/
-    git pull
-    cd ~/repos/Ebame19-Quince/
-    git pull
-
-
-<details><summary>Do we need to setup samples? </summary>
-<p>
-Yes, the file is at  
-
-`~/repos/Ebame19-Quince/Samples.csv` 
-
-</p>
-</details>
-
-Hardest step is to generate the configuration file :
-
-    cd ~/Projects
-    mkdir -p InfantGut_Metahood
-    cd InfantGut_Metahood
-    cp ~/repos/Metahood/config.yaml .
-    nano  config.yaml
-
-<details><summary>Alternative </summary>
-<p>
-
-    cp ~/repos/Ebame19-Quince/metahood_config.yaml ~/Projects/InfantGut_Metahood/config.yaml
-
-</p>
-</details>
-
-
-#### Dependencies
-We handle  all dependencies installation though miniconda,  you can have a look at  ~/repos/Ebame19-Quince/conda_env_MetaHood.yaml for more details
-
-Creating the env you need is a command line away :
-##### Don't run this
-
-    conda env create -f conda_env_MetaHood.yaml
-As it was already created you need just to activate the MetaHood conda env :
-
-    conda activate MetaHood
-
-
 #### Finally launch Metahood
-First with the --dryrun option, what is the output?
 
-    ~/repos/Metahood/start.py ~/Projects/InfantGut_Metahood/ --config ~/Projects/InfantGut_Metahood/config.yaml -t <nb> -s --dryrun        
+    ~/repos/Metahood/start.py ~/Projects/InfantGut_Metahood/ --config ~/Projects/InfantGut_Metahood/config.yaml -t <nb> 
 
 
+## 
+## Snakemake 
+The Snakemake workflow management system is a tool to create **reproducible and scalable** data analyses. Workflows are described via a human readable, Python based language. They can be seamlessly scaled to server, cluster, grid and cloud environments, without the need to modify the workflow definition. Finally, Snakemake workflows can entail a description of required software, which will be automatically deployed to any execution environment.
+
+
+### Principle 
+The user define :
+- a set of rules, which are scripts/command line, encapsuled in a way snakemake can make sense of.
+- an expected results : a file or a list of files
+- an amount of ressources : number of cpu, memory
+
+Snakemake then devise the succession of rules (script/command) needed to generate the output. If the results cannot be generated from the rules inputed and the files already present in the execution folder, snakemake will let you know and fail.
+
+Snakemake will schedule rules, keeping track of total available and each ressources needed. 
+
+### Features
+- It is possible to write and use python code inside snakemake
+- snakemake keep track of all files, input input in your workflow. If the input of a rule has been updated, snakemake will rerun all depending rules.
+- snakemake keep track of completion of tasks and can deal with unplanned interuption. 
+- snakemake can be easily deployed to clusters without changing any code
+- It is possible to specify ad hoc environment for each step of the pipeline and have each step executed in it's own environment
+
+#### Snakemake rule
+ The minimum rule is :
+ - an input
+ - an output
+ - a shell command/or python code 
+ 
+ Example : 
+
+     rule prodigal:
+        input: "contigs.fa"
+        output: faa="contigs.faa",
+                fna="contigs.fna",
+                gff="contigs.gff"
+        shell:
+            "prodigal -i {input} -a {output.faa} -d {output.fna} -f gff -o {output.gff} -p meta "
+
+By specifying a results, for instance contig.gff, snakemake will look at all available rules and look for any able to output contig.gff. In this case only prodigal is present and snakemake will look for contigs.fa. 
+
+**Additional rule entry**
+- threads : number of threads the rule needs, default = 1
+- log file
+- params : additional parameters 
+- singularity/conda : specify rule specific environment
+- report :  report automatically generated by snakemake
+- message : message printed during execution
+- priority :  allow to encourage execution of certain task before others
+
+**Wildcards** 
+Wildcards are keywords between {} used to make rule more general and applicable to multiple situations. 
+
+    rule prodigal:
+        input: "{genome}.fa"
+        output: faa="{genome}.faa",
+                fna="{genome}.fna",
+                gff="{genome}.gff"
+        params: mode=PRODIGAL_MODE
+        log:    "{genome}.log"
+        shell:
+            "prodigal -i {input} -a {output.faa} -d {output.fna} -f gff -o {output.gff} -p {params.mode} &>> {log}"
+{genome} can be replaced by a file name, or a path. 
+
+### To go further
+- Snakemake works in reverse, it start from the specified output and looks for rules/recipes able to generate it. It try also multiple wildcards values until it find a way to generate the output.
+- As a snakemake grow bigger, ambiguity in rules may pop up : 2 rules with the same output. And thus, 2 rules/recipe to create the same input. To solve this issue, you need to restrict your rules making them less universal, either a specific path (prodigal/{genome.gff}), or a specific filename [genome}_prodigal.gff. You can also constrain wildcards {}or  
+- Snakemake only keep track of files specified in "input" and "output".  A bad way to do snakemake is to have rules generating untracked files and just outputing a flag. 
+
+example : 
+
+
+
+    rule prodigal:
+        input: "{genome}.fa"
+        output: "prodigal_is_done"
+        params: mode=PRODIGAL_MODE
+        log:    "{genome}.log"
+        shell:
+            "prodigal -i {input} -a {wildcards.genome}.faa -d {wildcards.genome}.fna -f gff -o {wildcards.genome}.gff -p {params.mode} &>> {log}"
+
+
+
+-  Snakemake will resolve the sequence of rules execution before starting --> if you don't know beforehand the number of files generated, it makes things more complicated. The solution is to use flags, to execute multiple independant snakemake  or to use checkpoints 
+
+
+### Hello world
+Let's look at ~/repos/Ebame19-Quince and try to run Hello.snake.
+
+    less ~/repos/Ebame19-Quince/Hello.snake
+    snakemake --snakefile ~/repos/Ebame19-Quince/Hello.snake ~/Projects/output.txt
+
+### Kegg annotation
+Let's look at ~/repos/Ebame19-Quince/annotation.snake.
+
+    snakemake --snakefile ~/repos/Ebame19-Quince/annotation.snake 
