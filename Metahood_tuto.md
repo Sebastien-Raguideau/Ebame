@@ -97,7 +97,7 @@ The user define :
 
 Snakemake then devise the succession of rules (script/command) needed to generate the output. If the results cannot be generated from the rules inputed and the files already present in the execution folder, snakemake will let you know and fail.
 
-Snakemake will schedule rules, keeping track of total available and each ressources needed. 
+Snakemake will schedule rules excution optimising ressources allocations (threads/memory/custom ressource). 
 
 ### Features
 - It is possible to write and use python code inside snakemake
