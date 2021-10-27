@@ -1,14 +1,16 @@
-name: LongReads
+name: LongRob
 channels:
-    - bioconda
+  - conda-forge
+  - bioconda
+  - defaults
 dependencies:
-    - scrappie
-    - minimap2
-    - miniasm
-    - racon
-    - kraken2
-    - krona
-    - flye
-    - samtools
-    - canu
-    - seqkit
+  - canu
+  - filtlong 
+  - seqkit
+  - kraken2 
+  - krona
+  - minimap2
+  - racon
+  - miniasm
+  - flye
+  - samtools

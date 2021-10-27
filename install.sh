@@ -7,67 +7,29 @@ export HOME2=/home/ubuntu
 mkdir -p $HOME2/repos
 cd $HOME2/repos
 
-git clone https://github.com/Sebastien-Raguideau/Ebame19-Quince.git
-git clone https://github.com/Sebastien-Raguideau/Metahood.git
-git clone https://github.com/chrisquince/Ebame5.git
-git clone https://github.com/BinPro/CONCOCT.git
-git clone https://github.com/chrisquince/DESMAN.git
-git clone https://github.com/chrisquince/MAGAnalysis.git
+git clone https://github.com/Sebastien-Raguideau/Ebame21-Quince.git
+git clone --recurse-submodules https://github.com/chrisquince/STRONG.git
+cd STRONG
+git submodule foreach git pull origin master
 
-# conda install 
-source /etc/profile.d/conda.sh 
-
-# conda install for MetaHood
-conda env create -f $APP_DIR/conda_env_MetaHood.yaml 
-
-# conda install for LongReads tuto
-conda env create -f $APP_DIR/conda_env_LongReads.yaml 
-
-
-# fix concoct install, so that concoct_refine works
-sed -i 's/original_data.values()/original_data.values/g' /var/lib/miniconda3/envs/MetaHood/bin/concoct_refine 
-
-# get rpsblast+
-apt install ncbi-blast+ --assume-yes
-
-# Make Metahood run with old cod db....
-cp $HOME2/repos/CONCOCT/scgs/cdd_to_cog.tsv $HOME2/repos/Metahood/scg_data/cdd_to_cog.tsv
-
-
-# ---- install R libraries ----
-# add repo serverkey
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
-
-# add repo 
-sudo add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/'
-
-# add look for update from repo
+# ----- run strong install --------
 sudo apt-get update
+sudo apt-get -y install libbz2-dev libreadline-dev cmake g++ zlib1g zlib1g-dev
+bash install_STRONG.sh 
 
-# install updates
-sudo apt-get install --assume-yes evince
-sudo apt-get install --assume-yes r-base r-base-dev
 
-# install R packages
-sudo $APP_DIR/scripts/RPInstall.sh ggplot2
-sudo $APP_DIR/scripts/RPInstall.sh reshape
-sudo $APP_DIR/scripts/RPInstall.sh reshape2
-sudo $APP_DIR/scripts/RPInstall.sh gplots
-sudo $APP_DIR/scripts/RPInstall.sh getopt
-sudo $APP_DIR/scripts/RPInstall.sh vegan
-sudo $APP_DIR/scripts/RPInstall.sh ellipse
-sudo $APP_DIR/scripts/RPInstall.sh plyr
-sudo $APP_DIR/scripts/RPInstall.sh grid
-sudo $APP_DIR/scripts/RPInstall.sh gridExtra
-
-# -----------install guppy --------------
+# -----------Rob env --------------
 cd $HOME2/repos
-wget https://mirror.oxfordnanoportal.com/software/analysis/ont-guppy-cpu_3.3.0_linux64.tar.gz
-tar -xvzf ont-guppy-cpu_3.3.0_linux64.tar.gz 
 
-export PATH=~/repos/ont-guppy-cpu/bin:$PATH
+# --- guppy ---
+wget https://europe.oxfordnanoportal.com/software/analysis/ont-guppy-cpu_5.0.16_linux64.tar.gz
+tar -xvzf ont-guppy-cpu_5.0.16_linux64.tar.gz 
+# guppy install
+echo -e "\n\n #------ guppy path -------">>$HOME2/.bashrc 
+echo -e "export PATH=~/repos/ont-guppy-cpu/bin:$PATH ">>$HOME2/.bashrc
 
-export PATH=~/repos/Ebame5/scripts:$PATH
+# --- everything else ---
+mamba install $APP_DIR/conda_env_LongReads.yaml
 
 
 # ---------- modify .bashrc ------------------
@@ -75,20 +37,8 @@ export PATH=~/repos/Ebame5/scripts:$PATH
 sed -i "s/alias ll='ls -alF'/alias ll='ls -alhF'/g" $HOME2/.bashrc 
 
 # add multitude of export to .bashrc
-echo -e "\n\n #------ export path to repos/db -------">>$HOME2/.bashrc 
-echo "export CONCOCT=~/repos/CONCOCT">>$HOME2/.bashrc 
-echo "export DESMAN=~/repos/DESMAN">>$HOME2/.bashrc 
-echo "export EBAME5=~/repos/Ebame5">>$HOME2/.bashrc 
-echo "export MAGAnalysis=~/repos/MAGAnalysis">>$HOME2/.bashrc 
-echo "export COGSDB_DIR=~/Databases/rpsblast_cog_db">>$HOME2/.bashrc 
+echo -e "\n\n #------ export path to repos/db -------">>$HOME2/.bashrc
 
-# to be able to launch conda 
-echo -e "\n\n #------ necessary to use conda -------">>$HOME2/.bashrc 
-echo -e "source /etc/profile.d/conda.sh ">>$HOME2/.bashrc
-
-# guppy install
-echo -e "\n\n #------ guppy path -------">>$HOME2/.bashrc 
-echo -e "export PATH=~/repos/ont-guppy-cpu/bin:$PATH ">>$HOME2/.bashrc
 
 
 # ------------ fix rigths --------------------
