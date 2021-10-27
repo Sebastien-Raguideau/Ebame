@@ -1,23 +1,22 @@
 #!/usr/bin/env bash
 
-echo "works"
+# define home
+export HOME2=/home/ubuntu
 
-# # define home
-# export HOME2=/home/ubuntu
+# ----- get all repos ----- 
+mkdir -p $HOME2/repos
+cd $HOME2/repos
 
-# # ----- get all repos ----- 
-# mkdir -p $HOME2/repos
-# cd $HOME2/repos
+git clone https://github.com/Sebastien-Raguideau/Ebame21-Quince.git
+git clone --recurse-submodules https://github.com/chrisquince/STRONG.git
+cd $HOME2/repos/STRONG
+git submodule foreach git pull origin master
 
-# git clone https://github.com/Sebastien-Raguideau/Ebame21-Quince.git
-# git clone --recurse-submodules https://github.com/chrisquince/STRONG.git
-# cd STRONG
-# git submodule foreach git pull origin master
-
-# # ----- run strong install --------
-# sudo apt-get update
-# sudo apt-get -y install libbz2-dev libreadline-dev cmake g++ zlib1g zlib1g-dev
-# bash install_STRONG.sh 
+# ----- run strong install --------
+sudo apt-get update
+sudo apt-get -y install libbz2-dev libreadline-dev cmake g++ zlib1g zlib1g-dev
+cd $HOME2/repos/STRONG
+./install_STRONG.sh 
 
 
 # # -----------Rob env --------------
