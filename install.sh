@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
 # define home
-export HOME2=/home/ubuntu
-
 {
-LOG=$HOME2/vm_setup.log
+export HOME2=/home/ubuntu
 
 
 # ------------------------------
@@ -56,8 +54,7 @@ tar -xvzf ont-guppy-cpu_5.0.16_linux64.tar.gz && mv ont-guppy-cpu_5.0.16_linux64
 mamba env create -f $APP_DIR/conda_env_LongReads.yaml
 
 # --- Pavian ---
-conda activate LongReads
-echo $CONDA_DEFAULT_ENV
+source /var/lib/miniconda3/bin/activate LongReads
 R -e 'if (!require(remotes)) { install.packages("remotes",repos="https://cran.irsn.fr") }
 remotes::install_github("fbreitwieser/pavian")'
 
@@ -98,4 +95,4 @@ chown -R 1000:1000 /var/lib/miniconda3
 
 # fix HOME2 ownership, so that user can create stuffs
 chown -R 1000:1000 $HOME2/*
-}&>"$HOME2/vm_install.log"
+}&>"$APP_DIR/vm_install.log"
