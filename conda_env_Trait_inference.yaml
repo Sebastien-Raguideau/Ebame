@@ -1,0 +1,13 @@
+name: Traits_Inf
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python>=3
+  - jupyterlab
+  - pip
+  - pip:
+    - pandas
+    - scikit-learn
+    - matplotlib
