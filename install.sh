@@ -78,9 +78,10 @@ echo -e 'export PATH=~/repos/STRONG/bin:$PATH '>>$HOME2/.bashrc
 echo -e "\n\n #------ guppy path -------">>$HOME2/.bashrc 
 echo -e 'export PATH=~/repos/Bandage:$PATH'>>$HOME2/.bashrc
 
-# Jupiter install
-echo -e "\n\n #------ Jupiter -------">>$HOME2/.bashrc 
-echo -e 'export PATH=/home/ubuntu/.local/bin/:$PATH'>>$HOME2/.bashrc
+#  add repos scripts 
+echo -e "\n\n #------ Ebame21-Quince -------">>$HOME2/.bashrc 
+echo -e 'export PATH=~/repos/Ebame21-Quince/scripts:$PATH'>>$HOME2/.bashrc
+
 
 # --------------------------------------------
 # ------------ fix rigths --------------------
