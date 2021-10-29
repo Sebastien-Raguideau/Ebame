@@ -3,6 +3,10 @@
 # define home
 export HOME2=/home/ubuntu
 
+{
+LOG=$HOME2/vm_setup.log
+
+
 # ------------------------------
 # ----- get all repos ---------- 
 # ------------------------------
@@ -30,7 +34,7 @@ sudo apt-get -y install qt5-default gzip feh evince
 cd $HOME2/repos/STRONG
 # conda/mamba is not in the path for root, so I need to add it
 export PATH=/var/lib/miniconda3/condabin:$PATH
-./install_STRONG.sh 
+./install_STRONG.sh
 
 # Bandage install
 cd $HOME2/repos/
@@ -53,6 +57,7 @@ mamba env create -f $APP_DIR/conda_env_LongReads.yaml
 
 # --- Pavian ---
 conda activate LongReads
+echo $CONDA_DEFAULT_ENV
 R -e 'if (!require(remotes)) { install.packages("remotes",repos="https://cran.irsn.fr") }
 remotes::install_github("fbreitwieser/pavian")'
 
@@ -93,3 +98,4 @@ chown -R 1000:1000 /var/lib/miniconda3
 
 # fix HOME2 ownership, so that user can create stuffs
 chown -R 1000:1000 $HOME2/*
+}&>"$HOME2/vm_install.log"
