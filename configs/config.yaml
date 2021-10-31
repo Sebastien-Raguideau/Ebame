@@ -11,7 +11,7 @@ data: /mnt/mydatalocal/Projects/STRONG_AD/data  # path to data folder
 cog_database: /home/ubuntu/data/public/teachdata/ebame/Quince-data-2021/COG/Cog # COG database
 
 
-gtdb_path: "/home/ubuntu/data/public/teachdata/ebame/Quince-data-2021/release202"
+#gtdb_path: "/home/ubuntu/data/public/teachdata/ebame/Quince-data-2021/release202"
 
 # ----- Binning parameters ------
 concoct:
@@ -26,13 +26,13 @@ assembly:
 
 # ----- BayesPaths parameters ------
 bayespaths:
-    nb_strains: 16
     min_orf_number_to_merge_bins: 10
     min_orf_number_to_run_a_bin: 10
     percent_unitigs_shared: 0.1
     nb_strains: 8
     nmf_runs: 1
     max_giter: 1 
+    optional_args: '--nofilter'
 
 #----- DESMAN parameters ------
 desman:
