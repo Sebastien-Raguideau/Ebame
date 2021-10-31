@@ -54,9 +54,9 @@ tar -xvzf ont-guppy-cpu_5.0.16_linux64.tar.gz && mv ont-guppy-cpu_5.0.16_linux64
 mamba env create -f $APP_DIR/conda_env_LongReads.yaml
 
 # --- Pavian ---
-source /var/lib/miniconda3/bin/activate LongReads
-R -e 'if (!require(remotes)) { install.packages("remotes",repos="https://cran.irsn.fr") }
-remotes::install_github("fbreitwieser/pavian")'
+#source /var/lib/miniconda3/bin/activate LongReads
+#R -e 'if (!require(remotes)) { install.packages("remotes",repos="https://cran.irsn.fr") }
+#remotes::install_github("fbreitwieser/pavian")'
 
 # -------------------------------------
 # -----------Seb Tuto --------------
