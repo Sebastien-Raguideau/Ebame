@@ -24,7 +24,7 @@ sudo apt-get update
 # STRONG compilation
 sudo apt-get -y install libbz2-dev libreadline-dev cmake g++ zlib1g zlib1g-dev
 # bandage and utils
-sudo apt-get -y install qt5-default gzip feh evince
+sudo apt-get -y install qt5-default gzip unzip feh evince
 
 # ------------------------------
 # ----- Chris tuto -------------
@@ -57,6 +57,20 @@ mamba env create -f $APP_DIR/conda_env_LongReads.yaml
 source /var/lib/miniconda3/bin/activate LongReads
 R -e 'if (!require(remotes)) { install.packages("remotes",repos="https://cran.irsn.fr") }
 remotes::install_github("fbreitwieser/pavian")'
+
+# -------------------------------------
+# -----------Seb Tuto --------------
+# -------------------------------------
+
+source /var/lib/miniconda3/bin/deactivate
+source /var/lib/miniconda3/bin/activate STRONG
+mamba install -c bioconda checkm-genome megahit
+
+# add checkm database
+mkdir -p /mnt/mydatalocal/checkm 
+cd /mnt/mydatalocal/checkm
+wget https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz && tar -xvzf checkm_data_2015_01_16.tar.gz
+checkm data setRoot /mnt/mydatalocal/checkm
 
 # -------------------------------------
 # ---------- modify .bashrc -----------
