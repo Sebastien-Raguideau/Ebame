@@ -1,4 +1,4 @@
-name: LongRob
+name: LongReads
 channels:
   - conda-forge
   - bioconda
@@ -14,3 +14,4 @@ dependencies:
   - miniasm
   - flye
   - samtools
+  - r-base
