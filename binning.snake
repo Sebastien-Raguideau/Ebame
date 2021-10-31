@@ -4,7 +4,7 @@ rule create megahit_files:
     output: R1 = "{path}/R1.csv",
             R2 = "{path}/R2.csv"
     params: data = "/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/AD_data"
-    bash:"""
+    shell:"""
         ls {params.data}/*/*R1.fastq | tr "\n" "," | sed 's/,$//' > {output.R1}
         ls {params.data}/*/*R2.fastq | tr "\n" "," | sed 's/,$//' > {output.R2}
          """
@@ -51,7 +51,7 @@ rule generate_coverage:
 
 # binning
 rule metabat2:
-    input: asmbl = "{path}/Assembly/final_contigs.fa",
+    input: asmbl = "{path}/Assembly/final.contigs.fa",
            cov = "{path}/Binning/depth.txt"
     params: "{path}/Binning"
     output: "{path}/Binning/metabat2.done"
