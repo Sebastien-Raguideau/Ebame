@@ -69,8 +69,8 @@ mamba install -c bioconda checkm-genome megahit
 # add checkm database
 mkdir -p /mnt/mydatalocal/checkm 
 cd /mnt/mydatalocal/checkm
-wget https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz && tar -xvzf checkm_data_2015_01_16.tar.gz
-checkm data setRoot /mnt/mydatalocal/checkm
+#wget https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz && tar -xvzf checkm_data_2015_01_16.tar.gz
+#checkm data setRoot /mnt/mydatalocal/checkm
 
 # -------------------------------------
 # ---------- modify .bashrc -----------
