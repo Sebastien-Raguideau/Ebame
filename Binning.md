@@ -70,13 +70,13 @@ Let's create a Projects directory and work inside:
 
 All datasets for this tutorial can be found at 
 
-    /var/autofs/ifb/public/teachdata/ebame/Quince-data-2021
+    /var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/Quince_datasets
 We have here different dataset subsampled so they can run in real time during the workshop.
-We are going to use reads from the AD_data folder. They come from an industrial anaerobic digester study we realised but correspond to only a few MAGs.
+We are going to use reads from the AD_small folder. They come from an industrial anaerobic digester study we realised but correspond to only a few MAGs.
 
 For simplification sake, we are going to create a global variable:
 
-    export DATA=/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021
+    export DATA=/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/Quince_datasets
 
 **This is a shell dependant command, you need to retype each time you reopen a terminal**
 
@@ -86,9 +86,9 @@ Why would you want to to assembly or coassembly?
 
 Megahit is installed, reads are at 
 
-    $DATA/AD_data
+    $DATA/AD_small
 
-Bioinformatic is mostly about reading documentation and to use tools. 
+Bioinformatic is mostly about reading documentation, and looking on the internet how to do things. 
 Use the -h flag on megahit and try to craft a command line to launch the assembly.
 
 <details><summary>spoiler</summary>
@@ -96,10 +96,11 @@ Use the -h flag on megahit and try to craft a command line to launch the assembl
 
 ```bash
 cd ~/data/mydatalocal/AD_binning
-ls $DATA/AD_data/*/*R1.fastq | tr "\n" "," | sed 's/,$//' > R1.csv
-ls $DATA/AD_data/*/*R2.fastq | tr "\n" "," | sed 's/,$//' > R2.csv
+ls $DATA/AD_small/*/*R1.fastq | tr "\n" "," | sed 's/,$//' > R1.csv
+ls $DATA/AD_small/*/*R2.fastq | tr "\n" "," | sed 's/,$//' > R2.csv
 megahit -1 $(<R1.csv) -2 $(<R2.csv) -t 4 -o Assembly
 ```
+It should take about 12 mins
 </p>
 </details>
 
@@ -119,7 +120,7 @@ As preliminary step we need to index the assembly
 
 ```bash
 cd Assembly
-bwa index final_contigs.fa
+bwa index final.contigs.fa
 cd ..
 ```
 
@@ -131,8 +132,7 @@ produce a sam file 'Map/sample1.sam':
 
 ```bash
     mkdir Map
-    bwa mem -t 4 Assembly/final_contigs.fa 
-    $DATA/sample1/sample1_R1.fastq $DATA/sample1/sample1_R2.fastq > Map/sample1.sam
+    bwa mem -t 4 Assembly/final.contigs.fa $DATA/AD_small/sample1/sample1_R1.fastq $DATA/AD_small/sample1/sample1_R2.fastq > Map/sample1.sam
 ```
 </p>
 </details>
@@ -172,21 +172,21 @@ To run all samples we would place these steps in a shell script:
 
 ```bash
 cd ~/data/mydatalocal/AD_binning
+rm ~/data/mydatalocal/AD_binning/Map/*
 
-for file in $DATA/*/*R1.fastq
+for file in $DATA/AD_small/*/*R1.fastq
 do 
    
    stub=${file%_R1.fastq}
    name=${stub##*/}
    
-   echo $stub
+   echo $name
 
    file2=${stub}_R2.fastq
 
-   bwa mem -t 4 Assembly/final_contigs.fa $file $file2 | samtools view -b -F 4 - | samtools sort -m - > ${stub}.mapped.sorted.bam
+   bwa mem -t 4 Assembly/final.contigs.fa $file $file2 | samtools view -b -F 4 - | samtools sort - > Map/$name.mapped.sorted.bam
 done
 ```
-
 
 <a name="binning"/>
 
@@ -208,17 +208,20 @@ Make a new subfolder Binning. Move the Coverage file into this and look into cra
 cd ~/data/mydatalocal/AD_binning
 mkdir Binning
 mv Map/depth.txt Binning/depth.txt
-metabat2 -i Assembly/final_contigs.fa -a Binning/depth.txt -t 4 -o Binning
+metabat2 -i Assembly/final.contigs.fa -a Binning/depth.txt -t 4 -o Binning/Bins/Bin
 ```
 </p>
 </details>
 
 How many contigs were clustered? 
 ```bash
-grep -c ">" *.fasta | awk -F: '{ s+=$2 } END { print s }'
+grep -c ">" *.fa | awk -F: '{ s+=$2 } END { print s }'
 ```
-
-
+How many nucleotide were clustered?
+```bash
+grep -v ">" *.fa |wc -m
+```
+ 
 ## Which bins are Metagenome assembled genomes (MAGs)?
 
 A bin is a group of contigs put together from looking at coverage/composition. How do you assess bin quality?
@@ -226,7 +229,7 @@ A bin is a group of contigs put together from looking at coverage/composition. H
 Checkm is an handy automated pipeline which will use marker set specifics to bacteria/Archea to assess contamination/completion.
 ```bash
 cd ~/data/mydatalocal/AD_binning/Binning
-checkm lineage_wf MAGs/ checkm -x .fasta
+checkm lineage_wf Bins/ checkm -x .fa
 ```
 
 <details><summary>After launching checkm, are you having an issue?</summary>
@@ -237,7 +240,7 @@ Instead you will need to import output pre-generated for this tutorial.
 
 ```bash
 rm -r checkm
-ln -s ~/repos/Ebame21-Quince/checkm .
+ln -s ~/repos/Ebame21-Quince/checkm.out
 ```
 </p>
 </details>
@@ -251,8 +254,10 @@ The gtdb toolkit does that for you:
 
 ```bash
 cd ~/data/mydatalocal/AD_binning/Binning
-gtdbtk classify_wf --cpus 4 --genome_dir MAGs --out_dir gtdb --extension .fasta –_scratch_dir gtdb/scratch
+gtdbtk classify_wf --cpus 4 --genome_dir Bins --out_dir gtdb --extension .fa --scratch_dir gtdb/scratch
 ```
+That will take at least X min.
+
 We obtain multiple files what are they?
 Look at summary files what information can we obtain.
 What is the RED, from gtdb?
@@ -381,8 +386,8 @@ If you ever want to use wildcards be sure that all wildcards in input cat be der
 We are now good to go with translating previous commands into a snakemake file. Let's start with the creation of files for megahit. The best way to proceed is to copy and paste previous command lines and build around it. First let's have a go at creating the R1.csv and R2.csv.
 Start from 
 ```bash
-ls $DATA/AD_data/*/*R1.fastq | tr "\n" "," | sed 's/,$//' > R1.csv
-ls $DATA/AD_data/*/*R2.fastq | tr "\n" "," | sed 's/,$//' > R2.csv
+ls $DATA/AD_small/*/*R1.fastq | tr "\n" "," | sed 's/,$//' > R1.csv
+ls $DATA/AD_small/*/*R2.fastq | tr "\n" "," | sed 's/,$//' > R2.csv
 ```
 Let's all agree on working on a file called: "binning.snake"
 <details><summary>Try for yourself for 5 min before looking here. </summary>
@@ -392,7 +397,7 @@ Let's all agree on working on a file called: "binning.snake"
 rule create megahit_files:
     output: R1 = "{path}/R1.csv",
             R2 = "{path}/R2.csv"
-    params: data = "/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/AD_data"
+    params: data = "/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/Quince_datasets/AD_small"
     bash:"""
         ls {params.data}/*/*R1.fastq | tr "\n" "," | sed 's/,$//' > {output.R1}
         ls {params.data}/*/*R2.fastq | tr "\n" "," | sed 's/,$//' > {output.R2}
@@ -438,8 +443,8 @@ To note
 #### Read mapping
 Same as before please translate the following:
 ```bash
-bwa index final_contigs.fa
-bwa mem -t 4 Assembly/final_contigs.fa $file $file2 | samtools view -b -F 4 - | samtools sort -m - > ${stub}.mapped.sorted.bam
+bwa index final.contigs.fa
+bwa mem -t 4 Assembly/final.contigs.fa $file $file2 | samtools view -b -F 4 - | samtools sort -m - > ${stub}.mapped.sorted.bam
 ```
 <details><summary>Clue: do not write loop, try to write it for a unique sample. Snakemake will loop for you.</summary>
 <p>
@@ -459,8 +464,8 @@ To note:
 
 ```bash
 rule map_reads:
-    input: R1 = "/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/AD_data/{sample}/{sample}_R1.fastq",
-           R2 = "/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/AD_data/{sample}/{sample}_R1.fastq",
+    input: R1 = "/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/Quince_datasets/AD_small/{sample}/{sample}_R1.fastq",
+           R2 = "/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/Quince_datasets/AD_small/{sample}/{sample}_R1.fastq",
            index = "{path}/Assembly/index.done",
            assembly = "{path}/Assembly/finals.contigs.fa"
     output: "{path}/Map/{sample}.mapped.sorted.bam"
@@ -510,7 +515,7 @@ import glob
 from os.path import basename,dirname
 
 # create a string variable to store path
-DATA="/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/AD_data"
+DATA="/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/Quince_datasets/AD_small"
 # use the glob function to find all R1.fastq file in each folder of DATA
 # then only keep the directory name wich is also the sample name
 SAMPLES = [basename(dirname(file)) for file in glob.glob("%s/*/*_R1.fastq"%DATA)]
@@ -532,7 +537,7 @@ To note:
 ### Binning
 This one is comparatively easy to translate and use tricks we've went through before, try having a go:
 ```bash
-metabat2 -i Assembly/final_contigs.fa -a Binning/depth.txt -t 4 -o Binning
+metabat2 -i Assembly/final.contigs.fa -a Binning/depth.txt -t 4 -o Binning
 ```
 
 <details><summary>solution </summary>
@@ -540,7 +545,7 @@ metabat2 -i Assembly/final_contigs.fa -a Binning/depth.txt -t 4 -o Binning
 
 ```bash
 rule metabat2:
-    input: asmbl = "{path}/Assembly/final_contigs.fa",
+    input: asmbl = "{path}/Assembly/final.contigs.fa",
            cov = "{path}/Binning/depth.txt"
     params: "{path}/Binning"
     output: "{path}/Binning/metabat2.done"
