@@ -64,7 +64,7 @@ mamba env create -f $APP_DIR/conda_env_LongReads.yaml
 
 source /var/lib/miniconda3/bin/deactivate
 source /var/lib/miniconda3/bin/activate STRONG
-mamba install -c bioconda checkm-genome megahit
+mamba install -c bioconda checkm-genome megahit bwa
 
 # add checkm database
 mkdir -p /mnt/mydatalocal/checkm 
