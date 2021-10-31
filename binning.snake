@@ -12,13 +12,13 @@ rule create megahit_files:
 rule megahit:
     input: R1 = "{path}/R1.csv",
            R2 = "{path}/R2.csv"
-    output: "{path}/Assembly/finals.contigs.fa"
+    output: "{path}/Assembly/final.contigs.fa"
     params: "{path}/Assembly"
     shell: "megahit -1 $(<{input.R1}) -2 $(<{input.R1}) -t {threads} -o {params}"
 
 # Read mapping
 rule index_assembly:
-    input: "{path}/finals.contigs.fa"
+    input: "{path}/final.contigs.fa"
     output: "{path}/index.done"
     shell:"""
           bwa index {input}
@@ -29,7 +29,7 @@ rule map_reads:
     input: R1 = "/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/AD_data/{sample}/{sample}_R1.fastq",
            R2 = "/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/AD_data/{sample}/{sample}_R1.fastq",
            index = "{path}/Assembly/index.done",
-           assembly = "{path}/Assembly/finals.contigs.fa"
+           assembly = "{path}/Assembly/final.contigs.fa"
     output: "{path}/Map/{sample}.mapped.sorted.bam"
     shell: "bwa mem -t 4 {input.assembly} {input.R1} {input.R2} | samtools view -b -F 4 - | samtools sort -m - > {output}"
 
