@@ -45,7 +45,7 @@ DATA="/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/Quince_datasets/AD
 SAMPLES = [basename(dirname(file)) for file in glob.glob("%s/*/*_R1.fastq"%DATA)]
 
 rule generate_coverage:
-    input: expand("{{path}}/MAP/{sample}.mapped.sorted.bam",sample=SAMPLES)
+    input: expand("{{path}}/Map/{sample}.mapped.sorted.bam",sample=SAMPLES)
     output: "{path}/Binning/depth.txt"
     shell: "jgi_summarize_bam_contig_depths --outputDepth {output} {input}"
 
