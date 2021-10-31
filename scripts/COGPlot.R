@@ -1,4 +1,4 @@
-#!/usr/bin/Rscript
+#!/var/lib/miniconda3/envs/STRONG/bin/Rscript
 
 library(ggplot2)
 library(reshape)
