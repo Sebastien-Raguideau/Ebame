@@ -1,4 +1,3 @@
-<a name="assembly"/>
 
 # Manual versus automatic metagenomic workflow.
 
@@ -398,7 +397,7 @@ rule create megahit_files:
     output: R1 = "{path}/R1.csv",
             R2 = "{path}/R2.csv"
     params: data = "/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/Quince_datasets/AD_small"
-    bash:"""
+    shell:"""
         ls {params.data}/*/*R1.fastq | tr "\n" "," | sed 's/,$//' > {output.R1}
         ls {params.data}/*/*R2.fastq | tr "\n" "," | sed 's/,$//' > {output.R2}
          """
@@ -426,16 +425,17 @@ megahit -1 $(<R1.csv) -2 $(<R2.csv) -t 4 -o Assembly
 rule megahit:
     input: R1 = "{path}/R1.csv",
            R2 = "{path}/R2.csv"
-    output: "{path}/Assembly/finals.contigs.fa"
+    output: "{path}/Assembly/final.contigs.fa"
     params: "{path}/Assembly"
     threads: 4
-    shell: "megahit -1 $(<{input.R1}) -2 $(<{input.R1}) -t {threads} -o {params}"
+    shell: "rm -r {params} && megahit -1 $(<{input.R1}) -2 $(<{input.R1}) -t {threads} -o {params}"
 ```
 
 To note
 
 -  wildcards defined in input output can also be used in the params
-- snakemake will create himself the directory Assembly, we don't need to care
+- If there is multiple input you can name them and refers to them.
+- snakemake will create himself the directory Assembly, this is a problem as megahit throws an error when the directory already exist.
 - we specify the number of threads for megahit
 </p>
 </details>
@@ -451,7 +451,7 @@ bwa mem -t 4 Assembly/final.contigs.fa $file $file2 | samtools view -b -F 4 - | 
 
 ```bash
 rule index_assembly:
-    input: "{path}/finals.contigs.fa"
+    input: "{path}/final.contigs.fa"
     output: "{path}/index.done"
     shell:"""
           bwa index {input}
@@ -467,7 +467,7 @@ rule map_reads:
     input: R1 = "/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/Quince_datasets/AD_small/{sample}/{sample}_R1.fastq",
            R2 = "/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/Quince_datasets/AD_small/{sample}/{sample}_R1.fastq",
            index = "{path}/Assembly/index.done",
-           assembly = "{path}/Assembly/finals.contigs.fa"
+           assembly = "{path}/Assembly/final.contigs.fa"
     output: "{path}/Map/{sample}.mapped.sorted.bam"
     threads: 4
     shell: "bwa mem -t {threads} {input.assembly} {input.R1} {input.R2} | samtools view -b -F 4 - | samtools sort -m - > {output}"
@@ -525,7 +525,7 @@ We create the snakemake rule:
 
 ```bash
 rule generate_coverage:
-	input: expand("{{path}}/MAP/{sample}.mapped.sorted.bam",sample=SAMPLES)
+	input: expand("{{path}}/Map/{sample}.mapped.sorted.bam",sample=SAMPLES)
 	output: "{path}/Binning/depth.txt"
 	shell: "jgi_summarize_bam_contig_depths --outputDepth {output} {input}"
 ```
@@ -537,7 +537,7 @@ To note:
 ### Binning
 This one is comparatively easy to translate and use tricks we've went through before, try having a go:
 ```bash
-metabat2 -i Assembly/final.contigs.fa -a Binning/depth.txt -t 4 -o Binning
+metabat2 -i Assembly/final.contigs.fa -a Binning/depth.txt -t 4 -o Binning/Bins/Bin
 ```
 
 <details><summary>solution </summary>
@@ -547,7 +547,7 @@ metabat2 -i Assembly/final.contigs.fa -a Binning/depth.txt -t 4 -o Binning
 rule metabat2:
     input: asmbl = "{path}/Assembly/final.contigs.fa",
            cov = "{path}/Binning/depth.txt"
-    params: "{path}/Binning"
+    params: "{path}/Binning/Bins/bin"
     output: "{path}/Binning/metabat2.done"
     threads: 4
     shell: """
