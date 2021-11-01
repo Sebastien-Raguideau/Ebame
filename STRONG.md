@@ -36,12 +36,14 @@ cd STRONG_AD
 
 ```
 
-Then copy in the short reads:
+Can you remember the flag to create a directory and move to it?
+
+Then link in the short reads:
 
 ```
 
 
-cp -r /home/ubuntu/data/public/teachdata/ebame/Quince-data-2021/Quince_datasets/AD_small data
+ln -s /home/ubuntu/data/public/teachdata/ebame/Quince-data-2021/Quince_datasets/AD_small data
 
 
 ```
@@ -57,12 +59,13 @@ ls data
 <p>
 
 ```
-echo $(cat data/sample1sample1/sample1_R1.fastq |wc -l)/4|bc
+echo $(cat data/sample1/sample1_R1.fastq |wc -l)/4| bc
 ```
 
 </p>
 </details>
 
+Can you understand what each program does here, cat, wc, bc
 
 Now copy in the STRONG config file:
 
@@ -70,12 +73,11 @@ Now copy in the STRONG config file:
 cp ~/repos/Ebame21-Quince/configs/config.yaml .
 ```
 
-Add this command to the `bayespaths` subsection if not present using your favourite 
-command line text editor:
+Look at the config.yaml with more:
+```
+more config.yaml
+```
 
-```
-optional_args: '--nofilter'
-```
 
 Minimise that pesky prompt!
 ```
