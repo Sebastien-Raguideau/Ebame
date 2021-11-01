@@ -1,5 +1,3 @@
-<a name="assembly"/>
-
 # Manual versus automatic metagenomic workflow.
 
 The aim of this tutorial is to go from paired reads to Mags placed in a phylogenetic tree, at first using command line and in a second time using a workflow management system, that is [snakemake](https://snakemake.readthedocs.io/en/stable/). 
