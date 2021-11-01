@@ -55,7 +55,7 @@ rule generate_coverage:
 rule metabat2:
     input: asmbl = "{path}/Assembly/final.contigs.fa",
            cov = "{path}/Binning/depth.txt"
-    params: "{path}/Binning"
+    params: "{path}/Binning/Bins/Bin"
     output: "{path}/Binning/metabat2.done"
     threads: 4
     shell: "metabat2 -i {input.asmbl} -a {input.cov} -t {threads} -o {params} && touch {output}"
