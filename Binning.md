@@ -1,3 +1,4 @@
+<a name="assembly"/>
 
 # Manual versus automatic metagenomic workflow.
 
@@ -444,7 +445,7 @@ To note
 Same as before please translate the following:
 ```bash
 bwa index final.contigs.fa
-bwa mem -t 4 Assembly/final.contigs.fa $file $file2 | samtools view -b -F 4 - | samtools sort -m - > ${stub}.mapped.sorted.bam
+bwa mem -t 4 Assembly/final.contigs.fa $file $file2 | samtools view -b -F 4 - | samtools sort - > ${stub}.mapped.sorted.bam
 ```
 <details><summary>Clue: do not write loop, try to write it for a unique sample. Snakemake will loop for you.</summary>
 <p>
@@ -470,7 +471,7 @@ rule map_reads:
            assembly = "{path}/Assembly/final.contigs.fa"
     output: "{path}/Map/{sample}.mapped.sorted.bam"
     threads: 4
-    shell: "bwa mem -t {threads} {input.assembly} {input.R1} {input.R2} | samtools view -b -F 4 - | samtools sort -m - > {output}"
+    shell: "bwa mem -t {threads} {input.assembly} {input.R1} {input.R2} | samtools view -b -F 4 - | samtools sort  - > {output}"
 ```
 To note:
 
