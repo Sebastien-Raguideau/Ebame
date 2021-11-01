@@ -1,2 +1,3 @@
 # EBAME21-Chris_group_tuto
-contains corresponding app install file, as well as conda env for long read tutorial. 
+Contains corresponding app install file, conda env for long read tutorial and machine learning. 
+Tutorials are found in Binning.md and STRONG.md
