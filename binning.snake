@@ -14,7 +14,7 @@ rule megahit:
            R2 = "{path}/R2.csv"
     output: "{path}/Assembly/final.contigs.fa"
     params: "{path}/Assembly"
-    shell: "megahit -1 $(<{input.R1}) -2 $(<{input.R1}) -t {threads} -o {params}"
+    shell: "rm -r {params} && megahit -1 $(<{input.R1}) -2 $(<{input.R1}) -t {threads} -o {params}"
 
 # Read mapping
 rule index_assembly:
