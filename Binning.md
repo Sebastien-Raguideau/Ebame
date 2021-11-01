@@ -252,6 +252,7 @@ The gtdb toolkit does that for you:
 
 ```bash
 cd ~/data/mydatalocal/AD_binning/Binning
+export GTDBTK_DATA_PATH=ifb/data/public/teachdata/ebame/Quince-data-2021/release202
 gtdbtk classify_wf --cpus 4 --genome_dir Bins --out_dir gtdb --extension .fa --scratch_dir gtdb/scratch
 ```
 That will take at least X min.
