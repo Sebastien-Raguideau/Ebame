@@ -58,7 +58,7 @@ rule metabat2:
     params: "{path}/Binning"
     output: "{path}/Binning/metabat2.done"
     threads: 4
-    shell: "metabat2 -i {input.asmbl} -a {input.cov} -t {threads} -o {params}"
+    shell: "metabat2 -i {input.asmbl} -a {input.cov} -t {threads} -o {params} && touch {output}"
 
 
 
