@@ -32,7 +32,8 @@ rule map_reads:
            index = "{path}/Assembly/index.done",
            assembly = "{path}/Assembly/final.contigs.fa"
     output: "{path}/Map/{sample}.mapped.sorted.bam"
-    shell: "bwa mem -t 4 {input.assembly} {input.R1} {input.R2} | samtools view -b -F 4 - | samtools sort -m - > {output}"
+    threads: 4
+    shell: "bwa mem -t {threads} {input.assembly} {input.R1} {input.R2} | samtools view -b -F 4 - | samtools sort - > {output}"
 
 # coverage
 
