@@ -9,6 +9,19 @@ STRONG resolves strains on assembly graphs by resolving variants on core COGs us
 In this tutorial we will run the complete STRONG pipeline on a small AD time series. To 
 begin we need to set-up our config file. This has been **mostly** prepared for you but will require a small amount of editing. 
 
+Prerun results:
+
+```
+cd ~/data/mydatalocal/Projects/STRONG_AD
+
+wget https://ebitutorial.s3.climb.ac.uk/graph5.fasta
+
+tar -xvzf Results.tar.gz
+
+```
+
+
+
 ## Getting started
 
 Create a VM - EBAME-Quince preferably 8 cores xlarge and login with ssh using X-windows forwarding.
