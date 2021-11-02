@@ -20,7 +20,11 @@ tar -xvzf Results.tar.gz
 
 ```
 
+Downloading simplified.gfa for local Bandage viewing:
 
+```
+scp ubuntu@my.ip.add:~/data/mydatalocal/Projects/STRONG_AD/Results/assembly/high_res/simplified.gfa .
+```
 
 ## Getting started
 
