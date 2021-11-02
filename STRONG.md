@@ -14,7 +14,7 @@ Prerun results:
 ```
 cd ~/data/mydatalocal/Projects/STRONG_AD
 
-wget https://ebitutorial.s3.climb.ac.uk/graph5.fasta
+wget https://ebitutorial.s3.climb.ac.uk/Results.tar.gz
 
 tar -xvzf Results.tar.gz
 
