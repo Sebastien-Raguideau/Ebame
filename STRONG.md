@@ -243,7 +243,7 @@ bayespaths: error: the following arguments are required: Gene_dir, kmer_length, 
 
 Then run:
 ```
-ln -s ../subgraphs/bin_merged/Bin_2/simplif Bin_2
+ln -s ../subgraphs/bin_merged/Bin_2 Bin_2
 
 cp ~/repos/STRONG/BayesPaths/Data/coreCogs.tsv .
 
