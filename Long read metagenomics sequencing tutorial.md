@@ -1,4 +1,4 @@
-# EBAME 6 2021: Nanopore sequencing workshop
+# EBAME 6 2021: Long read metagenomics sequencing workshop
 
 ## Long read metagenomics of the human gut microbiome
 
