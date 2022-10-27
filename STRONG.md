@@ -1,4 +1,4 @@
-# Ebame6
+# Ebame7
 
 # STRONG - Strain Resolution ON Graphs
 
@@ -12,18 +12,27 @@ begin we need to set-up our config file. This has been **mostly** prepared for y
 Prerun results:
 
 ```
-cd ~/data/mydatalocal/Projects/STRONG_AD
+
+cd ~/data/mydatalocal
+
+mkdir Projects
+
+cd Projects
+
+mkdir STRONG_AD
 
 wget https://ebitutorial.s3.climb.ac.uk/Results.tar.gz
 
 tar -xvzf Results.tar.gz
+
+mv Results Results_prerun
 
 ```
 
 Downloading simplified.gfa for local Bandage viewing:
 
 ```
-scp ubuntu@my.ip.add:~/data/mydatalocal/Projects/STRONG_AD/Results/assembly/high_res/simplified.gfa .
+scp ubuntu@my.ip.add:~/data/mydatalocal/Projects/STRONG_AD/Results_prerun/assembly/high_res/simplified.gfa .
 ```
 
 ## Getting started
@@ -60,8 +69,7 @@ Then link in the short reads:
 ```
 
 
-ln -s /home/ubuntu/data/public/teachdata/ebame/Quince-data-2021/Quince_datasets/AD_small data
-
+ln -s /home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/Quince_datasets/AD_small data
 
 ```
 Have a look at the data folder structure:
