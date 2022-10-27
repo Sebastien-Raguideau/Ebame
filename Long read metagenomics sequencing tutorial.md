@@ -1,10 +1,10 @@
-# EBAME 6 2021: Long read metagenomics sequencing workshop
+# EBAME 7 2022: Long read metagenomics sequencing workshop
 
 ## Long read metagenomics of the human gut microbiome
 
 
 ### Introduction
-Today we aim to use real, nanopore derived, long read sequence data to examen the community composition of two mock communities constructed of representative members of the human gut microbiome. The tutorial is designed to act as a reference for processing long reads from raw fast5 files to an assembled and taxonomically classified metagenome. While example codes for each step are provided, they are only available when revealed by clicking on the drop-down menus. This affords you the opportunity to try and implement code from the linked help pages and manuals of the tools being used. It is important to note that many other metagenomic tools and pipelines are available to assemble and undertake taxonomic classification and can be implemented depending on your sample, aim, time and available computational power.
+Today we aim to use real, nanopore derived, long read sequence data to examine the community composition of two mock communities constructed of representative members of the human gut microbiome. The tutorial is designed to act as a reference for processing long reads from raw fast5 files to an assembled and taxonomically classified metagenome. While example codes for each step are provided, they are only available when revealed by clicking on the drop-down menus. This affords you the opportunity to try and implement code from the linked help pages and manuals of the tools being used. It is important to note that many other metagenomic tools and pipelines are available to assemble and undertake taxonomic classification and can be implemented depending on your sample, aim, time and available computational power.
 
 ### Laboratory methods
 Bacterial isolates were grown under anerobic conditions in species specific media. Cultures were standardised to 1 x 10^8 cells / ml via species specific calibrated optical density mesurments. Mock communities were constructed by mixing species in known proportions based on cell copy numbers / ml. 
@@ -30,7 +30,7 @@ The tools required to undertake this tutorial are supplied in the LongReads cond
 ### Data 
 
 Sequencing data is located:
-~/data/public/teachdata/ebame/Quince-data-2021/Quince_datasets/Rob_data/
+~/data/public/teachdata/ebame/Quince-data-2022/Quince_datasets/LongRead_data/Nanopore
 
 Kraken2 database is located:
 ~/data/public/teachdata/ebame/Quince-data-2021/minikraken2_v1_8GB
@@ -56,7 +56,7 @@ mkdir LongReads
 
 cd LongReads
 
-cp ~/data/public/teachdata/ebame/Quince-data-2021/Quince_datasets/Rob_data/fast5_subset.tar.gz .
+cp ~/data/public/teachdata/ebame/Quince-data-2021/Quince_datasets/LongRead_data/Nanopore/fast5_subset.tar.gz .
 
 tar -xvzf fast5_subset.tar.gz
 
