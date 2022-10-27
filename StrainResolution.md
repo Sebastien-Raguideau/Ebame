@@ -3,7 +3,6 @@
 Plan for the session:
 - learn how to launch the STRONG pipeline
 - learn the main step of the analysis, and it's expected output
-- (time dependant) introduction to snakemake and how to create your own pipeline
 
 ##  STRONG - Strain Resolution ON Graphs
 
@@ -49,19 +48,40 @@ Try activating the relevant conda environment :
 **Databases**
 
  - [COG database](ftp://ftp.ncbi.nlm.nih.gov/pub/mmdb/cdd/little_endian) , you will find it installed at
-    `/home/training/Databases/rpsblast_cog_db`
+    `/home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/COG`
 
  - (optional) [GTDB](https://pubmed.ncbi.nlm.nih.gov/30148503/) , used
    with gtdb-tk, (77Gb) too much ram needed and execution too slow for this present tutorial.
 
 #### Dataset
 Anaerobic digester metagenomic time series subsampled for this tutorial, reads mapping only to a few bins of interest.
-Please download and extract the dataset using this link: 
-```bash
-mkdir ~/Data 
-cd ~/Data
-wget http://seb.s3.climb.ac.uk/strain_practial_data.tar.gz
-tar -xvf strain_practial_data.tar.gz
+
+Start off by moving into the ~/data/mydatalocal directory create new directory Projects (if not already there) and subdirectory STRONG_AD:
+
+```
+cd ~/data/mydatalocal
+
+mkdir Projects
+
+cd Projects
+
+mkdir STRONG_AD
+
+cd STRONG_AD
+
+```
+
+Can you remember the flag to create a directory and move to it?
+
+Then link in the short reads:
+
+```
+
+ln -s /home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/Quince_datasets/AD_small data
+
+```
+
+train_practial_data.tar.gz
 ```
  Look inside a read file with nano, less, head, tail, more or any such:
 
