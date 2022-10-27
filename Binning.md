@@ -78,7 +78,8 @@ We are going to use reads from the AD_small folder. They come from an industrial
 
 For simplification sake, we are going to create a global variable:
 
-    export DATA=/var/autofs/ifb/public/teachdata/ebame-2022/metagenomics
+    export DATA=/home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/Quince_datasets
+
 
 **This is a shell dependant command, you need to retype each time you reopen a terminal**
 
