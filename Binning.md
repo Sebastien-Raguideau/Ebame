@@ -346,7 +346,7 @@ Here we could apply it to make it possible to create a file anywhere on the vm:
 
 ```bash
 rule Hello_world:
-    input: "~/requirement.txt"
+    input: "/home/ubuntu/requirement.txt"
     output: "{path}/snakemake.txt"
     shell: "echo HELLO WORLD > {output}"
 ```
@@ -367,7 +367,7 @@ snakemake -s hello.snake ~/data/mydatalocal/snakemake.txt -c1
 Example:
 ```bash
 rule Hello_world:
-    input: "~/requirerement.txt"
+    input: "/home/ubuntu/requirement.txt"
     output: "{path}/snakemake.txt"
     threads: 100
     log: "{path}/log_hello.txt"
@@ -401,7 +401,7 @@ Let's all agree on working on a file called: "binning.snake"
 rule create megahit_files:
     output: R1 = "{path}/R1.csv",
             R2 = "{path}/R2.csv"
-    params: data = "/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/Quince_datasets/AD_small"
+    params: data = "/home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/Quince_datasets/AD_small"
     shell:"""
         ls {params.data}/*/*R1.fastq | tr "\n" "," | sed 's/,$//' > {output.R1}
         ls {params.data}/*/*R2.fastq | tr "\n" "," | sed 's/,$//' > {output.R2}
