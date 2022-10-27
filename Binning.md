@@ -306,8 +306,8 @@ The minimum rule is :
 Example :
 ```bash
 rule Hello_world:
-    input: "~/requirerement.txt"
-    output: "~/snakemake.txt"
+    input: "/home/ubuntu/requirement.txt"
+    output: "/home/ubuntu/snakemake.txt"
     shell: "echo HELLO WORLD > {output}"
 ```
 
@@ -324,7 +324,7 @@ nano hello.snake
 
 Then ask snakemake to generate that file:
 ```bash
-snakemake -s hello.snake ~/snakemake.txt
+snakemake -s hello.snake ~/snakemake.txt -c1
 ```
 <details><summary>What happens? </summary>
 <p>
@@ -336,7 +336,7 @@ By specifying a results, for instance ~/snakemake.txt, snakemake will look at al
 
 Let's create an empty file 
 ```bash
-touch ~/requirerement.txt
+touch ~/requirement.txt
 ```
 Now try again with the previous snakemake command.
 
@@ -346,14 +346,14 @@ Here we could apply it to make it possible to create a file anywhere on the vm:
 
 ```bash
 rule Hello_world:
-    input: "~/requirerement.txt"
+    input: "~/requirement.txt"
     output: "{path}/snakemake.txt"
     shell: "echo HELLO WORLD > {output}"
 ```
 Let's try this new version:
 
 ```bash
-snakemake -s hello.snake ~/data/mydatalocal/snakemake.txt
+snakemake -s hello.snake ~/data/mydatalocal/snakemake.txt -c1
 ``` 
 ### Additional rule entries
 -   threads : number of threads the rule needs, default = 1
