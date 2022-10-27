@@ -81,8 +81,6 @@ ln -s /home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/Quince_datasets
 
 ```
 
-train_practial_data.tar.gz
-```
  Look inside a read file with nano, less, head, tail, more or any such:
 
 <details><summary>How to count the number of reads?</summary>
