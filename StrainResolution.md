@@ -61,10 +61,6 @@ Start off by moving into the ~/data/mydatalocal directory create new directory P
 ```
 cd ~/data/mydatalocal
 
-mkdir Projects
-
-cd Projects
-
 mkdir STRONG_AD
 
 cd STRONG_AD
@@ -87,7 +83,7 @@ ln -s /home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/Quince_datasets
 <p>
 
  ```bash
-echo $(cat ~/Data/AD_small/sample1/sample1_R1.fastq | wc -l )/4| bc
+echo $(cat data/sample1/sample1_R1.fastq | wc -l )/4| bc
   ```
 
 Can you understand what each program does here, cat, wc, bc?
@@ -97,16 +93,18 @@ while not exhaustive, have a look at cheatsheets for bash [commands](https://che
 </details>
 
 #### Additional files
-Please download this repos which contains some intermediary results, scripts and files needed for this session.
-```bash
-cd ~/repos
-git clone https://github.com/Sebastien-Raguideau/strain_resolution_practical.git
-```
+
 Some part of STRONG are a bit too slow and we will have to work with pre-run results. Please download and extract theses files:
 ```bash
-cd ~/repos/strain_resolution_practical
-wget http://seb.s3.climb.ac.uk/STRONG_prerun.tar.gz
-tar -xvf STRONG_prerun.tar.gz
+
+cd ~/data/mydatalocal/STRONG_AD
+
+wget https://ebitutorial.s3.climb.ac.uk/Results.tar.gz
+
+tar -xvzf Results.tar.gz
+
+mv Results Results_prerun
+
 ```
 
 ### Launching STRONG :  config file
