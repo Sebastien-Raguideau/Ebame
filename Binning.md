@@ -469,8 +469,8 @@ To note:
 
 ```bash
 rule map_reads:
-    input: R1 = "/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/Quince_datasets/AD_small/{sample}/{sample}_R1.fastq",
-           R2 = "/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/Quince_datasets/AD_small/{sample}/{sample}_R1.fastq",
+    input: R1 = "/home/ubuntu/data/public/teachdata/ebame-2022/metagenomics//Quince_datasets/AD_small/{sample}/{sample}_R1.fastq",
+           R2 = "/home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/Quince_datasets/AD_small/{sample}/{sample}_R1.fastq",
            index = "{path}/Assembly/index.done",
            assembly = "{path}/Assembly/final.contigs.fa"
     output: "{path}/Map/{sample}.mapped.sorted.bam"
