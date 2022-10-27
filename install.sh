@@ -15,6 +15,7 @@ cd $HOME2/repos
 git clone https://github.com/Sebastien-Raguideau/Ebame21-Quince.git
 git clone --recurse-submodules https://github.com/chrisquince/STRONG.git
 git clone https://github.com/chrisquince/genephene.git
+git clone https://github.com/rvicedomini/strainberry.git
 
 # ------------------------------
 # ----- all sudo installs ------
@@ -53,6 +54,9 @@ tar -xvzf ont-guppy-cpu_5.0.16_linux64.tar.gz && mv ont-guppy-cpu_5.0.16_linux64
 # --- everything else ---
 mamba env create -f $APP_DIR/conda_env_LongReads.yaml
 
+# --- install strainberry to the path ---
+
+
 # --- Pavian ---
 #source /var/lib/miniconda3/bin/activate LongReads
 #R -e 'if (!require(remotes)) { install.packages("remotes",repos="https://cran.irsn.fr") }
@@ -67,10 +71,10 @@ source /var/lib/miniconda3/bin/activate STRONG
 mamba install -c bioconda checkm-genome megahit bwa
 
 # add checkm database
-mkdir -p /mnt/mydatalocal/checkm 
-cd /mnt/mydatalocal/checkm
+mkdir -p /home/ubuntu/data/mydatalocal/checkm 
+cd /home/ubuntu/data/mydatalocal/checkm
 wget https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz && tar -xvzf checkm_data_2015_01_16.tar.gz
-checkm data setRoot /mnt/mydatalocal/checkm
+checkm data setRoot /home/ubuntu/data/mydatalocal/checkm
 
 # -------------------------------------
 # ---------- modify .bashrc -----------
@@ -80,7 +84,7 @@ checkm data setRoot /mnt/mydatalocal/checkm
 sed -i "s/alias ll='ls -alF'/alias ll='ls -alhF'/g" $HOME2/.bashrc 
 
 # add multitude of export to .bashrc
-echo -e "\n\n #------ export path to repos/db -------">>$HOME2/.bashrc
+echo -e "\n\n#--------------------------------------\n#------ export path to repos/db -------\n#--------------------------------------">>$HOME2/.bashrc
 
 # ---------- add things in path --------------
 # guppy install
@@ -97,8 +101,11 @@ echo -e 'export PATH=~/repos/Bandage:$PATH'>>$HOME2/.bashrc
 
 #  add repos scripts 
 echo -e "\n\n #------ Ebame21-Quince -------">>$HOME2/.bashrc 
-echo -e 'export PATH=~/repos/Ebame21-Quince/scripts:$PATH'>>$HOME2/.bashrc
+echo -e 'export PATH=~/repos/Ebame/scripts:$PATH'>>$HOME2/.bashrc
 
+# add strainberry
+echo -e "\n\n #------ strainberry -------">>$HOME2/.bashrc 
+echo -e 'export PATH=/home/ubuntu/repos/strainberry/strainberry:$PATH'>>$HOME2/.bashrc
 
 # --------------------------------------------
 # ------------ fix rigths --------------------
@@ -110,3 +117,4 @@ chown -R 1000:1000 /var/lib/miniconda3
 # fix HOME2 ownership, so that user can create stuffs
 chown -R 1000:1000 $HOME2/*
 }&>"$APP_DIR/vm_install.log"
+
