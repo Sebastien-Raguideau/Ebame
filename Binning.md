@@ -501,7 +501,7 @@ Please add the errors messages you observe on slack so we can try to explain wha
 <p>
 Use the file stored at:
 
-    ~/repos/Ebame21-Quince/binning.snake
+    ~/repos/Ebame/binning.snake
 
 </p>
 </details>
@@ -520,7 +520,7 @@ import glob
 from os.path import basename,dirname
 
 # create a string variable to store path
-DATA="/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/Quince_datasets/AD_small"
+DATA="/home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/Quince_datasets/AD_small"
 # use the glob function to find all R1.fastq file in each folder of DATA
 # then only keep the directory name wich is also the sample name
 SAMPLES = [basename(dirname(file)) for file in glob.glob("%s/*/*_R1.fastq"%DATA)]
