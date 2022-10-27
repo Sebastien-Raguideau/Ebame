@@ -218,11 +218,11 @@ metabat2 -i Assembly/final.contigs.fa -a Binning/depth.txt -t 4 -o Binning/Bins/
 
 How many contigs were clustered? 
 ```bash
-grep -c ">" *.fa | awk -F: '{ s+=$2 } END { print s }'
+grep -c ">" Binning/Bins/*.fa | awk -F: '{ s+=$2 } END { print s }'
 ```
 How many nucleotide were clustered?
 ```bash
-grep -v ">" *.fa |wc -m
+grep -v ">" Binning/Bins/*.fa |wc -m
 ```
  
 ## Which bins are Metagenome assembled genomes (MAGs)?
@@ -232,7 +232,7 @@ A bin is a group of contigs put together from looking at coverage/composition. H
 Checkm is an handy automated pipeline which will use marker set specifics to bacteria/Archea to assess contamination/completion.
 ```bash
 cd ~/data/mydatalocal/AD_binning/Binning
-checkm lineage_wf Bins/ checkm -x .fa
+checkm lineage_wf Bins/ checkm -x .fa -r
 ```
 
 <details><summary>After launching checkm, are you having an issue?</summary>
@@ -243,7 +243,7 @@ Instead you will need to import output pre-generated for this tutorial.
 
 ```bash
 rm -r checkm
-ln -s ~/repos/Ebame21-Quince/checkm.out
+ln -s ~/repos/Ebame/checkm.out .
 ```
 </p>
 </details>
