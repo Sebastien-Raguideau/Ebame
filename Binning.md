@@ -66,15 +66,19 @@ Let's create a Projects directory and work inside:
 
 ## Assembly
 
-All datasets for this tutorial can be found at 
+All datasets for this tutorial can be found at: 
+    /home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/Quince_datasets
 
-    /var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/Quince_datasets
+Or equivalently here:
+    /var/autofs/ifb/public/teachdata/ebame-2022/metagenomics
+
+
 We have here different dataset subsampled so they can run in real time during the workshop.
 We are going to use reads from the AD_small folder. They come from an industrial anaerobic digester study we realised but correspond to only a few MAGs.
 
 For simplification sake, we are going to create a global variable:
 
-    export DATA=/var/autofs/ifb/public/teachdata/ebame/Quince-data-2021/Quince_datasets
+    export DATA=/var/autofs/ifb/public/teachdata/ebame-2022/metagenomics
 
 **This is a shell dependant command, you need to retype each time you reopen a terminal**
 
