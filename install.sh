@@ -111,6 +111,10 @@ echo -e 'export PATH=~/repos/Ebame/scripts:$PATH'>>$HOME2/.bashrc
 echo -e "\n\n #------ strainberry -------">>$HOME2/.bashrc 
 echo -e 'export PATH=/home/ubuntu/repos/strainberry:$PATH'>>$HOME2/.bashrc
 
+# add strainberry
+echo -e "\n\n #------ plasmidnet -------">>$HOME2/.bashrc 
+echo -e 'export PATH=/home/ubuntu/repos/PlasmidNet/bin:$PATH'>>$HOME2/.bashrc
+
 # --------------------------------------------
 # ------------ fix rigths --------------------
 # --------------------------------------------
