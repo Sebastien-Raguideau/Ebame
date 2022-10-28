@@ -99,11 +99,9 @@ Some part of STRONG are a bit too slow and we will have to work with pre-run res
 
 cd ~/data/mydatalocal/STRONG_AD
 
-wget https://ebitutorial.s3.climb.ac.uk/Results.tar.gz
+cp /home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/STRONG_prerun.tar.gz .
 
-tar -xvzf Results.tar.gz
-
-mv Results STRONG_prerun
+tar -xvzf STRONG_prerun.tar.gz
 
 ```
 
@@ -493,15 +491,19 @@ Have a look at the summary file to find out the identity of the MAGs.
 more summary.tsv
 ```
 
-To run gtdb you need to add a line inside the config file with the path to gtdb database.
+To run gtdb you need to add these lines inside the config file with the path to gtdb database and a scratch file to save RAM.
+
+```
+gtdb_path: /home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/gtdbtk/release207_v2
+
+scratch_gtdb: /home/ubuntu/data/mydatalocal/STRONG_AD/gtdb_scratch
+```
 
 ## Extra things
 
-Can you run the desman step?
-
 Can you run STRONG with metabat2?
 
-Can you taxonomically assign contigs with Kraken?
+Can you taxonomically assign contigs with Kraken and compare to bins?
 
 
 
