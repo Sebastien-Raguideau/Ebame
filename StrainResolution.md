@@ -222,6 +222,15 @@ Lets take some time to look at the assembly graph with bandage
  Bandage load assembly/high_res/simplified.gfa`
 ```
 
+Bandage can be run on the VMs and viewed through X-windows if that is installed on your local computer but you need to login with ***ssh -Y*** 
+
+If the connection is bad an alternative is to install Bandage on your laptop and download the gfa files e.g.:
+
+```
+scp ubuntu@my.ip.add:~/data/mydatalocal/STRONG_AD/STRONG_prerun/assembly/high_res/simplified.gfa .
+``` 
+
+
  
 Using Bandage it is possible to extract part of the assembly graph with a command such as 
 
@@ -258,7 +267,7 @@ This step of the pipeline also does bowtie2 mapping of reads onto contigs to get
 profiles for binning:
 
 ```bash
-cd ~/Projects/STRONG_AD/STRONG_OUT
+cd ~/data/mydatalocal/STRONG_AD/STRONG_OUT
 head profile/split/coverage.tsv 
 ```
 
@@ -294,7 +303,7 @@ evince SCG_table_concoct.pdf
 The next step is to extract out and simplify the SCG subgraphs for the actual bayespaths strain finding. We run this as above just change assembly to graphextraction:
 
 ```bash
-cd ~/Projects/STRONG_AD
+cd ~/data/mydatalocal/STRONG_AD/
 STRONG --config config.yaml STRONG_OUT graphextraction --threads 8 --verbose
 ```
 
@@ -311,7 +320,7 @@ Which are again in gfa format with coverages.
 These steps generate all the input required for the strain resolving algorithm BayesPaths. As it takes about 20~30 min to run automatically, let's launch it now. 
 
 ```bash
-cd ~/Projects/STRONG_AD
+cd ~/data/mydatalocal/STRONG_AD/
 STRONG --config config.yaml STRONG_OUT bayespaths --threads 8 --verbose
 ```
 
@@ -320,7 +329,7 @@ STRONG --config config.yaml STRONG_OUT bayespaths --threads 8 --verbose
 Whilst we wait for that login on a separate terminal (don't forget to reactivate STRONG) and do a few trial runs to better understand the inputs first. Let's test out the most complex bin Bin_2 in my run:
 
 ```bash
-cd ~/Projects/STRONG_AD/STRONG_OUT/subgraphs/bin_merged
+cd ~/data/mydatalocal/STRONG_AD/STRONG_OUT/subgraphs/bin_merged
 wc Bin_*/simplif/*0060*tsv
 ```
 
@@ -345,7 +354,7 @@ Can you find and load the raw graph next - is there any difference?
 We might estimate this contains three strains, can we confirm that. We will do a trial run of BayesPaths to test this, in a new directory:
 
 ```bash
-cd ~/Projects/STRONG_AD/STRONG_OUT
+cd ~/data/mydatalocal/STRONG_AD/STRONG_OUT
 mkdir BPTest
 cd BPTest
 ```
@@ -385,7 +394,7 @@ This will take a little time. It should select three strains. We can have a look
 
 If it takes too long on your VM have a look at the prerun results:
 ```bash
-cd ~/repos/strain_resolution_practical/STRONG_prerun/bayespaths/Bin_2
+cd ~/data/mydatalocal/STRONG_AD/STRONG_prerun/bayespaths/Bin_2
 ```
 Otherwise stay in this dir.
 
@@ -444,7 +453,7 @@ q()
 If the STRONG bayespaths step has finished we can generate results dir now:
  
 ```bash
-cd /home/training/Projects/STRONG_AD
+cd ~/data/mydatalocal/STRONG_AD/
 STRONG --config config.yaml STRONG_OUT results --threads 8 --verbose
 
 ```    
@@ -454,7 +463,7 @@ The summary files gives information on number of mags, strains and taxonomy. Oth
 
 #### Bin specific results
 ```
-cd ~/Projects/STRONG_AD/STRONG_OUT/results/Bin_2
+cd ~/data/mydatalocal/STRONG_AD/STRONG_OUT/results/Bin_2
 ```
 
 Joined graph is useful indicates that we have probably missed a strain on this example, this might be down to not running gene filtering or multiple NMF iterations.
@@ -474,8 +483,8 @@ The haplotypes_tree.pdf has a phylogeny of strains and a heatmap giving percent 
 STRONG will run gtdb on MAGs as standard but this is too slow and uses too much RAM. For now just have a look at the pre-run results: 
 
 ```bash
-cd ~/Projects/STRONG_AD/STRONG_OUT
-ln -s ~/repos/strain_resolution_practical/STRONG_prerun/results result_prerun
+cd ~/data/mydatalocal/STRONG_AD/STRONG_OUT
+ln -s ~/data/mydatalocal/STRONG_AD/STRONG_OUT/STRONG_prerun/results result_prerun
 ```
 
 Have a look at the summary file to find out the identity of the MAGs.
@@ -487,6 +496,8 @@ more summary.tsv
 To run gtdb you need to add a line inside the config file with the path to gtdb database.
 
 ## Extra things
+
+Can you run the desman step?
 
 Can you run STRONG with metabat2?
 
