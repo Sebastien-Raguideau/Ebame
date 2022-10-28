@@ -78,7 +78,7 @@ mamba install -c bioconda checkm-genome megahit bwa
 mkdir -p /mnt/mydatalocal/checkm
 cd /mnt/mydatalocal/checkm
 wget https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz && tar -xvzf checkm_data_2015_01_16.tar.gz
-checkm data setRoot /mnt/mydatalocal/checkm
+checkm data setRoot /data/public/teachdata/ebame-2022/metagenomics/checkm
 
 # -------------------------------------
 # ---------- modify .bashrc -----------
@@ -110,6 +110,10 @@ echo -e 'export PATH=~/repos/Ebame/scripts:$PATH'>>$HOME2/.bashrc
 # add strainberry
 echo -e "\n\n #------ strainberry -------">>$HOME2/.bashrc 
 echo -e 'export PATH=/home/ubuntu/repos/strainberry:$PATH'>>$HOME2/.bashrc
+
+# add strainberry
+echo -e "\n\n #------ plasmidnet -------">>$HOME2/.bashrc 
+echo -e 'export PATH=/home/ubuntu/repos/PlasmidNet/bin:$PATH'>>$HOME2/.bashrc
 
 # --------------------------------------------
 # ------------ fix rigths --------------------
