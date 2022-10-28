@@ -103,7 +103,7 @@ Clearly some of these are not genomes, we can still launch checkm on everything:
 ```bash
 conda activate STRONG
 cd ~/data/mydatalocal/HiFi
-checkm lineage_wf circ_contigs checkm -x .fa -t 4 --tab_table > checkm.out
+checkm lineage_wf circ_contigs checkm -x .fa -t 4 --tab_table -r > checkm.out
 ```
 currently won't run from lack of memeory because a gtdb run is already ongoing.
 
