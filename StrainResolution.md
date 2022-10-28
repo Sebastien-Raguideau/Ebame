@@ -103,7 +103,7 @@ wget https://ebitutorial.s3.climb.ac.uk/Results.tar.gz
 
 tar -xvzf Results.tar.gz
 
-mv Results Results_prerun
+mv Results STRONG_OUT_prerun
 
 ```
 
@@ -118,8 +118,8 @@ PS1='\u:\W\$ '
 Let's copy the config file template:
 
 ```bash
-cd ~/Projects/STRONG_AD
-cp ~/repos/strain_resolution_practical/config_template.yaml config.yaml
+cd ~/data/mydatalocal/STRONG_AD
+cp ~/repos/Ebame/config_template.yaml config.yaml
 ```
 Look at the config.yaml with more:
 ```
@@ -132,7 +132,7 @@ For 5-10 mins try to use the STRONG [documentation](https://github.com/chrisquin
 
 Check that your config file works with the dryrun command.
 ```bash
-cd  ~/Projects/STRONG_AD
+cd  ~/data/mydatalocal/STRONG_AD
 rm -r STRONG_OUT
 STRONG --config config.yaml STRONG_OUT assembly --threads 8 --dryrun --verbose
 ```
@@ -150,8 +150,8 @@ Debuging a config file:
 Well, we can't spend too long on debugging everybody, just copy and paste the correct config file from the strain_practical repo.
 
 ```bash
-cd ~/Projects/STRONG_AD
-cp  ~/repos/strain_resolution_practical/config_correct.yaml config.yaml
+cd  ~/data/mydatalocal/STRONG_AD
+cp  ~/repos/Ebame/config_correct.yaml config.yaml
 ```
 
 </p>
