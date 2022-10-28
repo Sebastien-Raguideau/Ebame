@@ -103,7 +103,7 @@ wget https://ebitutorial.s3.climb.ac.uk/Results.tar.gz
 
 tar -xvzf Results.tar.gz
 
-mv Results STRONG_OUT_prerun
+mv Results STRONG_prerun
 
 ```
 
@@ -164,7 +164,7 @@ When using the dryrun option what happens?
 ### Assembly
 Let's launch STRONG for real this time:
 ```bash
-cd ~/Projects/STRONG_AD
+cd ~/data/mydatalocal/STRONG_AD
 rm -r STRONG_OUT
 STRONG --config config.yaml STRONG_OUT assembly --threads 8
 ```
@@ -172,13 +172,13 @@ We only started running the first step of STRONG, the assembly step, it consists
 ![Assembly step](https://github.com/chrisquince/STRONG/blob/master/Figures/Dag_rules1.png
 ) 
 
-This should take about twenty minutes. We are not waiting for that instead kill the strong run using ***Ctrl-C*** and copy in the prerun assembly after cleaning up the output directory:
+This should take about thirty minutes. We are not waiting for that instead kill the strong run using ***Ctrl-C*** and copy in the prerun assembly after cleaning up the output directory:
 
 ```
-    cd ~/Projects/STRONG_AD
+    cd  ~/data/mydatalocal/STRONG_AD
     rm -r -f STRONG_OUT
     mkdir STRONG_OUT
-    cp -r ~/repos/strain_resolution_practical/STRONG_prerun/assembly ~/Projects/STRONG_AD/STRONG_OUT
+    cp -r ~/data/mydatalocal/STRONG_prerun/assembly ~/Projects/STRONG_AD/STRONG_OUT
 ```
 
 The restart the assembly step:
@@ -193,14 +193,14 @@ Whilst that is running login on a separate terminal so we can look at the assemb
 #### Coassembly
 
 ```bash
-cd  ~/Projects/STRONG_AD/STRONG_OUT/
+cd ~/data/mydatalocal/STRONG_AD
 ls -lh assembly/spades/contigs.fasta
 ```
 
 How good is the coassembly, what is the N50? What is a good coassembly? Btw, why a coassembly? when a coassembly?
 
 ```bash
-~/repos/strain_resolution_practical/scripts/contig-stats.pl < ./assembly/spades/contigs.fasta
+~/repos/Ebame/scripts/contig-stats.pl < ./assembly/spades/contigs.fasta
 ```
 
 sequence #: 1966    total length: 6377796   max length: 174676  N50: 28942  N90: 3000
