@@ -110,10 +110,14 @@ mv Results Results_prerun
 ### Launching STRONG :  config file
 To use STRONG, you need to create a config file which is  used to store the parameters of a run. It is divided into  sections with parts corresponding to the different steps of the pipeline.
 
-Let's create a working directory, and copy the config file template:
+First minimise that pesky prompt!
+```
+PS1='\u:\W\$ ' 
+```
+
+Let's copy the config file template:
 
 ```bash
-mkdir -p ~/Projects/STRONG_AD
 cd ~/Projects/STRONG_AD
 cp ~/repos/strain_resolution_practical/config_template.yaml config.yaml
 ```
@@ -123,7 +127,7 @@ more config.yaml
 ```
 For 5-10 mins try to use the STRONG [documentation](https://github.com/chrisquince/STRONG) to fill in this config file. Edit the config file with nano or vi so that it runs the samples in:
 ```
- /home/training/Data/AD_small
+ /home/ubuntu/data/mydatalocal/STRONG_AD/data
 ```
 
 Check that your config file works with the dryrun command.
@@ -138,8 +142,8 @@ STRONG --config config.yaml STRONG_OUT assembly --threads 8 --dryrun --verbose
 Debuging a config file:
  - First it has to be a valid .yaml file, [here](https://en.wikipedia.org/wiki/YAML) is the format definition and [here](http://www.yamllint.com/) is a validator. In short, don't forget indentations or colons. 
  - you only have 2 paths to fill the path to the sample **folder** and the path to the cog database. If you have issues, you may have mispellled any of these. Use the  `ls`   command to check the path exists.
- - the cog database path is `/home/training/Databases/rpsblast_cog_db`
- - the data folder path is:  `/home/training/Data/AD_small`
+ - the cog database path is `/home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/COG/`
+ - the data folder path is:  `/home/ubuntu/data/mydatalocal/STRONG_AD/data`
  <details><summary>It's still not working? </summary>
 <p>
 
