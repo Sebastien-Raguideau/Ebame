@@ -95,7 +95,7 @@ Can you understand what each program does here, cat, wc, bc
 Now copy in the STRONG config file:
 
 ```
-cp ~/repos/Ebame21-Quince/configs/config.yaml .
+cp ~/repos/Ebame/configs/config.yaml .
 ```
 
 Look at the config.yaml with more:
