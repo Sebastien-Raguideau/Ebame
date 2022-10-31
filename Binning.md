@@ -34,7 +34,7 @@ This will involve a collection of different software programs:
 
 ## Getting started (VM, ssh & env)
 
-For this tutorial we will use a VM generated from [EBAME-Quince (2022)](https://biosphere.france-bioinformatique.fr/catalogue/appliance/127/)
+For this tutorial we will use an 8-core VM generated from [EBAME-Quince (2022)](https://biosphere.france-bioinformatique.fr/catalogue/appliance/127/)
 **Please be  sure to use the ifb-core-cloud domain when launching** Or is it ifb-bis-cloud?
 
 Please ssh to your vm using the -Y option so that X forwarding can be done. 
@@ -92,7 +92,7 @@ Megahit is installed, reads are at
     $DATA/AD_small
 
 Bioinformatic is mostly about reading documentation, and looking on the internet how to do things. 
-Use the -h flag on megahit and try to craft a command line to launch the assembly.
+Use the -h flag on megahit and try to craft a command line to launch the assembly on 8 cores.
 
 <details><summary>spoiler</summary>
 <p>
@@ -101,14 +101,14 @@ Use the -h flag on megahit and try to craft a command line to launch the assembl
 cd ~/data/mydatalocal/AD_binning
 ls $DATA/AD_small/*/*R1.fastq | tr "\n" "," | sed 's/,$//' > R1.csv
 ls $DATA/AD_small/*/*R2.fastq | tr "\n" "," | sed 's/,$//' > R2.csv
-megahit -1 $(<R1.csv) -2 $(<R2.csv) -t 4 -o Assembly
+megahit -1 $(<R1.csv) -2 $(<R2.csv) -t 8 -o Assembly
 ```
 It should take about 12 mins
 </p>
 </details>
 
 What is the output of an assembler?
-How good is the assembly?
+How good is the assembly? 
 How would we go for estimating the number of organisms in the assembly?
 
 
@@ -187,7 +187,7 @@ do
 
    file2=${stub}_R2.fastq
 
-   bwa mem -t 4 Assembly/final.contigs.fa $file $file2 | samtools view -b -F 4 - | samtools sort - > Map/$name.mapped.sorted.bam
+   bwa mem -t 8 Assembly/final.contigs.fa $file $file2 | samtools view -b -F 4 - | samtools sort - > Map/$name.mapped.sorted.bam
 done
 ```
 
@@ -257,8 +257,9 @@ The gtdb toolkit does that for you:
 
 ```bash
 cd ~/data/mydatalocal/AD_binning/Binning
-export GTDBTK_DATA_PATH=ifb/data/public/teachdata/ebame/Quince-data-2021/release202
-gtdbtk classify_wf --cpus 4 --genome_dir Bins --out_dir gtdb --extension .fa --scratch_dir gtdb/scratch
+mkdir gtdb/scratch
+export GTDBTK_DATA_PATH=/var/autofs/ifb/public/teachdata/ebame-2022/metagenomics/gtdbtk/release207_v2/
+gtdbtk classify_wf --cpus 8 --genome_dir Bins --out_dir gtdb --extension .fa --scratch_dir gtdb/scratch
 ```
 That will take at least X min.
 
