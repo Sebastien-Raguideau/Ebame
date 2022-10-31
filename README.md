@@ -4,5 +4,5 @@ Tutorials are found in:
 1. [Contig binning and Snakemake](Binning.md)
 2. [De novo short read strain resolution](StrainResolution.md)
 3. [Trait inference for MAGs](TraitInference.md)
-4. [Nanopore bioinformatics](Long read metagenomics sequencing tutorial.md)
-5. [HiFi PacBio assembly)[HiFi.md]
+4. [Nanopore bioinformatics](Nanopore.md)
+5. [HiFi PacBio assembly][HiFi.md]
