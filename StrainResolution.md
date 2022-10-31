@@ -176,7 +176,7 @@ This should take about thirty minutes. We are not waiting for that instead kill 
     cd  ~/data/mydatalocal/STRONG_AD
     rm -r -f STRONG_OUT
     mkdir STRONG_OUT
-    cp -r ~/data/mydatalocal/STRONG_prerun/assembly ~/Projects/STRONG_AD/STRONG_OUT
+    cp -r ~/data/mydatalocal/STRONG_AD/STRONG_prerun/assembly ~/data/mydatalocal/STRONG_AD/STRONG_OUT
 ```
 
 The restart the assembly step:
