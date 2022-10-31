@@ -210,9 +210,10 @@ Due to the time constraints with basecalling, we have prepared a set of down sam
 Copy one of the two GutMock fastq files into the LongReads dir and decompress:
 
 ```
-cd LongReads
 
-cp  ~/data/public/teachdata/ebame/Quince-data-2021/Quince_datasets/Rob_data/GutMock1.fastq.gz .
+cd ~/data/mydatalocal/LongReads
+
+cp  $DATA/GutMock1.fastq.gz .
 
 gzip -d GutMock1.fastq.gz
 
@@ -280,7 +281,9 @@ Custom reference databases can be created using `kraken2-build --download-librar
 
 Run [kraken2](https://github.com/DerrickWood/kraken2/wiki/Manual) on one of the two `GutMock1.fastq` files provided in this tutorial using the minikraken2_v1_8GB database. 
 
-Kraken2 database is located: ~/data/public/teachdata/ebame/Quince-data-2021/minikraken2_v1_8GB/
+Kraken2 database is located: 
+/home/ubuntu/data/public/kraken2/k2_standard_08gb_20220926
+
 
 Kraken2 requires an `--output` flag to redirect output from STDOUT.
 
@@ -290,8 +293,8 @@ Kraken2 requires an `--output` flag to redirect output from STDOUT.
 <p>
 
 ```
-  
-kraken2 --db ~/data/public/teachdata/ebame/Quince-data-2021/minikraken2_v1_8GB/ --threads 8 --use-names --report kraken_report --output kraken_gut GutMock1.fastq 
+export KDBPATH=/home/ubuntu/data/public/kraken2/k2_standard_08gb_20220926  
+kraken2 --db $KDBPATH --threads 8 --use-names --report kraken_report --output kraken_gut GutMock1.fastq 
 
 ```
 
