@@ -30,10 +30,10 @@ The tools required to undertake this tutorial are supplied in the LongReads cond
 ### Data 
 
 Sequencing data is located:
-~/data/public/teachdata/ebame/Quince-data-2022/Quince_datasets/LongRead_data/Nanopore
+/home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/Quince_datasets/Rob_data/
 
 Kraken2 database is located:
-~/data/public/teachdata/ebame/Quince-data-2021/minikraken2_v1_8GB
+/home/ubuntu/data/public/kraken2/k2_standard_08gb_20220926
 
 ## Tutorial
 ### Basecalling
