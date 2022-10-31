@@ -50,13 +50,15 @@ It is important to store all data and outputs in directories contained within th
 Get the fast5 reads into the `mydatalocal` dir on our VM:
 
 ```
-cd ~/mydatalocal
+cd ~/data/mydatalocal
 
 mkdir LongReads
 
 cd LongReads
 
-cp ~/data/public/teachdata/ebame/Quince-data-2021/Quince_datasets/LongRead_data/Nanopore/fast5_subset.tar.gz .
+export DATA=/home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/Quince_datasets/Rob_data/
+
+cp $DATA/fast5_subset.tar.gz .
 
 tar -xvzf fast5_subset.tar.gz
 
