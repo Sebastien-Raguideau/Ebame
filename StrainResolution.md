@@ -217,7 +217,7 @@ Why do we use a "high resolution assembly graph"?
 
 Lets take some time to look at the assembly graph with bandage
 ```bash
- Bandage load assembly/high_res/simplified.gfa`
+ Bandage load assembly/high_res/simplified.gfa
 ```
 
 Bandage can be run on the VMs and viewed through X-windows if that is installed on your local computer but you need to login with ***ssh -Y*** 
@@ -281,7 +281,7 @@ SCG frequencies in MAGs:
 ```bash
 cd binning/concoct/
 tr "," "\t" < SCG_table_concoct.csv > SCG_table_concoct.tsv
-cp ~/repos/strain_resolution_practical/scripts/COGPlot.R .
+cp ~/repos/Ebame/scripts/COGPlot.R .
 Rscript ./COGPlot.R -s SCG_table_concoct.tsv -o SCG_table_concoct.pdf
 
 ```
@@ -482,7 +482,7 @@ STRONG will run gtdb on MAGs as standard but this is too slow and uses too much 
 
 ```bash
 cd ~/data/mydatalocal/STRONG_AD/STRONG_OUT
-ln -s ~/data/mydatalocal/STRONG_AD/STRONG_OUT/STRONG_prerun/results result_prerun
+ln -s ~/data/mydatalocal/STRONG_AD/STRONG_prerun/results result_prerun
 ```
 
 Have a look at the summary file to find out the identity of the MAGs.
