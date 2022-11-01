@@ -58,7 +58,23 @@ Conda environment are created as independant environment to everything else, you
 </p>
 </details>
 
+## Quick terminal fix
+.bashrc is a "hidden" file in your home directory. Any new terminal will first execute this script and set environment variable, alias and other general setting. 
 
+For simplification sake, we are going to create a global variable:
+
+Use nano to edit your bashrc file:
+```bash
+nano ~.bashrc
+export DATA=/home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/Quince_datasets
+```
+
+Also, let's remove the name of the VM from terminal:
+Remove the \h you can find just after the @, from line:
+
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[>
+
+To quit use `ctrl+x` and yes
 # Manual bioinformatic
 Let's create a Projects directory and work inside:
 
@@ -67,21 +83,16 @@ Let's create a Projects directory and work inside:
 ## Assembly
 
 All datasets for this tutorial can be found at: 
+
     /home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/Quince_datasets
 
 Or equivalently here:
-    /var/autofs/ifb/public/teachdata/ebame-2022/metagenomics
 
+    /var/autofs/ifb/public/teachdata/ebame-2022/metagenomics
 
 We have here different dataset subsampled so they can run in real time during the workshop.
 We are going to use reads from the AD_small folder. They come from an industrial anaerobic digester study we realised but correspond to only a few MAGs.
 
-For simplification sake, we are going to create a global variable:
-
-    export DATA=/home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/Quince_datasets
-
-
-**This is a shell dependant command, you need to retype each time you reopen a terminal**
 
 We are going to use megahit for assembly. It is a fast memory efficient metagenomic assembler and particularly usefull for handling large coassembly.
 
@@ -94,7 +105,7 @@ Megahit is installed, reads are at
 Bioinformatic is mostly about reading documentation, and looking on the internet how to do things. 
 Use the -h flag on megahit and try to craft a command line to launch the assembly on 8 cores.
 
-<details><summary>spoiler</summary>
+<details><summary>spoiler (click on me if you're desperate)</summary>
 <p>
 
 ```bash
@@ -576,6 +587,4 @@ rule metabat2:
 	- Split your snakemake in multiple independant pipeline, so that at the start of the subsequent snakemake the first one is done and the number of file is known.
 	- Use a more complex snakemake concept: checkpoints. 
 	- Stop using snakemake to monitors theses files. Don't refers to them explicitely in input/output. Instead create emtpy "flag" at the end of a rule execution and have snakemake take that as input/output. You loose however restarts/incomplete perks of snakemake and flag file do not mesh well with restart/touch mechanisms.
-
-
 
