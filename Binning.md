@@ -287,7 +287,9 @@ The user define :
 
 Snakemake then devise the succession of rules (script/command) needed to generate the output. If the results cannot be generated from the rules inputed and the files already present in the execution folder, snakemake will let you know and fail.
 
-Snakemake will schedule rules excution optimising ressources allocations (threads/memory/custom ressource).
+Snakemake will schedule rules execution optimising ressources allocations (threads/memory/custom ressource).
+
+![alt tag](https://github.com/Sebastien-Raguideau/Ebame/blob/master/Figures/snakemake_rules.png)
 
 ### Features
 
@@ -427,7 +429,6 @@ megahit -1 $(<R1.csv) -2 $(<R2.csv) -t 4 -o Assembly
 <p>
 
 ```bash
-
 rule megahit:
     input: R1 = "{path}/R1.csv",
            R2 = "{path}/R2.csv"
