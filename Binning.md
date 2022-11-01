@@ -35,7 +35,7 @@ This will involve a collection of different software programs:
 ## Getting started (VM, ssh & env)
 
 For this tutorial we will use an 8-core VM generated from [EBAME-Quince (2022)](https://biosphere.france-bioinformatique.fr/catalogue/appliance/127/)
-**Please be  sure to use the ifb-core-cloud domain when launching** Or is it ifb-bis-cloud?
+**Please be  sure to use the ifb-core-cloudbis domain when launching** 
 
 Please ssh to your vm using the -Y option so that X forwarding can be done. 
 
