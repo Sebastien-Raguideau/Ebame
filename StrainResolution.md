@@ -241,6 +241,33 @@ I did that for the exact same COG0016 from 3 assembly graph files:
 - on `assembly/high_res/graph_pack.gfa`
 - on  `assembly/high_res/simplified.gfa`
 
+
+
+<details><summary>Have a go yourself with any example node for instance ten nodes around node 519564?</summary>
+<p>
+
+ ```bash
+Bandage reduce simplified.gfa reduce_519564_d10.gfa --scope aroundnodes --nodes 519564 --distance 10
+  ```
+
+</p>
+</details>
+
+<details><summary> Does anyone know how to extract fasta from a gfa file?
+</summary>
+<p>
+
+ ```bash
+awk '/^S/{print ">"$2"\n"$3}' reduce_519564_d10.gfa | fold > reduce_519564_d10.fasta
+  ```
+
+</p>
+</details>
+
+
+
+
+
 ![alt tag](https://github.com/Sebastien-Raguideau/strain_resolution_practical/blob/main/Figures/COG0016.png)
 Open and visualise the "simplified" assembly graph:
 
