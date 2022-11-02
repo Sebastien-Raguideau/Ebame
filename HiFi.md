@@ -1,7 +1,5 @@
 # Pacbio HiFi
 
-In this tutorial we will look at some metagenomic HiFi datasets.
-We motivate why HiFi data are useful and how they differs from what we saw with shorts reads.
 
 If this is not the case yet remember to activate the correct conda env:
 
