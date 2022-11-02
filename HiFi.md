@@ -29,8 +29,10 @@ seqkit stats ~/data/public/teachdata/ebame-2022/metagenomics/HIFI_datasets/sampl
  ## Assembly
 
 Mostly 2 pipeline have been developed for assembling HiFi reads for metagenomic datasets.
-	- [metaFlye](https://www.nature.com/articles/s41592-020-00971-x) 
-	- [hifiasm-meta](https://www.nature.com/articles/s41592-022-01478-3)
+
+- [metaFlye](https://www.nature.com/articles/s41592-020-00971-x) 
+
+- [hifiasm-meta](https://www.nature.com/articles/s41592-022-01478-3)
 
 Which one is the best?
 
