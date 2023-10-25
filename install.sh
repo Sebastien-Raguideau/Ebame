@@ -49,8 +49,8 @@ mkdir Bandage && unzip Bandage_Ubuntu_dynamic_v0_8_1.zip -d Bandage && mv Bandag
 mamba env create -f $HOME2/repos/Ebame/conda_env_Trait_inference.yaml
 
 # Plasmidnet
-mamba create --name plasmidnet python=3.8 -y
-source /var/lib/miniconda3/bin/activate plasmidnet
+mamba create -c bioconda --name plasmidnet python=3.8 prodigal -y
+. $CONDA/activate plasmidnet
 pip install -r $HOME2/repos/PlasmidNet/requirements.txt
 
 # -------------------------------------
@@ -62,7 +62,16 @@ wget https://europe.oxfordnanoportal.com/software/analysis/ont-guppy-cpu_5.0.16_
 tar -xvzf ont-guppy-cpu_5.0.16_linux64.tar.gz && mv ont-guppy-cpu_5.0.16_linux64.tar.gz ont-guppy-cpu/
 
 # --- everything else ---
-mamba env create -f $HOME2/repos/Ebame/conda_env_LongReads.yaml -y
+mamba env create -f $HOME2/repos/Ebame/conda_env_LongReads.yaml
+
+# --- download db for LongReads env --
+. $CONDA/deactivate
+. $CONDA/activate LongReads
+# krona
+rm -rf /var/lib/miniforge/envs/LongReads/opt/krona/taxonomy
+mkdir $HOME2/repos/krona_taxonomy
+ln -s $HOME2/repos/krona_taxonomy /var/lib/miniforge/envs/LongReads/opt/krona/taxonomy
+ktUpdateTaxonomy.sh
 
 
 # --- Pavian ---
@@ -79,10 +88,10 @@ mamba env create -f $HOME2/repos/Ebame/conda_env_LongReads.yaml -y
 mamba install -c bioconda checkm-genome megahit bwa -y
 
 # add checkm database
-mkdir -p /ifb/data/mydatalocal
-cd /ifb/data/mydatalocal/checkm
+mkdir -p $HOME2/repos/checkm_data
+cd $HOME2/repos/checkm_data
 wget https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz && tar -xvzf checkm_data_2015_01_16.tar.gz
-checkm data setRoot /ifb/data/mydatalocal/checkm
+checkm data setRoot $HOME2/repos/checkm_data
 
 # -------------------------------------
 # ---------- modify .bashrc -----------
