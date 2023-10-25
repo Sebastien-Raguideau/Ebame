@@ -3,7 +3,7 @@
 # define home
 # {
 export HOME2=/home/ubuntu
-
+export CONDA=/var/lib/miniforge/bin
 
 # ------------------------------
 # ----- get all repos ---------- 
@@ -33,7 +33,7 @@ sudo apt-get -y install qt5-default gzip unzip feh evince
 # ------------------------------
 cd $HOME2/repos/STRONG
 # conda/mamba is not in the path for root, so I need to add it
-export PATH=/var/lib/miniconda3/condabin:$PATH
+export PATH=$CONDA:$PATH
 ./install_STRONG.sh
 
 # Bandage install
@@ -42,7 +42,7 @@ wget https://github.com/rrwick/Bandage/releases/download/v0.8.1/Bandage_Ubuntu_d
 mkdir Bandage && unzip Bandage_Ubuntu_dynamic_v0_8_1.zip -d Bandage && mv Bandage_Ubuntu_dynamic_v0_8_1.zip Bandage
 
 # trait inference
-mamba env create -f $APP_DIR/conda_env_Trait_inference.yaml
+mamba env create -f $HOME2/repos/Ebame/conda_env_Trait_inference.yaml
 
 # Plasmidnet
 mamba create --name plasmidnet python=3.8 -y
@@ -70,15 +70,15 @@ mamba env create -f $APP_DIR/conda_env_LongReads.yaml
 # -----------Seb Tuto --------------
 # -------------------------------------
 
-source /var/lib/miniconda3/bin/deactivate
-source /var/lib/miniconda3/bin/activate STRONG
-mamba install -c bioconda checkm-genome megahit bwa
+. $CONDA/deactivate
+. $CONDA/activate STRONG
+mamba install -c bioconda checkm-genome megahit bwa -y
 
 # add checkm database
-mkdir -p /mnt/mydatalocal/checkm
-cd /mnt/mydatalocal/checkm
+mkdir -p /ifb/data/mydatalocal
+cd /ifb/data/mydatalocal/checkm
 wget https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz && tar -xvzf checkm_data_2015_01_16.tar.gz
-checkm data setRoot /mnt/mydatalocal/checkm
+checkm data setRoot /ifb/data/mydatalocal/checkm
 
 # -------------------------------------
 # ---------- modify .bashrc -----------
@@ -118,11 +118,13 @@ echo -e 'export PATH=/home/ubuntu/repos/PlasmidNet/bin:$PATH'>>$HOME2/.bashrc
 # --------------------------------------------
 # ------------ fix rigths --------------------
 # --------------------------------------------
+# potentially useless
+
 
 # mamba crash as a user and this fix it
-chown -R 1000:1000 /var/lib/miniconda3
+# chown -R 1000:1000 /var/lib/miniconda3
 
-# fix HOME2 ownership, so that user can create stuffs
-chown -R 1000:1000 $HOME2/*
+# # fix HOME2 ownership, so that user can create stuffs
+# chown -R 1000:1000 $HOME2/*
 # }&>"$APP_DIR/vm_install.log"
 
