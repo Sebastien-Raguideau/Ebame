@@ -4,6 +4,10 @@
 # {
 export HOME2=/home/ubuntu
 export CONDA=/var/lib/miniforge/bin
+export APP_DIR=/ifb/apprepo/Ebame-quince
+
+# for conda install
+ulimit -n 63852
 
 # ------------------------------
 # ----- get all repos ---------- 
@@ -58,7 +62,7 @@ wget https://europe.oxfordnanoportal.com/software/analysis/ont-guppy-cpu_5.0.16_
 tar -xvzf ont-guppy-cpu_5.0.16_linux64.tar.gz && mv ont-guppy-cpu_5.0.16_linux64.tar.gz ont-guppy-cpu/
 
 # --- everything else ---
-mamba env create -f $APP_DIR/conda_env_LongReads.yaml
+mamba env create -f $HOME2/repos/Ebame/conda_env_LongReads.yaml -y
 
 
 # --- Pavian ---
