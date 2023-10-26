@@ -156,8 +156,9 @@ random_hostname="${hostnames[random_index]}"
 echo $random_hostname
 
 # Set the PS1 prompt with the random hostname
-new_PS1='PS1=${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@$random_hostname\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$'
-echo $new_PS1>>~/.bashrc
+new_PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@$random_hostname\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$"
+echo "PS1='$new_PS1'">>$HOME2/.bashrc
+'${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 # sed -i "s/PS1=.*$/$new_PS1/" ~/.bashrc
 
 # }&>"$APP_DIR/vm_install.log"
