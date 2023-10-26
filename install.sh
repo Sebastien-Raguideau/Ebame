@@ -73,6 +73,11 @@ mkdir $HOME2/repos/krona_taxonomy
 ln -s $HOME2/repos/krona_taxonomy /var/lib/miniforge/envs/LongReads/opt/krona/taxonomy
 ktUpdateTaxonomy.sh
 
+# same with gtdb
+conda env config vars set GTDBTK_DATA_PATH=/ifb/data/public/teachdata/ebame-2022/metagenomics/Datasets/gtdbtk/release207_v2
+
+# checkm
+checkm data setRoot $HOME2/repos/checkm_data
 
 # --- Pavian ---
 #source /var/lib/miniconda3/bin/activate LongReads
@@ -92,6 +97,9 @@ mkdir -p $HOME2/repos/checkm_data
 cd $HOME2/repos/checkm_data
 wget https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz && tar -xvzf checkm_data_2015_01_16.tar.gz
 checkm data setRoot $HOME2/repos/checkm_data
+
+# same but with gtdb
+conda env config vars set GTDBTK_DATA_PATH=/ifb/data/public/teachdata/ebame-2022/metagenomics/Datasets/gtdbtk/release207_v2
 
 # -------------------------------------
 # ---------- modify .bashrc -----------
@@ -128,6 +136,10 @@ echo -e 'export PATH=/home/ubuntu/repos/strainberry:$PATH'>>$HOME2/.bashrc
 echo -e "\n\n #------ plasmidnet -------">>$HOME2/.bashrc 
 echo -e 'export PATH=/home/ubuntu/repos/PlasmidNet/bin:$PATH'>>$HOME2/.bashrc
 
+# guppy install
+echo -e "\n\n #------ guppy path -------">>$HOME2/.bashrc 
+echo -e 'export PATH=~/repos/ont-guppy-cpu/bin:$PATH'>>$HOME2/.bashrc
+
 
 # --------------------------------------------
 # -------- make the home better --------------
@@ -141,8 +153,10 @@ ln -s /ifb/data/public/teachdata/ebame-2022/metagenomics $HOME2/Datasets
 # --------------------------------------------
 # fix HOME2 ownership, so that user can create stuffs
 chown -R 1000:1000 $HOME2/repos
-chown -R 1000:1000 $HOME2/Project
+chown -R 1000:1000 $HOME2/Projects
 
+# fix that otherwise unable to add/change envs
+chown -R 1000:1000 /var/lib/miniforge
 # --------------------------------------------
 # -------- sily hostname ---------------------
 # --------------------------------------------
@@ -158,7 +172,5 @@ echo $random_hostname
 # Set the PS1 prompt with the random hostname
 new_PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@$random_hostname\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$"
 echo "PS1='$new_PS1'">>$HOME2/.bashrc
-'${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-# sed -i "s/PS1=.*$/$new_PS1/" ~/.bashrc
 
 # }&>"$APP_DIR/vm_install.log"

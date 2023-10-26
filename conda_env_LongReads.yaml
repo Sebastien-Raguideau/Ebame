@@ -1,4 +1,4 @@
-name: LongReads
+name: LongReads_test
 channels:
   - conda-forge
   - bioconda
@@ -28,3 +28,6 @@ dependencies:
   - hifiasm_meta==hamtv0.3.1
   - metamdbg==0.3
   - genomad==1.7.0
+  - checkm-genome
+  - drep
+  - gtdbtk
