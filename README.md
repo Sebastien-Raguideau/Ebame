@@ -5,4 +5,4 @@ Tutorials are found in:
 2. [De novo short read strain resolution](StrainResolution.md)
 3. [Trait inference for MAGs](TraitInference.md)
 4. [Nanopore bioinformatics](Nanopore.md)
-5. [HiFi PacBio assembly](HiFi23.md)
+5. [HiFi PacBio assembly](HiFi2023.md)
