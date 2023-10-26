@@ -128,16 +128,36 @@ echo -e 'export PATH=/home/ubuntu/repos/strainberry:$PATH'>>$HOME2/.bashrc
 echo -e "\n\n #------ plasmidnet -------">>$HOME2/.bashrc 
 echo -e 'export PATH=/home/ubuntu/repos/PlasmidNet/bin:$PATH'>>$HOME2/.bashrc
 
+
+# --------------------------------------------
+# -------- make the home better --------------
+# --------------------------------------------
+# create a project folder corresponding to 
+ln -s /ifb/data/mydatalocal $HOME2/Project
+ln -s /ifb/data/public/teachdata/ebame-2022/metagenomics $HOME2/Datasets
+
 # --------------------------------------------
 # ------------ fix rigths --------------------
 # --------------------------------------------
-# potentially useless
+# fix HOME2 ownership, so that user can create stuffs
+chown -R 1000:1000 $HOME2/repos
+chown -R 1000:1000 $HOME2/Project
 
+# --------------------------------------------
+# -------- sily hostname ---------------------
+# --------------------------------------------
 
-# mamba crash as a user and this fix it
-# chown -R 1000:1000 /var/lib/miniconda3
+hostnames=("lili" "lala" "lulu" "saperlipopette" "sacrebleu" "mouhahaha" "prepare_for_AI_uprising" "this_is_the_bestest_tuto" "chubbybunny" "sillygoose" "badger_badger_badger_mushroom" "ebame_forever" "church_of_anvio" "zippydoodah" "metagnomonique" "bubblesnuggle" "flibbertigibbet" "whatchamacallit" "gobbleggidillygook" "wobbledeewoodoo" "tigglewaggle" "zapyzippity" "make_iufm_great_again" "Mr_Tux_president")
 
-# # fix HOME2 ownership, so that user can create stuffs
-# chown -R 1000:1000 $HOME2/*
+# Select a random index from the array
+random_index=$((RANDOM % ${#hostnames[@]}))
+# Get the random hostname
+random_hostname="${hostnames[random_index]}"
+echo $random_hostname
+
+# Set the PS1 prompt with the random hostname
+new_PS1='PS1=${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@$random_hostname\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$'
+echo $new_PS1>>~/.bashrc
+# sed -i "s/PS1=.*$/$new_PS1/" ~/.bashrc
+
 # }&>"$APP_DIR/vm_install.log"
-
