@@ -173,7 +173,7 @@ We only started running the first step of STRONG, the assembly step, it consists
 This should take about thirty minutes. We are not waiting for that instead kill the strong run using ***Ctrl-C*** and copy in the prerun assembly after cleaning up the output directory:
 
 ```
-    cd  ~/data/mydatalocal/STRONG_AD/STRONG_OUT
+    cd  ~/data/mydatalocal/STRONG_AD/
     rm -r -f STRONG_OUT
     mkdir STRONG_OUT
     cp -r ~/data/mydatalocal/STRONG_AD/STRONG_prerun/assembly ~/data/mydatalocal/STRONG_AD/STRONG_OUT
@@ -191,7 +191,7 @@ Whilst that is running login on a separate terminal so we can look at the assemb
 #### Coassembly
 
 ```bash
-cd ~/data/mydatalocal/STRONG_AD
+cd ~/data/mydatalocal/STRONG_AD/STRONG_OUT
 ls -lh assembly/spades/contigs.fasta
 ```
 
