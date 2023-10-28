@@ -21,6 +21,7 @@ git clone --recurse-submodules https://github.com/chrisquince/STRONG.git
 git clone https://github.com/chrisquince/genephene.git
 git clone https://github.com/rvicedomini/strainberry.git
 git clone https://github.com/kkpsiren/PlasmidNet.git
+git clone https://github.com/GaetanBenoitDev/metaMDBG.git
 
 # ------------------------------
 # ----- all sudo installs ------
@@ -36,6 +37,7 @@ sudo apt-get -y install qt5-default gzip unzip feh evince
 # ----- Chris tuto -------------
 # ------------------------------
 cd $HOME2/repos/STRONG
+
 # conda/mamba is not in the path for root, so I need to add it
 export PATH=$CONDA:$PATH
 ./install_STRONG.sh
@@ -54,7 +56,7 @@ mamba create -c bioconda --name plasmidnet python=3.8 prodigal -y
 pip install -r $HOME2/repos/PlasmidNet/requirements.txt
 
 # -------------------------------------
-# -----------Rob Tuto --------------
+# -----------LongRead Tuto --------------
 # -------------------------------------
 # --- guppy ---
 cd $HOME2/repos
@@ -67,6 +69,15 @@ mamba env create -f $HOME2/repos/Ebame/conda_env_LongReads.yaml
 # --- download db for LongReads env --
 . $CONDA/deactivate
 . $CONDA/activate LongReads
+
+# metamdbg
+conda env config vars set CPATH=${CONDA_PREFIX}/include:${CPATH}
+. $CONDA/deactivate
+. $CONDA/activate LongReads
+
+cd $HOME2/repos/metaMDBG && mkdir build && cd build
+cmake .. && make -j3
+
 # krona
 rm -rf /var/lib/miniforge/envs/LongReads/opt/krona/taxonomy
 mkdir $HOME2/repos/krona_taxonomy
@@ -139,6 +150,10 @@ echo -e 'export PATH=/home/ubuntu/repos/PlasmidNet/bin:$PATH'>>$HOME2/.bashrc
 # guppy install
 echo -e "\n\n #------ guppy path -------">>$HOME2/.bashrc 
 echo -e 'export PATH=~/repos/ont-guppy-cpu/bin:$PATH'>>$HOME2/.bashrc
+
+# metaMDBG install
+echo -e "\n\n #------ MetaMDBG path -------">>$HOME2/.bashrc 
+echo -e 'export PATH=~/repos/metaMDBG/build/bin:$PATH'>>$HOME2/.bashrc
 
 
 # --------------------------------------------
