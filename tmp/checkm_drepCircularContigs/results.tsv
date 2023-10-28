@@ -1,0 +1,14 @@
+Bin Id	Marker lineage	# genomes	# markers	# marker sets	0	1	2	3	4	5+	Completeness	Contamination	Strain heterogeneity
+ctg221_12x_c	root (UID1)	5656	56	24	56	0	0	0	0	0	0.00	0.00	0.00
+ctg242_10x_c	root (UID1)	5656	56	24	56	0	0	0	0	0	0.00	0.00	0.00
+ctg247_8x_c	root (UID1)	5656	56	24	56	0	0	0	0	0	0.00	0.00	0.00
+ctg257_23x_c	root (UID1)	5656	56	24	56	0	0	0	0	0	0.00	0.00	0.00
+ctg267_26x_c	g__Prevotella (UID2724)	55	567	296	43	522	2	0	0	0	90.54	0.39	0.00
+ctg270_26x_c	f__Enterobacteriaceae (UID5103)	157	1005	324	1	1003	1	0	0	0	99.96	0.08	0.00
+s1.ctg000002c	k__Bacteria (UID2329)	174	149	89	0	149	0	0	0	0	100.00	0.00	0.00
+s12.ctg000013c	o__Selenomonadales (UID1024)	64	334	167	0	334	0	0	0	0	100.00	0.00	0.00
+s19.ctg000022c	f__Lachnospiraceae (UID1286)	57	420	207	3	415	2	0	0	0	99.44	0.29	0.00
+s2.ctg000003c	o__Clostridiales (UID1212)	172	261	147	0	261	0	0	0	0	100.00	0.00	0.00
+s34.ctg000048c	root (UID1)	5656	56	24	56	0	0	0	0	0	0.00	0.00	0.00
+s5.ctg000006c	o__Bacteroidales (UID2657)	160	492	269	2	488	2	0	0	0	99.26	0.50	0.00
+s66.ctg000085c	root (UID1)	5656	56	24	56	0	0	0	0	0	0.00	0.00	0.00
