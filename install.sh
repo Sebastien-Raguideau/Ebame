@@ -160,7 +160,7 @@ echo -e 'export PATH=~/repos/metaMDBG/build/bin:$PATH'>>$HOME2/.bashrc
 # -------- make the home better --------------
 # --------------------------------------------
 # create a project folder corresponding to 
-ln -s /ifb/data/mydatalocal $HOME2/Project
+ln -s /ifb/data/mydatalocal $HOME2/Projects
 ln -s /ifb/data/public/teachdata/ebame-2022/metagenomics $HOME2/Datasets
 
 # --------------------------------------------
@@ -185,7 +185,7 @@ random_hostname="${hostnames[random_index]}"
 echo $random_hostname
 
 # Set the PS1 prompt with the random hostname
-new_PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@$random_hostname\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$"
+new_PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@$random_hostname\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
 echo "PS1='$new_PS1'">>$HOME2/.bashrc
 
 # }&>"$APP_DIR/vm_install.log"
