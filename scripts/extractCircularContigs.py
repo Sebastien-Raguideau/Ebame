@@ -9,7 +9,7 @@ def main(argv):
 
     parser.add_argument("contigFilename", help="contig filename (.fasta or .fasta.gz)")
     #parser.add_argument("minLength", help="minimum length of extracted contigs")
-    parser.add_argument("outpurDir", help="output directory for extracted circular contigs")
+    parser.add_argument("outputDir", help="output directory for extracted circular contigs")
     
     #parser.add_argument("csv", help="output unitig coverage file (.csv)")
     
@@ -18,7 +18,7 @@ def main(argv):
     contigFilename = args.contigFilename
     minContigLength = 0 #int(args.minLength)
     
-    outputDir = args.outpurDir
+    outputDir = args.outputDir
     if not os.path.exists(outputDir):
         os.makedirs(outputDir)
     
