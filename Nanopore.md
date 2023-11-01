@@ -1,4 +1,4 @@
-# EBAME 7 2022: Long read metagenomics sequencing workshop
+# EBAME 8 2023: Long read metagenomics sequencing workshop
 
 ## Long read metagenomics of the human gut microbiome
 
@@ -45,23 +45,16 @@ Nanopore sequencing results in fast5 files that contain raw signal data termed "
 conda activate LongReads
 ```
 
-It is important to store all data and outputs in directories contained within the mounted volume in `~/mydatalocal` to insure you do not run out of space on your VMs.
+It is important to store all data and outputs in directories contained within the mounted volume in `~/Projects` to insure you do not run out of space on your VMs.
 
-Get the fast5 reads into the `mydatalocal` dir on our VM:
+Get the fast5 reads into the `Projects` dir on our VM:
 
 ```
-cd ~/data/mydatalocal
+mkdir -p ~/Projects/LongReads
+cd ~/Projects/LongReads
 
-mkdir LongReads
-
-cd LongReads
-
-export DATA=/home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/Quince_datasets/Rob_data/
-
-cp $DATA/fast5_subset.tar.gz .
-
+cp $DATA/Rob_data/fast5_subset.tar.gz .
 tar -xvzf fast5_subset.tar.gz
-
 rm fast5_subset.tar.gz
 ```
 
@@ -81,21 +74,23 @@ rm fast5_subset.tar.gz
 
 Compare the different basecalling methods on the subset of fast5 files. Only try fast and high quality, SUP-HAC is very slow on CPUs. Basecalling will not complete in the time available, examine the fastq.temp files produced. Config files must be specified or kit and flow cell can be specified without a config file.
 
-```
+```bash
 Usage:
 
-With config file:
-  guppy_basecaller -r -i <input dir> -s <save path> -c <config file> [options]
+# With config file:
+guppy_basecaller -r -i <input dir> -s <save path> -c <config file> [options]
 
-Fast basecalling config file: dna_r9.4.1_450bps_fast.cfg
-High accuracy config file:  dna_r9.4.1_450bps_hac.cfg
+#Fast basecalling config file: 
+dna_r9.4.1_450bps_fast.cfg
+#High accuracy config file:  
+dna_r9.4.1_450bps_hac.cfg
 
-With flowcell and kit name:
-  guppy_basecaller -i <input path> -s <save path> --flowcell <flowcell name>
+#With flowcell and kit name:
+guppy_basecaller -i <input path> -s <save path> --flowcell <flowcell name>
     --kit <kit name>
 
-List supported flowcells and kits:
-  guppy_basecaller --print_workflows
+#List supported flowcells and kits:
+guppy_basecaller --print_workflows
  
 
 ```
@@ -103,7 +98,7 @@ Guppy can be run by specifiying kit and flowcell OR config file.
 
 Try `guppy_basecaller -h` for help. 
 
-Samples were sequenced with LSK-109 kit (ligation sequencing kit) with flow MIN 106 flowcell.
+Samples were sequenced with **LSK-109 kit** (ligation sequencing kit) with **flow MIN 106** flowcell.
 
 ### Code Example
 <details><summary>SPOILER: Click for basecalling code reveal</summary>
@@ -211,9 +206,9 @@ Copy one of the two GutMock fastq files into the LongReads dir and decompress:
 
 ```
 
-cd ~/data/mydatalocal/LongReads
+cd ~/Projects/LongReads
 
-cp  $DATA/GutMock1.fastq.gz .
+cp  $DATA/Rob_data/GutMock1.fastq.gz .
 
 gzip -d GutMock1.fastq.gz
 
@@ -327,16 +322,8 @@ You may wish to try running kraken2 again later using a larger or more specific 
 
 Krona produces an interactive `.html` file based on your `--report` file. While not fully integrated with kraken2, the use of the report file gives an overall approximation of your sample diversity based on individual reads. 
 
-Need to update taxonomy first, this should take 3-5 min:
-
 ```
-cd /var/lib/miniconda3/envs/LongReads/opt/krona
-./updateTaxonomy.sh
-
-```
-
-```
-cd ~/data/mydatalocal/LongReads
+cd ~/Projects/LongReads
 
 ktImportTaxonomy -q 1 -t 5 kraken_report -o kraken_krona_report.html
 
@@ -353,7 +340,7 @@ ktImportTaxonomy -q 1 -t 5 kraken_report -o kraken_krona_report.html
 Copy the html files to your local machine and open in your preferred browser (tested in firefox). To do this, open a new terminal on your machine and use the following command. Replace VMIPADDRESS with your own VM IP.
 
 ```
-scp ubuntu@VMIPADDRESS:~/data/mydatalocal/LongReads/kraken_krona_report.html ~/Desktop/
+scp ubuntu@VMIPADDRESS:~/Projects/LongReads/kraken_krona_report.html .
 
 ```
 
