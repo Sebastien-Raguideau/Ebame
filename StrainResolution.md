@@ -145,7 +145,7 @@ Debuging a config file:
  <details><summary>It's still not working? </summary>
 <p>
 
-Well, we can't spend too long on debugging everybody, just copy and paste the correct config file from the strain_practical repo.
+Well, we can't spend too long on debugging everybody, just copy and paste the correct config file from the Ebame repo.
 
 ```bash
 cd  ~/data/mydatalocal/STRONG_AD
@@ -465,7 +465,7 @@ Bandage load COG0060_color.gfa
 We can also look at the time series of strain abundances: 
 
 ```
-cp ~/repos/strain_resolution_practical/scripts/GammaPlot.R .
+cp ~/repos/Ebame/scripts/GammaPlot.R .
 R
 source('GammaPlot.R')
 q()
