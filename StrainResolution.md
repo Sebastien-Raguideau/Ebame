@@ -412,7 +412,9 @@ cp ~/repos/STRONG/BayesPaths/Data/coreCogs.tsv .
 and finally bayespaths itself:
 
 ```bash
-bayespaths Bin_2/simplif 77 Bin_2 -r 150 -l Bin_2/selected_cogs.tsv -t coreCogs.tsv -g 4 --nofilter -nr 1 -e ~/repos/STRONG/BayesPaths/runfg_source/
+export BPATH=/home/ubuntu/repos/STRONG/BayesPaths/bin/bayespaths 
+
+$BPATH/bayespaths Bin_2/simplif 77 Bin_2 -r 150 -l Bin_2/selected_cogs.tsv -t coreCogs.tsv -g 4 --nofilter -nr 1 -e ~/repos/STRONG/BayesPaths/runfg_source/
 ```
 
 This will take a little time. It should select three strains. We can have a look at the output:
