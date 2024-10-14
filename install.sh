@@ -8,7 +8,9 @@ export APP_DIR=/ifb/apprepo/Ebame-quince
 echo $CONDA
 which conda
 mamba -h  || conda install -y -c conda-forge mamba
+pip install requests --upgrade
 mamba env create -f /ifb/apprepo/Ebame-quince/conda_env_Trait_inference.yaml
+
 
 # # for conda install
 # ulimit -n 63852
