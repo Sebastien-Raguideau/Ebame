@@ -7,7 +7,7 @@ export APP_DIR=/ifb/apprepo/Ebame-quince
 
 # This fuck over conda if not unset
 unset PYTHONPATH
-
+export PATH=$CONDA:$PATH
 
 # for conda install
 ulimit -n 63852
@@ -187,6 +187,6 @@ random_hostname="${hostnames[random_index]}"
 echo $random_hostname
 
 # Set the PS1 prompt with the random hostname
-new_PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@$random_hostname\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+new_PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@$random_hostname\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$"
 echo "PS1='$new_PS1'">>$HOME2/.bashrc
 
