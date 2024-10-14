@@ -3,7 +3,7 @@
 # define home
 # {
 export HOME2=/home/ubuntu
-export CONDA=/var/lib/miniforge/bin
+export CONDA=/var/lib/miniforge/condabin
 export APP_DIR=/ifb/apprepo/Ebame-quince
 echo $CONDA
 export PATH=$CONDA:$PATH
