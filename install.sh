@@ -5,19 +5,9 @@
 export HOME2=/home/ubuntu
 export CONDA=/var/lib/miniforge/condabin
 export APP_DIR=/ifb/apprepo/Ebame-quince
-echo $CONDA
 export PATH=$CONDA:$PATH
-which conda
-/var/lib/miniforge/condabin/mamba -h
-/var/lib/miniforge/bin/mamba -h
-echo $PYTHONPATH
 unset PYTHONPATH
-/var/lib/miniforge/condabin/mamba -h
-/var/lib/miniforge/bin/mamba -h
-
-#|| conda install -y -c conda-forge mamba
-#pip install requests --upgrade
-#mamba env create -f /ifb/apprepo/Ebame-quince/conda_env_Trait_inference.yaml
+mamba env create -f /ifb/apprepo/Ebame-quince/conda_env_Trait_inference.yaml
 
 
 # # for conda install
