@@ -2,7 +2,7 @@
 
 # define home
 export HOME2=/home/ubuntu
-export CONDA=/var/lib/miniforge/condabin
+export CONDA=/var/lib/miniforge/bin
 export APP_DIR=/ifb/apprepo/Ebame-quince
 
 # This fuck over conda if not unset
@@ -112,7 +112,7 @@ cd $HOME2/repos/checkm_data
 # checkm data setRoot $HOME2/repos/checkm_data
 
 # same but with gtdb
-conda env config vars set GTDBTK_DATA_PATH=/ifb/data/public/teachdata/ebame-2022/metagenomics/Datasets/gtdbtk/release207_v2
+conda env config vars set GTDBTK_DATA_PATH=/ifb/data/public/teachdata/ebame/metagenomics-bining/gtdbtk_data/release220
 
 # -------------------------------------
 # ---------- modify .bashrc -----------
@@ -163,7 +163,7 @@ echo -e 'export PATH=~/repos/metaMDBG/build/bin:$PATH'>>$HOME2/.bashrc
 # --------------------------------------------
 # create a project folder corresponding to 
 ln -s /ifb/data/mydatalocal $HOME2/Projects
-ln -s /ifb/data/public/teachdata/ebame-2022/metagenomics $HOME2/Datasets
+ln -s /ifb/data/public/teachdata/ebame $HOME2/Datasets
 
 # --------------------------------------------
 # ------------ fix rigths --------------------
@@ -178,7 +178,7 @@ chown -R 1000:1000 /var/lib/miniforge
 # -------- sily hostname ---------------------
 # --------------------------------------------
 
-hostnames=("saperlipopette" "sacrebleu" "mouhahaha" "prepare_for_AI_uprising" "this_is_the_bestest_tuto" "chubbybunny" "sillygoose" "badger_badger_badger_mushroom" "ebame_forever" "church_of_anvio" "zippydoodah" "metagnomonique" "bubblesnuggle" "flibbertigibbet" "whatchamacallit" "gobbleggidillygook" "wobbledeewoodoo" "tigglewaggle" "zapyzippity" "make_iufm_great_again" "Mr_Tux_president" "bamboozle_bop" "squigglywomp" "flapdoodle" "fuzzyfizzle" "wigglewhomp" "snickerdoodle" "boopityboo" "gobbledygump" "oodlesofnoodles" "flibberflabber" "supercalifragiawesome" "jitterbugger" "froggystomper" "wigglewiggle" "quackityquack" "doohickeywhizz" "beepboopbop" "lollygagging_legion" "spiffytastic" "scrimblescromble")
+hostnames=("saperlipopette" "sacrebleu" "mouhahaha" "prepare_for_AI_uprising" "this_is_the_bestest_tuto" "chubbybunny" "sillygoose" "badger_badger_badger_mushroom" "ebame_forever" "church_of_anvio" "zippydoodah" "metagnomonique" "bubblesnuggle" "flibbertigibbet" "whatchamacallit" "gobbleggidillygook" "wobbledeewoodoo" "tigglewaggle" "zapyzippity" "make_iuem_great_again" "Mr_Tux_president" "bamboozle_bop" "squigglywomp" "flapdoodle" "fuzzyfizzle" "wigglewhomp" "snickerdoodle" "boopityboo" "gobbledygump" "oodlesofnoodles" "flibberflabber" "supercalifragiawesome" "jitterbugger" "froggystomper" "wigglewiggle" "quackityquack" "doohickeywhizz" "beepboopbop" "lollygagging_legion" "spiffytastic" "scrimblescromble")
 
 # Select a random index from the array
 random_index=$((RANDOM % ${#hostnames[@]}))
@@ -187,6 +187,6 @@ random_hostname="${hostnames[random_index]}"
 echo $random_hostname
 
 # Set the PS1 prompt with the random hostname
-new_PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@$random_hostname\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$"
+new_PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@$random_hostname\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
 echo "PS1='$new_PS1'">>$HOME2/.bashrc
 
