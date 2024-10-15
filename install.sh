@@ -87,10 +87,10 @@ ln -s $HOME2/repos/krona_taxonomy /var/lib/miniforge/envs/LongReads/opt/krona/ta
 ktUpdateTaxonomy.sh
 
 # same with gtdb
-conda env config vars set GTDBTK_DATA_PATH=/ifb/data/public/teachdata/ebame-2022/metagenomics/Datasets/gtdbtk/release207_v2
+conda env config vars set GTDBTK_DATA_PATH=/ifb/data/public/teachdata/ebame/metagenomics-bining/gtdb/release220
 
 # checkm
-checkm data setRoot $HOME2/repos/checkm_data
+checkm data setRoot /ifb/data/public/teachdata/ebame/metagenomics-bining/checkm_data_2015_01_16
 
 # --- Pavian ---
 #source /var/lib/miniconda3/bin/activate LongReads
