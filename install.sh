@@ -106,13 +106,10 @@ checkm data setRoot /ifb/data/public/teachdata/ebame/metagenomics-bining/checkm_
 mamba install -c bioconda checkm-genome megahit bwa -y
 
 # add checkm database
-mkdir -p $HOME2/repos/checkm_data
-cd $HOME2/repos/checkm_data
-# wget https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz && tar -xvzf checkm_data_2015_01_16.tar.gz
-# checkm data setRoot $HOME2/repos/checkm_data
+checkm data setRoot /ifb/data/public/teachdata/ebame/metagenomics-bining/checkm_data_2015_01_16
 
 # same but with gtdb
-conda env config vars set GTDBTK_DATA_PATH=/ifb/data/public/teachdata/ebame/metagenomics-bining/gtdbtk_data/release220
+conda env config vars set GTDBTK_DATA_PATH=/ifb/data/public/teachdata/ebame/metagenomics-bining/gtdb/release220
 
 # -------------------------------------
 # ---------- modify .bashrc -----------
@@ -178,7 +175,7 @@ chown -R 1000:1000 /var/lib/miniforge
 # -------- sily hostname ---------------------
 # --------------------------------------------
 
-hostnames=("saperlipopette" "sacrebleu" "mouhahaha" "prepare_for_AI_uprising" "this_is_the_bestest_tuto" "chubbybunny" "sillygoose" "badger_badger_badger_mushroom" "ebame_forever" "church_of_anvio" "zippydoodah" "metagnomonique" "bubblesnuggle" "flibbertigibbet" "whatchamacallit" "gobbleggidillygook" "wobbledeewoodoo" "tigglewaggle" "zapyzippity" "make_iuem_great_again" "Mr_Tux_president" "bamboozle_bop" "squigglywomp" "flapdoodle" "fuzzyfizzle" "wigglewhomp" "snickerdoodle" "boopityboo" "gobbledygump" "oodlesofnoodles" "flibberflabber" "supercalifragiawesome" "jitterbugger" "froggystomper" "wigglewiggle" "quackityquack" "doohickeywhizz" "beepboopbop" "lollygagging_legion" "spiffytastic" "scrimblescromble")
+hostnames=("saperlipopette" "sacrebleu" "mouhahaha" "prepare_for_AI_uprising" "this_is_the_bestest_tuto" "chubbybunny" "sillygoose" "badger_badger_badger_mushroom" "ebame_forever" "church_of_anvio" "zippydoodah" "metagnomonique" "bubblesnuggle" "whatchamacallit" "gobbleggidillygook" "wobbledeewoodoo" "tigglewaggle" "zapyzippity" "make_iuem_great_again" "Mr_Tux_president" "bamboozle_bop" "squigglewiggle" "flapdoodle" "fuzzyfizzle" "snickerdoodle" "boopityboop" "oodlesofnoodles" "supercalifragiawesome" "quackityquack" "beepboopbeep" "lollygagging_legion" "spiffytastic")
 
 # Select a random index from the array
 random_index=$((RANDOM % ${#hostnames[@]}))
