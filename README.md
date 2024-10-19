@@ -5,4 +5,4 @@ Tutorials are found in:
 2. [De novo short read strain resolution](StrainResolution.md)
 3. [Trait inference for MAGs](TraitInference.md)
 4. [Nanopore bioinformatics](Nanopore.md)
-5. [Long-read assembly](LongReads2024.md)
+5. [Long-read assembly](LongRead2024.md)
