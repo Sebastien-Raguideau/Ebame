@@ -34,7 +34,7 @@ sudo apt-get update
 # STRONG compilation
 sudo apt-get -y install libbz2-dev libreadline-dev cmake g++ zlib1g zlib1g-dev
 # bandage and utils
-sudo apt-get -y install qt5-default gzip unzip feh evince
+sudo apt-get -y install bandage gzip unzip feh evince
 
 # ------------------------------
 # ----- Chris tuto -------------
@@ -43,11 +43,6 @@ cd $HOME2/repos/STRONG
 
 # conda/mamba is not in the path for root, so I need to add it
 ./install_STRONG.sh
-
-# Bandage install
-cd $HOME2/repos/
-wget https://github.com/rrwick/Bandage/releases/download/v0.8.1/Bandage_Ubuntu_dynamic_v0_8_1.zip
-mkdir Bandage && unzip Bandage_Ubuntu_dynamic_v0_8_1.zip -d Bandage && mv Bandage_Ubuntu_dynamic_v0_8_1.zip Bandage
 
 # trait inference
 mamba env create -f $HOME2/repos/Ebame/conda_env_Trait_inference.yaml
@@ -129,10 +124,6 @@ echo -e 'export PATH=~/repos/ont-guppy-cpu/bin:$PATH'>>$HOME2/.bashrc
 # STRONG install
 echo -e "\n\n #------ STRONG path -------">>$HOME2/.bashrc 
 echo -e 'export PATH=~/repos/STRONG/bin:$PATH '>>$HOME2/.bashrc
-
-# Bandage install
-echo -e "\n\n #------ guppy path -------">>$HOME2/.bashrc 
-echo -e 'export PATH=~/repos/Bandage:$PATH'>>$HOME2/.bashrc
 
 #  add repos scripts 
 echo -e "\n\n #------ Ebame -------">>$HOME2/.bashrc
