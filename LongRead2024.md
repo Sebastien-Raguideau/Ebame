@@ -50,27 +50,31 @@ In this tutorial, we are going to run metaflye and metaMDBG separatly, then use 
 As usual, try to craft your own command line to run the software. 
 
 
-#### Run hifiasm-meta
+#### Run metaflye
 
-Let's run hifiasm-meta first.
+Let's run metaflye first.
 
-Use the following commands to see usage information for hifiasm-meta:
+Use the following commands to see usage information for metaflye:
 
 ```bash
-hifiasm_meta -h
+flye -h
 ```
 
 <details><summary>Solution</summary>
 <p>
 
 ```bash
-hifiasm_meta -o ~/data/mydatalocal/HiFi/hifiasm-meta_asm ~/data/public/teachdata/ebame-2022/metagenomics/HIFI_datasets/samples/Zymo_sample1e5.fastq.gz -t 4
+
+ONT:
+flye --nano-hq ~/data/public/teachdata/ebame/metagenomics-assembly/SRR17913199_1.fastq.gz --out-dir ~/data/mydatalocal/LongReads/metaflye_asm --threads 4 --meta
+
+Hifi:
+flye --pacbio-hifi ~/data/public/teachdata/ebame/metagenomics-assembly/SRR13128014_subreads.fastq.gz --out-dir ~/data/mydatalocal/LongReads/metaflye_asm --threads 4 --meta
 ```
 </p>
 </details>
 
 Assembly takes a lot of time, so instead lets comment on the pre-run version.
-
 
 ```bash
 #Copy hifiasm human assembly in your local folder
@@ -81,14 +85,6 @@ ln -s ~/data/public/teachdata/ebame-2022/metagenomics/HIFI_datasets/Zymo_asm/ ~/
 
 #Print hifiasm output files
 ls -lh ~/data/mydatalocal/HiFi/hifiasm-meta_human/
-```
-
-Hifiasm represents the set of contigs with the GFA1  [format](http://gfa-spec.github.io/GFA-spec/GFA1.html). There is a quite a diversity of output file, what are they? What is a unitig a contig? Let's check the [documentation](https://hifiasm.readthedocs.io/en/latest/interpreting-output.html).
-
-We can use the following command to transform hifiasm-meta gfa file in a more conventional fasta file:
-```bash
-awk '/^S/{print ">"$2;print $3}' ~/data/mydatalocal/HiFi/hifiasm-meta_human/asm.p_ctg.gfa > ~/data/mydatalocal/HiFi/hifiasm-meta_human_asm.p_ctg.fasta
-awk '/^S/{print ">"$2;print $3}' ~/data/mydatalocal/HiFi/hifiasm-meta_zymo/asm.p_ctg.gfa > ~/data/mydatalocal/HiFi/hifiasm-meta_zymo_asm.p_ctg.fasta
 ```
 
 -->  look at assembly statistics
@@ -128,7 +124,7 @@ The Zymo is a bit more exciting than the HumanReal in terms of circular componen
 
 #### Run metaMDBG
 
-Now, let's try to run metaMDBG on the zymo mock community.
+Now, let's try to run metaMDBG on the zymo mock communities.
 
 ```bash
 metaMDBG asm -h
@@ -138,7 +134,13 @@ metaMDBG asm -h
 <p>
 
 ```bash
-metaMDBG asm ~/data/mydatalocal/HiFi/metaMDBG_asm ~/data/public/teachdata/ebame-2022/metagenomics/HIFI_datasets/samples/Zymo_sample1e5.fastq.gz -t 4
+
+ONT:
+metaMDBG asm --in-ont ~/data/public/teachdata/ebame/metagenomics-assembly/SRR17913199_1.fastq.gz --out-dir ~/data/mydatalocal/LongReads/metaMDBG_asm --threads 4
+
+Hifi:
+metaMDBG asm --in-hifi ~/data/public/teachdata/ebame/metagenomics-assembly/SRR13128014_subreads.fastq.gz --out-dir ~/data/mydatalocal/LongReads/metaMDBG_asm --threads 4
+
 ```
 </p>
 </details>
