@@ -12,42 +12,40 @@ If this is not the case yet remember to activate the correct conda env:
 We are going to work in the following directory:
 
 ```bash
-mkdir -p ~/data/mydatalocal/HiFi
-cd ~/data/mydatalocal/HiFi
+mkdir -p ~/data/mydatalocal/LongReads
+cd ~/data/mydatalocal/LongReads
 ```
 
 ## Dataset
-There are 2 sample, available at:
+There are 3 Zymo mock samples, available at:
 
-    ~/data/public/teachdata/ebame-2022/metagenomics/HIFI_datasets/samples/
-- HumanReal: Sample from a pool of vegans and omnivore
-- Zymo: mock community
+    ~/data/public/teachdata/ebame/metagenomics-assembly/
 
-Choose either for the assembly section.
-
-As previously we can use the command seqkit stats to assess this sample.
+As previously we can use the command seqkit stats to assess these samples.
+From the stats, try to guess which one is the Hifi, ONT_R9 and ONT_R10.
 <details><summary>Solution</summary>
 <p>
 
 ```bash
-seqkit stats ~/data/public/teachdata/ebame-2022/metagenomics/HIFI_datasets/samples/Zymo_sample1e5.fastq.gz
+seqkit stats --all ~/data/public/teachdata/ebame/metagenomics-assembly/SRR13128014_subreads.fastq.gz
 ```
 
+Pre-runs for seqkit are located here: ~/repos/Ebame/tmp/datasets/
 </p>
 </details>
 
 ## Assembly
 
 
-Mostly 3 software have been developed for assembling HiFi metagenomic datasets.
+Mostly 3 software have been developed for assembling long-read metagenomic datasets.
 
 - [metaFlye](https://www.nature.com/articles/s41592-020-00971-x) 
 
 - [hifiasm-meta](https://www.nature.com/articles/s41592-022-01478-3)
 
-- [metaMDBG](https://www.biorxiv.org/content/10.1101/2023.07.07.548136v1)
+- [metaMDBG](https://www.nature.com/articles/s41587-023-01983-6)
 
-In this tutorial, we are going to run hifiasm-meta and metaMDBG separatly, then use a method to merge their results.
+In this tutorial, we are going to run metaflye and metaMDBG separatly, then use a method to merge their results.
 
 As usual, try to craft your own command line to run the software. 
 
