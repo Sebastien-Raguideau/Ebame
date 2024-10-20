@@ -54,8 +54,8 @@ mkdir -p ~/Projects/LongReads
 cd ~/Projects/LongReads
 
 cp $DATA/Rob_data/fast5_subset.tar.gz .
-tar -xvzf pod5_subset.tar.gz `or` fast5_subset.tar.gz 
-rm pod5_subset.tar.gz `or` fast5_subset.tar.gz
+tar -xvzf pod5_subset.tar.gz or fast5_subset.tar.gz 
+rm pod5_subset.tar.gz or fast5_subset.tar.gz
 ```
 
 |Flag / command            | Description               | 
@@ -72,7 +72,10 @@ rm pod5_subset.tar.gz `or` fast5_subset.tar.gz
 
 
 
-Compare the different basecalling methods on the subset of pod5/fast5 files. Only try fast and high quality, SUP is very slow on CPUs. Basecalling will not complete in the time available, examine the fastq.temp files produced. Config files must be specified or kit and flow cell can be specified without a config file. `Dorado basecaller` can also be used to call modified base probibilites, currently 4mC, 5mC and 6mA are supported for bacterial epigenetic modifications.  
+Compare the different basecalling methods on the subset of pod5/fast5 files. Only try fast and high quality as SUP is very slow on CPUs. Basecalling will not complete in the time available, examine the fastq.temp files produced. Config files must be specified or kit and flow cell can be specified without a config file. `Dorado basecaller` can also be used to call modified base probibilites, currently 4mC, 5mC and 6mA are supported for bacterial epigenetic modifications. Dorado basecaller can demultiplex during basecalling or in post by using dorado demux. Further information can be found on the github page : [https://github.com/nanoporetech/dorado](https://github.com/nanoporetech/dorado)
+
+NB: When using dorado basecaller, it is possable to resume an interupted run by using the '--resume-from' flag.
+
 
 ```bash
 Dorado Usage:
@@ -144,11 +147,34 @@ Guppy can be run by specifiying kit and flowcell OR config file.
 
 Try `guppy_basecaller -h` for help. 
 
-Samples were sequenced with **LSK-109 kit** (ligation sequencing kit) with **flow MIN 106** flowcell.
+Samples for guppy basecalling were sequenced with **LSK-109 kit** (ligation sequencing kit) with **flow MIN 106** flowcell.
 
 ### Code Example
 <details><summary>SPOILER: Click for basecalling code reveal</summary>
 <p>
+
+### Dorado basecalling output in fastq (sup V.5 transformer model)
+
+dorado basecaller --emit-fastq --min-qscore 10 -r path/to/model/dna_r10.4.1_e8.2_400bps_sup\@v5.0.0/ path/to/pod5s > path/to/output.fastq
+
+|Flag / command            | Description               | 
+| -------------------------|:-------------------------:| 
+| `dorado`                 |call dorado                | 
+| `basecaller`             |call basecaller            | 
+| `--emit-fastq`           |fastq output               |
+| `--min-qscore`           |minimum qscore filter      |
+
+### Dorado modified basecalling (unaligned bam file output)
+
+dorado basecaller --min-qscore 10 -r --modified-bases-models path/to/modfile1/dna_r10.4.1_e8.2_400bps_sup\@v5.0.0_4mC_5mC\@v1/,path/to/modfile2/dna_r10.4.1_e8.2_400bps_sup\@v5.0.0_6mA\@v1/ path/to/basecallingmodel/dna_r10.4.1_e8.2_400bps_sup\@v5.0.0/ path/to/pod5s > path/to/output/dir/out.bam
+
+|Flag / command            | Description               | 
+| -------------------------|:-------------------------:| 
+| `dorado`                 |call dorado                | 
+| `basecaller`             |call basecaller            | 
+| `-r`                     |recursive flag             |
+| `--min-qscore`           |minimum qscore filter      |
+| `--modified-bases-models`|modified bases flag        |
 
 ### Guppy fast basecalling
 
