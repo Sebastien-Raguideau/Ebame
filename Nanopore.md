@@ -54,8 +54,11 @@ mkdir -p ~/Projects/LongReads
 cd ~/Projects/LongReads
 
 cp $DATA/Rob_data/fast5_subset.tar.gz .
-tar -xvzf pod5_subset.tar.gz or fast5_subset.tar.gz 
-rm pod5_subset.tar.gz or fast5_subset.tar.gz
+cp $DATA/Rob_data/pod5_subset.tar.gz .
+tar -xvzf fast5_subset.tar.gz
+tar -xvzf pod5_subset.tar.gz
+rm pod5_subset.tar.gz
+rm fast5_subset.tar.gz
 ```
 
 |Flag / command            | Description               | 
@@ -145,7 +148,7 @@ guppy_basecaller --print_workflows
 ```
 Guppy can be run by specifiying kit and flowcell OR config file.
 
-Try `guppy_basecaller -h` for help. 
+NB: Try `guppy_basecaller -h` for help. 
 
 Samples for guppy basecalling were sequenced with **LSK-109 kit** (ligation sequencing kit) with **flow MIN 106** flowcell.
 
@@ -153,7 +156,7 @@ Samples for guppy basecalling were sequenced with **LSK-109 kit** (ligation sequ
 <details><summary>SPOILER: Click for basecalling code reveal</summary>
 <p>
 
-### Dorado basecalling output in fastq (sup V.5 transformer model)
+### Dorado basecalling output in fastq (sup V.5 transformer model - very slow)
 
 dorado basecaller --emit-fastq --min-qscore 10 -r path/to/model/dna_r10.4.1_e8.2_400bps_sup\@v5.0.0/ path/to/pod5s > path/to/output.fastq
 
@@ -175,6 +178,13 @@ dorado basecaller --min-qscore 10 -r --modified-bases-models path/to/modfile1/dn
 | `-r`                     |recursive flag             |
 | `--min-qscore`           |minimum qscore filter      |
 | `--modified-bases-models`|modified bases flag        |
+
+ 
+View bam file structure with modified bases
+```
+samtools view output_file.bam | head
+```
+
 
 ### Guppy fast basecalling
 
@@ -207,7 +217,7 @@ guppy_basecaller -r --input_path fast5_raw --save_path raw_fastq_HQ --config dna
 </details>
 
 
-When working with post processing basecalling it is usefull to use the `screen` command. This allows you to run the command in the background by detaching from the current process. To detach from a screen, us `ctrl + A D`. To resume a screen, use the command `screen -r`. To close a screen use `exit` within the screen environment. `conda init` may be required to run `conda LongReads` in screen for the first use.
+When working with post processing basecalling it is usefull to use the `screen` command. This allows you to run the command in the background by detaching from the current process (TMUX also available). To detach from a screen, us `ctrl + A D`. To resume a screen, use the command `screen -r`. To close a screen use `exit` within the screen environment. `conda init` may be required to run `conda LongReads` in screen for the first use.
 
 (optional) Once detached from a screen running 'guppy_basecaller', you can count the total number of reads being written in real time by changing to the `pass` directory in the raw_fastq dir where the fastq files are being written and implementing the following bash one-liner. Use `Ctr c` to exit `watch`.
 
@@ -215,11 +225,11 @@ When working with post processing basecalling it is usefull to use the `screen` 
 watch -n 5 'find . -name "*.fastq.temp" -exec grep 'read=' -c {} \; | paste -sd+ | bc'
 ```
 
-Cancel the Guppy_basecaller command before continuing.
+Cancel the Guppy_basecaller and / or dorado basecaller commands in screen before continuing with this tutorial.
 
 ### Observations
 
-How do the base calling methods compare?  
+How do the base calling methods compare in terms of speed?   
 
 ## Remove raw fast5 files from Longreads/ before continuing. 
 
@@ -290,7 +300,7 @@ Count the reads in the two fastq files using grep or wc as before. Use the comma
 
 ### Read down sampling
 
-A number of programs are available to down-sample reads for onward analysis. A commonly used tool to downsample reads is [Filtlong](https://github.com/rrwick/Filtlong/blob/main/README.md). 
+A number of programs are available to down-sample reads for onward analysis. Commonly used tool to downsample reads is [Filtlong](https://github.com/rrwick/Filtlong/blob/main/README.md) and to QC is [seqkit](https://bioinf.shenwei.me/seqkit/) . 
 
 Try and resample 10000000 bp  no shorter than 1000bp using Filtlong with a mean quality score of 10. Filtlong outputs to STDOUT by default. Use `>` to redirect output to a file.
 
@@ -318,6 +328,15 @@ filtlong -t 10000000 --min_length 1000 --length_weight 3  --min_mean_q 10 GutMoc
 | `--min_mean_q 10`           |minimum mean read q score                                               |
 
 
+### Seqkit statistics
+
+```
+seqkit stats <infile> -a
+```
+
+### Seqkit seq
+
+seqkit seq -m 1000 <infile> > <outfile>
 
 </details>
 
@@ -325,6 +344,9 @@ filtlong -t 10000000 --min_length 1000 --length_weight 3  --min_mean_q 10 GutMoc
 Examen the number of reads in each file and use seqkit to generate simple discriptive statistics for your read files. 
 
 [Seqkit stats](https://bioinf.shenwei.me/seqkit/usage/#stats) can also be used to generate simple statistics for fasta/q files.
+
+```
+seqkit stats 
 
 For reference, [Poretools](https://poretools.readthedocs.io/en/latest/content/examples.html) can be used to examine read length distribution and associated statistics but is not provided today. 
 
