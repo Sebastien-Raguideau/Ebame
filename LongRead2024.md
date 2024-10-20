@@ -91,10 +91,16 @@ ls -lh ~/data/mydatalocal/HiFi/hifiasm-meta_human/
 
 -->  look at actual size of longer contigs
 
-Use Bandage to compare the Human and Zymo assemblies.
+Use Bandage to compare the Zymo ONT and HiFi assemblies.
 ```bash
-Bandage load ~/data/mydatalocal/HiFi/hifiasm-meta_human/asm.p_ctg.gfa
-Bandage load ~/data/mydatalocal/HiFi/hifiasm-meta_zymo/asm.p_ctg.gfa
+
+#Decompress gfa file first, then run Bandage
+gzip -d ~/repos/Ebame/tmp/assembly/SRR17913199_ONT_Q20/metaflye/assembly_graph.gfa.gz
+Bandage load ~/repos/Ebame/tmp/assembly/SRR17913199_ONT_Q20/metaflye/assembly_graph.gfa
+
+#Hifi graph
+gzip -d ~/repos/Ebame/tmp/assembly/SRR13128014_hifi/metaflye/assembly_graph.gfa.gz
+Bandage load ~/repos/Ebame/tmp/assembly/SRR13128014_hifi/metaflye/assembly_graph.gfa
 ```
 
 <details><summary> If you have issues with Bandage </summary>
@@ -120,7 +126,12 @@ https://docs.google.com/document/d/1VPnL-5mXXQimkXQNiQagPhgzRn8j1JBHCLV42r8-Wqc/
 </p>
 </details>
 
-The Zymo is a bit more exciting than the HumanReal in terms of circular components, however some of those long contigs even if not circular are could already satisfy medium or high MAGs criterion for quality.
+This Zymo mock community contains 5 ecoli strains, let's try to find them using the blast feature.
+* Click "Create/view Blast search" button
+* Click "Build Blast database"
+* Click "Load from fasta file" -> Select a reference genome in ~/repos/Ebame/tmp/references/
+* Click "Run blast search"
+* Recommanded: try to tune the blast filter (alignment length and identity)
 
 #### Run metaMDBG
 
