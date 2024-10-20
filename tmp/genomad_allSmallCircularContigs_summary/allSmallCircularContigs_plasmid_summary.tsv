@@ -1,5 +1,0 @@
-seq_name	length	topology	n_genes	genetic_code	plasmid_score	fdr	n_hallmarks	marker_enrichment	conjugation_genes	amr_genes
-s66.ctg000085c	61337	No terminal repeats	72	11	0.9954	NA	6	51.6580	NA	NA
-ctg247_8x_c	122305	No terminal repeats	139	11	0.9951	NA	30	90.1063	F_traK;F_traE;F_traL;MOBF;F_traG;F_traH;F_traH;F_traF;F_traN;F_traU;F_traW;virb4;F_traV	NF012174
-s34.ctg000048c	134858	No terminal repeats	133	11	0.9890	NA	0	6.2730	NA	NF033134
-ctg221_12x_c	61278	No terminal repeats	57	11	0.9711	NA	3	6.5625	MOBP1	NA

@@ -1,0 +1,3 @@
+file                      format  type   num_seqs  sum_len          min_len  avg_len  max_len  Q1     Q2      Q3     sum_gap  N50     Q20(%)  Q30(%)  AvgQual  GC(%)
+SRR13128014.std.fastq.gz  FASTQ   DNA   1,978,852  17,993,566,711       45  9,092.9   39,601  5,592  8,077  11,716        0  10,628   99.03   97.66    29.48  45.85
+

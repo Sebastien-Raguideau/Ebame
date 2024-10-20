@@ -1,2 +1,0 @@
-seq_name	length	topology	coordinates	n_genes	genetic_code	virus_score	fdr	n_hallmarks	marker_enrichment	taxonomy
-ctg242_10x_c	110023	No terminal repeats	NA	125	11	0.9716	NA	17	112.0365	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes
