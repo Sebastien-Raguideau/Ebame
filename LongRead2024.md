@@ -16,10 +16,15 @@ mkdir -p ~/data/mydatalocal/LongReads
 cd ~/data/mydatalocal/LongReads
 ```
 
+Copy the pre-runs folder in your working directory:
+```bash
+cp -r ~/repos/Ebame/tmp/preruns ~/data/mydatalocal/LongReads
+```
+
 ## Dataset
 There are 3 Zymo mock samples, available at:
 
-    ~/data/public/teachdata/ebame/metagenomics-assembly/
+    ls -lh ~/data/public/teachdata/ebame/metagenomics-assembly/
 
 As previously we can use the command seqkit stats to assess these samples.
 From the stats, try to guess which one is the Hifi, ONT_R9 and ONT_R10.
@@ -30,7 +35,8 @@ From the stats, try to guess which one is the Hifi, ONT_R9 and ONT_R10.
 seqkit stats --all ~/data/public/teachdata/ebame/metagenomics-assembly/SRR13128014_subreads.fastq.gz
 ```
 
-Pre-runs for seqkit are located here: ~/repos/Ebame/tmp/datasets/
+Pre-runs for seqkit are located here: ~/data/mydatalocal/LongReads/preruns/datasets/
+
 </p>
 </details>
 
@@ -66,10 +72,10 @@ flye -h
 ```bash
 
 ONT:
-flye --nano-hq ~/data/public/teachdata/ebame/metagenomics-assembly/SRR17913199_1.fastq.gz --out-dir ~/data/mydatalocal/LongReads/metaflye_asm --threads 4 --meta
+flye --nano-hq ~/data/public/teachdata/ebame/metagenomics-assembly/SRR17913199_1.fastq.gz --out-dir ~/data/mydatalocal/LongReads/metaflye_asm_ont --threads 4 --meta
 
 Hifi:
-flye --pacbio-hifi ~/data/public/teachdata/ebame/metagenomics-assembly/SRR13128014_subreads.fastq.gz --out-dir ~/data/mydatalocal/LongReads/metaflye_asm --threads 4 --meta
+flye --pacbio-hifi ~/data/public/teachdata/ebame/metagenomics-assembly/SRR13128014_subreads.fastq.gz --out-dir ~/data/mydatalocal/LongReads/metaflye_asm_hifi --threads 4 --meta
 ```
 </p>
 </details>
@@ -77,14 +83,11 @@ flye --pacbio-hifi ~/data/public/teachdata/ebame/metagenomics-assembly/SRR131280
 Assembly takes a lot of time, so instead lets comment on the pre-run version.
 
 ```bash
-#Copy hifiasm human assembly in your local folder
-ln -s ~/data/public/teachdata/ebame-2022/metagenomics/HIFI_datasets/HumanReal_asm ~/data/mydatalocal/HiFi/hifiasm-meta_human
+#Metaflye results on ONT
+ls ~/data/mydatalocal/LongReads/preruns/assembly/SRR17913199_ONT_Q20/metaflye/
 
-#Copy hifiasm zymo assembly in your local folder
-ln -s ~/data/public/teachdata/ebame-2022/metagenomics/HIFI_datasets/Zymo_asm/ ~/data/mydatalocal/HiFi/hifiasm-meta_zymo
-
-#Print hifiasm output files
-ls -lh ~/data/mydatalocal/HiFi/hifiasm-meta_human/
+#Metaflye results on HiFi
+ls ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaflye/
 ```
 
 -->  look at assembly statistics
@@ -95,12 +98,12 @@ Use Bandage to compare the Zymo ONT and HiFi assemblies.
 ```bash
 
 #Decompress gfa file first, then run Bandage
-gzip -d ~/repos/Ebame/tmp/assembly/SRR17913199_ONT_Q20/metaflye/assembly_graph.gfa.gz
-Bandage load ~/repos/Ebame/tmp/assembly/SRR17913199_ONT_Q20/metaflye/assembly_graph.gfa
+gzip -d ~/repos/Ebame/tmp/preruns/assembly/SRR17913199_ONT_Q20/metaflye/assembly_graph.gfa.gz
+Bandage load ~/repos/Ebame/tmp/preruns/assembly/SRR17913199_ONT_Q20/metaflye/assembly_graph.gfa
 
 #Hifi graph
-gzip -d ~/repos/Ebame/tmp/assembly/SRR13128014_hifi/metaflye/assembly_graph.gfa.gz
-Bandage load ~/repos/Ebame/tmp/assembly/SRR13128014_hifi/metaflye/assembly_graph.gfa
+gzip -d ~/repos/Ebame/tmp/preruns/assembly/SRR13128014_hifi/metaflye/assembly_graph.gfa.gz
+Bandage load ~/repos/Ebame/tmp/preruns/assembly/SRR13128014_hifi/metaflye/assembly_graph.gfa
 ```
 
 <details><summary> If you have issues with Bandage </summary>
@@ -146,11 +149,11 @@ metaMDBG asm -h
 
 ```bash
 
-ONT:
-metaMDBG asm --in-ont ~/data/public/teachdata/ebame/metagenomics-assembly/SRR17913199_1.fastq.gz --out-dir ~/data/mydatalocal/LongReads/metaMDBG_asm --threads 4
-
 Hifi:
-metaMDBG asm --in-hifi ~/data/public/teachdata/ebame/metagenomics-assembly/SRR13128014_subreads.fastq.gz --out-dir ~/data/mydatalocal/LongReads/metaMDBG_asm --threads 4
+metaMDBG asm --in-hifi ~/data/public/teachdata/ebame/metagenomics-assembly/SRR13128014_subreads.fastq.gz --out-dir ~/data/mydatalocal/LongReads/metaMDBG_asm_hifi --threads 4
+
+ONT:
+metaMDBG asm --in-ont ~/data/public/teachdata/ebame/metagenomics-assembly/SRR17913199_1.fastq.gz --out-dir ~/data/mydatalocal/LongReads/metaMDBG_asm_ont --threads 4
 
 ```
 </p>
@@ -163,7 +166,7 @@ With the command "metaMDBG gfa", we can generate the assembly graph correspondin
 Let' try to generate an assembly graph with a low k value. The following command shows the available values for k and their corresponding size in bps. 
 
 ```bash
-metaMDBG gfa ~/data/mydatalocal/HiFi/metaMDBG_asm 0
+metaMDBG gfa --assembly-dir ~/data/mydatalocal/LongReads/metaMDBG_asm_ont --k 0
 ```
 
 Choose a value for k and wait for metaMDBG to generate the graph.
@@ -173,7 +176,7 @@ Choose a value for k and wait for metaMDBG to generate the graph.
 <p>
 
 ```bash
-metaMDBG gfa ~/data/mydatalocal/HiFi/metaMDBG_asm 10
+metaMDBG gfa ~/data/mydatalocal/LongReads/metaMDBG_asm_ont/ --k 10
 ```
 </p>
 </details>
@@ -184,7 +187,7 @@ Visualize the assembly graph with Bandage
 <p>
 
 ```bash
-Bandage load /home/ubuntu/data/mydatalocal/HiFi/metaMDBG_asm/assemblyGraph_k10_1813bps.gfa
+Bandage load ~/data/mydatalocal/LongReads/metaMDBG_asm_ont/assemblyGraph_k10_1813bps.gfa
 ```
 </p>
 </details>
@@ -192,16 +195,20 @@ Bandage load /home/ubuntu/data/mydatalocal/HiFi/metaMDBG_asm/assemblyGraph_k10_1
 Now let's check the final metaMDBG assembly results:
 
 ```bash
-#Copy metaMDBG prerun in your local folder
-ln -s ~/repos/Ebame/tmp/metaMDBG_zymo/ ~/data/mydatalocal/HiFi/metaMDBG_zymo
-
-#Print metaMDBG output files
-ls -lh ~/data/mydatalocal/HiFi/metaMDBG_zymo/
+#Show metaMDBG output files
+ls -lh ~/repos/Ebame/tmp/preruns/assembly/SRR13128014_hifi/metaMDBG/
 ```
 
--->  look at assembly statistics
+Let's run Bandage and check how metaMDBG handles the ecoli strains:
 
--->  visualize the final assembly graph with Bandage
+```bash
+
+#Decompress gfa file first, then run Bandage
+gzip -d ~/repos/Ebame/tmp/preruns/assembly/SRR13128014_hifi/metaMDBG/assemblyGraph_k105_20813bps.gfa.gz
+Bandage load ~/repos/Ebame/tmp/preruns/assembly/SRR13128014_hifi/metaMDBG/assemblyGraph_k105_20813bps.gfa
+
+```
+
 
 ## MAGs?
 Let's focus here only on circular contigs. 
