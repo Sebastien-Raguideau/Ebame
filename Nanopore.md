@@ -1,4 +1,4 @@
-# EBAME 8 2023: Long read metagenomics sequencing workshop
+# EBAME 9 2024: Long read metagenomics sequencing workshop
 
 ## Long read metagenomics of the human gut microbiome
 
