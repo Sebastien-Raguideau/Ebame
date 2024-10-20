@@ -1,5 +1,5 @@
 # ------ Samples ------
-samples: ['*'] # specify a list samples to use or '*' to use all samples
+samples: ['sample*'] # specify a list samples to use or '*' to use all samples
 
 # ------ Resources ------
 threads : 8 # single task nb threads
