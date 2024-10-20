@@ -48,7 +48,7 @@ Try activating the relevant conda environment :
 **Databases**
 
  - [COG database](ftp://ftp.ncbi.nlm.nih.gov/pub/mmdb/cdd/little_endian) , you will find it installed at
-    `/home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/COG`
+    `/home/ubuntu/data/public/teachdata/ebame/metagenomics-bining/rpsblast_cog_db`
 
  - (optional) [GTDB](https://pubmed.ncbi.nlm.nih.gov/30148503/) , used
    with gtdb-tk, (77Gb) too much ram needed and execution too slow for this present tutorial.
@@ -73,7 +73,7 @@ Then link in the short reads:
 
 ```
 
-ln -s /home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/Quince_datasets/AD_small data
+ln -s /home/ubuntu/data/public/teachdata/ebame/metagenomics-bining/Quince_datasets/AD_small data
 
 ```
 
