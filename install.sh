@@ -34,7 +34,8 @@ sudo apt-get update
 # STRONG compilation
 sudo apt-get -y install libbz2-dev libreadline-dev cmake g++ zlib1g zlib1g-dev
 # bandage and utils
-sudo apt-get -y install bandage gzip unzip feh evince
+sudo apt-get -y install bandage gzip unzip feh evince ncbi-blast+
+
 
 # ------------------------------
 # ----- Chris tuto -------------
