@@ -8,7 +8,7 @@ threads : 8 # single task nb threads
 data: /home/ubuntu/data/mydatalocal/STRONG_AD/data
 
 # ----- Annotation database -----
-cog_database: /home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/COG
+cog_database: /home/ubuntu/data/public/teachdata/ebame/metagenomics-bining/rpsblast_cog_db
 
 
 # ----- Binning parameters ------
