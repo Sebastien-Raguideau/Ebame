@@ -215,40 +215,47 @@ Let's focus here only on circular contigs.
 
 #### Extract circular contigs
 
-We can check if a contig is circular by looking at the contig headers in the fasta files.
-If a header ends with a "c", it means that the contig is circular, otherwise it is linear. You can check this info with the following command:
+For metaMDBG, we can check if a contig is circular by looking at the contig headers in the fasta files.
+If a header contains the field "circular=yes", it means that the contig is circular, otherwise it is linear. You can check this info with the following command:
 
 ```bash
-grep ">" ~/data/mydatalocal/HiFi/hifiasm-meta_zymo_asm.p_ctg.fasta
+
+#Show all headers
+zcat ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaMDBG/assembly.fasta.gz | grep ">"
+
+#Show header with the circular flag = "yes"
+zcat ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaMDBG/assembly.fasta.gz | grep ">" | grep "circular=yes"
 ```
+
+Metaflye uses an extra metadata file for contig information
+```bash
+
+#Show contig metadata
+cat ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaflye/assembly_info.txt
+```
+
 
 Let's create folders for the circular contigs:
 ```bash
 mkdir -p ~/data/mydatalocal/HiFi/circularContigs/
-mkdir -p ~/data/mydatalocal/HiFi/circularContigs/hifiasm_meta/
+mkdir -p ~/data/mydatalocal/HiFi/circularContigs/metaflye/
 mkdir -p ~/data/mydatalocal/HiFi/circularContigs/metaMDBG/
 ```
 
-Now, try to run the following homemade script to extract the circular contigs:
-
-    ~/repos/Ebame/scripts/extractCircularContigs.py 
-
-It should not be too hard if you use the -h.
-
-<details><summary>Solution</summary>
-<p>
+We use a custom script to extract all circular contigs:
 
 ```bash
-~/repos/Ebame/scripts/extractCircularContigs.py ~/data/mydatalocal/HiFi/hifiasm-meta_zymo_asm.p_ctg.fasta ~/data/mydatalocal/HiFi/circularContigs/hifiasm-meta/
-~/repos/Ebame/scripts/extractCircularContigs.py ~/data/mydatalocal/HiFi/metaMDBG_zymo/contigs.fasta.gz ~/data/mydatalocal/HiFi/circularContigs/metaMDBG/
+#Extract metaflye circular contigs (HiFi)
+python3 ~/repos/Ebame/scripts/extractCircularContigs.py ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaflye/assembly.fasta.gz ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaflye/assembly_info.txt metaflye ~/data/mydatalocal/LongReads/circularContigs/metaflye/
+
+#Extract metaMDBG circular contigs (HiFi)
+python3 ~/repos/Ebame/scripts/extractCircularContigs.py ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaMDBG/assembly.fasta.gz ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaMDBG/assembly.fasta.gz metaMDBG ~/data/mydatalocal/LongReads/circularContigs/metaMDBG/
 ```
 
-</p>
-</details>
 
 #### Assembly reconciliation
 
-We are now going to merge the results of metaMDBG and hifiasm-meta. The idea is to compute the similarity (ANI) between the circular contigs, and to choose only one representative if two contigs are duplicated (ANI > 0.95 by default).
+We are now going to merge the results of metaMDBG and metaflye. The idea is to compute the similarity (ANI) between the circular contigs, and to choose only one representative if two contigs are duplicated (ANI > 0.95 by default).
 
 For this task, we are going to use the software dRep. dRep has a lot of options, let's craft the command together, first display de-replicate options:
 
