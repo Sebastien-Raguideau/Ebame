@@ -3,7 +3,7 @@
 rule create megahit_files:
     output: R1 = "{path}/R1.csv",
             R2 = "{path}/R2.csv"
-    params: data = "/home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/Quince_datasets/AD_small"
+    params: data = "/home/ubuntu/data/public/teachdata/ebame/metagenomics-bining/Quince_datasets/AD_small"
     shell:"""
         ls {params.data}/*/*R1.fastq | tr "\n" "," | sed 's/,$//' > {output.R1}
         ls {params.data}/*/*R2.fastq | tr "\n" "," | sed 's/,$//' > {output.R2}
@@ -27,8 +27,8 @@ rule index_assembly:
           """
 
 rule map_reads:
-    input: R1 = "/home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/Quince_datasets/AD_small/{sample}/{sample}_R1.fastq",
-           R2 = "/home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/Quince_datasets/AD_small/{sample}/{sample}_R1.fastq",
+    input: R1 = "/home/ubuntu/data/public/teachdata/ebame/metagenomics-bining/Quince_datasets/AD_small/{sample}/{sample}_R1.fastq",
+           R2 = "/home/ubuntu/data/public/teachdata/ebame/metagenomics-bining/Quince_datasets/AD_small/{sample}/{sample}_R1.fastq",
            index = "{path}/Assembly/index.done",
            assembly = "{path}/Assembly/final.contigs.fa"
     output: "{path}/Map/{sample}.mapped.sorted.bam"
