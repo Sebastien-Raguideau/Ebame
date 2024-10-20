@@ -4,7 +4,7 @@
 
 
 ### Introduction
-Today we aim to use real, nanopore derived, long read sequence data to examine the community composition of two mock communities constructed of representative members of the human gut microbiome. The tutorial is designed to act as a reference for processing long reads from raw fast5 files to an assembled and taxonomically classified metagenome. While example codes for each step are provided, they are only available when revealed by clicking on the drop-down menus. This affords you the opportunity to try and implement code from the linked help pages and manuals of the tools being used. It is important to note that many other metagenomic tools and pipelines are available to assemble and undertake taxonomic classification and can be implemented depending on your sample, aim, time and available computational power.
+Today we aim to use real, nanopore derived, long read sequence data to examine the community composition of two mock communities constructed of representative members of the human gut microbiome. The tutorial is designed to act as a reference for processing long reads from raw fast5/pod5 files to an assembled and taxonomically classified metagenome. While example codes for each step are provided, they are only available when revealed by clicking on the drop-down menus. This affords you the opportunity to try and implement code from the linked help pages and manuals of the tools being used. It is important to note that many other metagenomic tools and pipelines are available to assemble and undertake taxonomic classification and can be implemented depending on your sample, aim, time and available computational power.
 
 ### Laboratory methods
 Bacterial isolates were grown under anerobic conditions in species specific media. Cultures were standardised to 1 x 10^8 cells / ml via species specific calibrated optical density mesurments. Mock communities were constructed by mixing species in known proportions based on cell copy numbers / ml. 
@@ -37,7 +37,7 @@ Kraken2 database is located:
 
 ## Tutorial
 ### Basecalling
-Nanopore sequencing results in fast5 files that contain raw signal data termed "squiggles". This signal needs to be processed into the `.fastq` format for onward analysis. This is undertaken through a process called 'basecalling'. The current program released for use by Oxford Nanopore is called `Guppy` and can be implemented in both GPU and CPU modes. Three forms of basecalling are available, 'fast', 'high-accuracy' (HAC) and 'super high accuracy' (SUP-HAC). The differing basecalling approaches can be undertaken directly during a sequencing run or in post by using CPU or GPU based clusters. HAC and SUP-HAC basecalling algorithms are highly computationally intensive and thus slower than the fast basecalling method. While devices such as the GridION and PromethION can basecall using these algorithms in real time due to their on-board GPU configuration, thus permitting adaptive sequencing (read-until), the MinION device relies on the computational power of the attached system on which it is running. Guppy basecaller is also able to demultiplex barcoded reads both in real time and in post processing.
+Nanopore sequencing results in fast5/pod5 files that contain raw signal data termed "squiggles". This signal needs to be processed into the `.fastq` format for onward analysis. This is undertaken through a process called 'basecalling'. The current program released for use by Oxford Nanopore is called `Dorado` (formally Guppy) and can be implemented in both GPU and CPU modes. Three forms of basecalling are available, 'fast', 'high-accuracy' (HAC) and 'super high accuracy' (SUP-HAC). The differing basecalling approaches can be undertaken directly during a sequencing run or in post by using CPU or GPU based clusters. HAC and SUP basecalling algorithms are highly computationally intensive and thus slower than the fast basecalling method. While devices such as the GridION and PromethION can basecall using these algorithms in real time due to their on-board GPU configuration, thus permitting adaptive sequencing (read-until), the MinION device relies on the computational power of the attached system on which it is running. `Dorado demux` is also able to demultiplex barcoded reads both in real time and in post processing.
 
 
 ## Need to activate LongReads environment
@@ -47,15 +47,15 @@ conda activate LongReads
 
 It is important to store all data and outputs in directories contained within the mounted volume in `~/Projects` to insure you do not run out of space on your VMs.
 
-Get the fast5 reads into the `Projects` dir on our VM:
+Get the pod5/fast5 reads into the `Projects` dir on our VM:
 
 ```
 mkdir -p ~/Projects/LongReads
 cd ~/Projects/LongReads
 
 cp $DATA/Rob_data/fast5_subset.tar.gz .
-tar -xvzf fast5_subset.tar.gz
-rm fast5_subset.tar.gz
+tar -xvzf pod5_subset.tar.gz / fast5_subset.tar.gz 
+rm pod5_subset.tar.gz / fast5_subset.tar.gz
 ```
 
 |Flag / command            | Description               | 
@@ -72,10 +72,15 @@ rm fast5_subset.tar.gz
 
 
 
-Compare the different basecalling methods on the subset of fast5 files. Only try fast and high quality, SUP-HAC is very slow on CPUs. Basecalling will not complete in the time available, examine the fastq.temp files produced. Config files must be specified or kit and flow cell can be specified without a config file.
+Compare the different basecalling methods on the subset of pod5/fast5 files. Only try fast and high quality, SUP is very slow on CPUs. Basecalling will not complete in the time available, examine the fastq.temp files produced. Config files must be specified or kit and flow cell can be specified without a config file.
 
 ```bash
-Usage:
+Dorado Usage:
+
+# With config file:
+
+
+Guppy Usage:
 
 # With config file:
 guppy_basecaller -r -i <input dir> -s <save path> -c <config file> [options]
