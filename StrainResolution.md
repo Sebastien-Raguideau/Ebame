@@ -140,7 +140,7 @@ STRONG --config config.yaml STRONG_OUT assembly --threads 8 --dryrun --verbose
 Debuging a config file:
  - First it has to be a valid .yaml file, [here](https://en.wikipedia.org/wiki/YAML) is the format definition and [here](http://www.yamllint.com/) is a validator. In short, don't forget indentations or colons. 
  - you only have 2 paths to fill the path to the sample **folder** and the path to the cog database. If you have issues, you may have mispellled any of these. Use the  `ls`   command to check the path exists.
- - the cog database path is `/home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/COG/`
+ - the cog database path is `/home/ubuntu/data/public/teachdata/ebame/metagenomics-bining/rpsblast_cog_db`
  - the data folder path is:  `/home/ubuntu/data/mydatalocal/STRONG_AD/data`
  <details><summary>It's still not working? </summary>
 <p>
