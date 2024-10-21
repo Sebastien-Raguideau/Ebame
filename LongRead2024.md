@@ -1,5 +1,5 @@
 
-# PacBio HiFi assembly tutorial
+# Long-reads assembly tutorial
 
 Be sure to launch your VM with -X option, so we can visualize assembly graphs with Bandage.
 
