@@ -1,8 +1,10 @@
-# EBAME23 Quince group Tutorials
-Contains corresponding app install file, conda env for long read tutorial and machine learning. 
-Tutorials are found in:
-1. [Contig binning and Snakemake](Binning.md)
-2. [De novo short read strain resolution](StrainResolution.md)
-3. [Trait inference for MAGs](TraitInference.md)
-4. [Nanopore bioinformatics](Nanopore.md)
-5. [Long-read assembly](LongRead2024.md)
+# EBAME9 2024 Quince group Tutorials
+
+These tutorial needs the [EBAME-Quince](https://biosphere.france-bioinformatique.fr/cloud/deployment/31686/) appliance
+
+_Tuesday 22_:  [From read to MAGs, bash then Snakemake](Binning.md)\
+_Wednesday 23_:  [Nanopore bioinformatics](Nanopore.md)\
+_Thursday 24_:  [Long-read assembly](LongRead2024.md)\
+_Thursday 24_:  [De novo short read strain resolution](StrainResolution.md)\
+_(optional)_:  [Trait inference for MAGs](TraitInference.md)
+
