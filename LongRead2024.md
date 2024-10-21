@@ -98,12 +98,12 @@ Use Bandage to compare the Zymo ONT and HiFi assemblies.
 ```bash
 
 #Decompress gfa file first, then run Bandage
-gzip -d ~/repos/Ebame/tmp/preruns/assembly/SRR17913199_ONT_Q20/metaflye/assembly_graph.gfa.gz
-Bandage load ~/repos/Ebame/tmp/preruns/assembly/SRR17913199_ONT_Q20/metaflye/assembly_graph.gfa
+gzip -d ~/data/mydatalocal/LongReads/preruns/assembly/SRR17913199_ONT_Q20/metaflye/assembly_graph.gfa.gz
+Bandage load ~/data/mydatalocal/LongReads/preruns/assembly/SRR17913199_ONT_Q20/metaflye/assembly_graph.gfa
 
 #Hifi graph
-gzip -d ~/repos/Ebame/tmp/preruns/assembly/SRR13128014_hifi/metaflye/assembly_graph.gfa.gz
-Bandage load ~/repos/Ebame/tmp/preruns/assembly/SRR13128014_hifi/metaflye/assembly_graph.gfa
+gzip -d ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaflye/assembly_graph.gfa.gz
+Bandage load ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaflye/assembly_graph.gfa
 ```
 
 <details><summary> If you have issues with Bandage </summary>
@@ -132,7 +132,7 @@ https://docs.google.com/document/d/1VPnL-5mXXQimkXQNiQagPhgzRn8j1JBHCLV42r8-Wqc/
 This Zymo mock community contains 5 ecoli strains, let's try to find them using the blast feature.
 * Click "Create/view Blast search" button
 * Click "Build Blast database"
-* Click "Load from fasta file" -> Select a reference genome in ~/repos/Ebame/tmp/references/
+* Click "Load from fasta file" -> Select a reference genome in ~/data/mydatalocal/LongReads/references/
 * Click "Run blast search"
 * Recommanded: try to tune the blast filter (alignment length and identity)
 
@@ -196,7 +196,7 @@ Now let's check the final metaMDBG assembly results:
 
 ```bash
 #Show metaMDBG output files
-ls -lh ~/repos/Ebame/tmp/preruns/assembly/SRR13128014_hifi/metaMDBG/
+ls -lh ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaMDBG/
 ```
 
 Let's run Bandage and check how metaMDBG handles the ecoli strains:
@@ -204,8 +204,8 @@ Let's run Bandage and check how metaMDBG handles the ecoli strains:
 ```bash
 
 #Decompress gfa file first, then run Bandage
-gzip -d ~/repos/Ebame/tmp/preruns/assembly/SRR13128014_hifi/metaMDBG/assemblyGraph_k105_20813bps.gfa.gz
-Bandage load ~/repos/Ebame/tmp/preruns/assembly/SRR13128014_hifi/metaMDBG/assemblyGraph_k105_20813bps.gfa
+gzip -d ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaMDBG/assemblyGraph_k105_20813bps.gfa.gz
+Bandage load ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaMDBG/assemblyGraph_k105_20813bps.gfa
 
 ```
 
@@ -387,12 +387,11 @@ Retry to use checkm on a contigs you chose and saved with Bandage.
 Or from the command line, use the following command line replacing \<NODE\>:
 
 ```bash
-Bandage reduce ~/data/mydatalocal/HiFi/hifiasm-meta_zymo/asm.p_ctg.gfa ~/data/mydatalocal/HiFi/<Node>.gfa  --scope aroundnodes --nodes <NODE> --distance 0
+Bandage reduce ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaflye/assembly_graph.gfa ~/data/mydatalocal/LongReads/<Node>.gfa  --scope aroundnodes --nodes <NODE> --distance 0
 ```
 --> use a bash online to extract, name and sequence from that gfa graph:
 ```bash
-cd ~/data/mydatalocal/HiFi/linear_contigs
-awk '/^S/{print ">"$2"\n"$3}' <Node>.gfa > <Node>.fasta
+awk '/^S/{print ">"$2"\n"$3}' ~/data/mydatalocal/LongReads/<Node>.gfa > ~/data/mydatalocal/LongReads/<Node>.fasta
 
 ```
 --> use checkm 
