@@ -41,7 +41,7 @@ import glob
 from os.path import basename,dirname
 
 # create a string variable to store path
-DATA="/home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/Quince_datasets/AD_small"
+DATA="/home/ubuntu/data/public/teachdata/ebame/metagenomics-bining/Quince_datasets/AD_small"
 # use the glob function to find all R1.fastq file in each folder of DATA
 # then only keep the directory name wich is also the sample name
 SAMPLES = [basename(dirname(file)) for file in glob.glob("%s/*/*_R1.fastq"%DATA)]
