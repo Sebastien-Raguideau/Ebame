@@ -251,9 +251,14 @@ We use a custom script to extract all circular contigs:
 python3 ~/repos/Ebame/scripts/extractCircularContigs.py ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaflye/assembly.fasta.gz ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaflye/assembly_info.txt metaflye ~/data/mydatalocal/LongReads/circularContigs/metaflye/
 
 #Extract metaMDBG circular contigs (HiFi)
-python3 ~/repos/Ebame/scripts/extractCircularContigs.py ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaMDBG/assembly.fasta.gz ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaMDBG/assembly.fasta.gz metaMDBG ~/data/mydatalocal/LongReads/circularContigs/metaMDBG/
+python3 ~/repos/Ebame/scripts/extractCircularContigs.py ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaMDBG/contigs.fasta.gz ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaMDBG/contigs.fasta.gz metaMDBG ~/data/mydatalocal/LongReads/circularContigs/metaMDBG/
 ```
 
+List the extracted circular contigs:
+```bash
+ls -lh ~/data/mydatalocal/LongReads/circularContigs/metaflye/
+ls -lh ~/data/mydatalocal/LongReads/circularContigs/metaMDBG/
+```
 
 #### Assembly reconciliation
 
