@@ -348,7 +348,7 @@ seqkit seq -m 1000 <infile> > <outfile>
 </details>
 
 ### Observations
-Examen the number of reads in each file and use seqkit to generate simple discriptive statistics for your read files. 
+Examine the number of reads in each file and use seqkit to generate simple discriptive statistics for your read files. 
 
 [Seqkit stats](https://bioinf.shenwei.me/seqkit/usage/#stats) can also be used to generate simple statistics for fasta/q files.
 
@@ -366,7 +366,7 @@ seqkit sana  GutMock1.fastq -o rescued_GutMock1.fastq
 
 ## Read based taxonomic identification using Kraken2.
 
-Kraken2 provide a means to rapidly assign taxonomic identification to reads using a k-mer based indexing against a reference database. We provide a small reference database compiled for this workshop. (ftp://ftp.ccb.jhu.edu/pub/data/kraken2_dbs/minikraken2_v2_8GB_201904_UPDATE.tgz) Other databases such as the Loman labs [microbial-fat-free](https://lomanlab.github.io/mockcommunity/mc_databases.html) and [maxikraken](https://lomanlab.github.io/mockcommunity/mc_databases.html) are also available. Two major limitations of Kraken2 is the completeness of the database approach and the inability to accuratly derrive and estimate species abundance. Tools such as [Bracken](https://github.com/jenniferlu717/Bracken) have been developed to more accuratly estimate species abundance from kraken.
+Kraken2 provide a means to rapidly assign taxonomic identification to reads using a k-mer based indexing against a reference database. We provide a small reference database compiled for this workshop. (ftp://ftp.ccb.jhu.edu/pub/data/kraken2_dbs/minikraken2_v2_8GB_201904_UPDATE.tgz) Other databases such as the Loman labs [microbial-fat-free](https://lomanlab.github.io/mockcommunity/mc_databases.html) and [maxikraken](https://lomanlab.github.io/mockcommunity/mc_databases.html) are also available. Two major limitations of Kraken2 is the completeness of the database approach and the inability to accuratly derive and estimate species abundance. Tools such as [Bracken](https://github.com/jenniferlu717/Bracken) have been developed to more accuratly estimate species abundance from kraken.
 
 ### Optional extra information
 
