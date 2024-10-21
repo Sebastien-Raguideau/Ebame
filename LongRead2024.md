@@ -306,21 +306,21 @@ column -s, -t < ~/data/mydatalocal/LongReads/drep_circular/data_tables/Cdb.csv
 
 #### Assess quality of circular contigs 
 Clearly some of these are not genomes, let's run checkm on the dereplicated contigs:
+(by the way, sorry, there is a checkm2 version now which is way faster and user-friendly)
 
 ```bash
-checkm lineage_wf ~/data/mydatalocal/HiFi/circularContigs/drep/dereplicated_genomes/ ~/data/mydatalocal/HiFi/circularContigs/drep/dereplicated_genomes/checkm/ -r -x .fa -t 4 --pplacer_threads 4 --tab_table -f ~/data/mydatalocal/HiFi/circularContigs/drep/dereplicated_genomes/checkm/results.tsv
+checkm lineage_wf  ~/data/mydatalocal/LongReads/drep_circular/dereplicated_genomes/ ~/data/mydatalocal/LongReads/checkm_output/ -t 4 --pplacer_threads 4  -r -x .fa --tab_table -f ~/data/mydatalocal/LongReads/checkm_results.tsv
 ```
 
 CheckM is a bit slow, so let's check the prerun results
-
 ```bash
-ln -s ~/repos/Ebame/tmp/checkm_drepCircularContigs/ ~/data/mydatalocal/HiFi/circularContigs/drep/dereplicated_genomes/checkm_prerun
+cat ~/data/mydatalocal/LongReads/checkm_results.tsv
 ```
 
 Print columns corresponding to completeness and contamination:
 
 ```bash
-awk -F"\t" '{ print $1, "\t", $12, "\t", $13 }' ~/data/mydatalocal/HiFi/circularContigs/drep/dereplicated_genomes/checkm_prerun/results.tsv
+awk -F"\t" '{ print $1, "\t", $12, "\t", $13 }' ~/data/mydatalocal/LongReads/checkm_results.tsv
 ```
 
 ## Plasmids and virus?
