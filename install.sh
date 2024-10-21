@@ -56,10 +56,15 @@ pip install -r $HOME2/repos/PlasmidNet/requirements.txt
 # -------------------------------------
 # -----------LongRead Tuto --------------
 # -------------------------------------
-# --- guppy ---
+# # --- guppy ---
+# cd $HOME2/repos
+# wget https://europe.oxfordnanoportal.com/software/analysis/ont-guppy-cpu_5.0.16_linux64.tar.gz
+# tar -xvzf ont-guppy-cpu_5.0.16_linux64.tar.gz && mv ont-guppy-cpu_5.0.16_linux64.tar.gz ont-guppy-cpu/
+
+# --- dorado ---
 cd $HOME2/repos
-wget https://europe.oxfordnanoportal.com/software/analysis/ont-guppy-cpu_5.0.16_linux64.tar.gz
-tar -xvzf ont-guppy-cpu_5.0.16_linux64.tar.gz && mv ont-guppy-cpu_5.0.16_linux64.tar.gz ont-guppy-cpu/
+wget https://cdn.oxfordnanoportal.com/software/analysis/dorado-0.8.1-linux-x64.tar.gz
+tar -xvf dorado-0.8.1-linux-x64.tar.gz
 
 # --- everything else ---
 mamba env create -f $HOME2/repos/Ebame/conda_env_LongReads.yaml
@@ -138,9 +143,14 @@ echo -e 'export PATH=/home/ubuntu/repos/strainberry:$PATH'>>$HOME2/.bashrc
 echo -e "\n\n #------ plasmidnet -------">>$HOME2/.bashrc 
 echo -e 'export PATH=/home/ubuntu/repos/PlasmidNet/bin:$PATH'>>$HOME2/.bashrc
 
-# guppy install
-echo -e "\n\n #------ guppy path -------">>$HOME2/.bashrc 
-echo -e 'export PATH=~/repos/ont-guppy-cpu/bin:$PATH'>>$HOME2/.bashrc
+# # guppy install
+# echo -e "\n\n #------ guppy path -------">>$HOME2/.bashrc 
+# echo -e 'export PATH=~/repos/ont-guppy-cpu/bin:$PATH'>>$HOME2/.bashrc
+
+# dorado install
+echo -e "\n\n #------ Dorado path -------">>$HOME2/.bashrc 
+echo -e 'export PATH=~/repos/dorado-0.8.1-linux-x64/bin:$PATH'>>$HOME2/.bashrc
+
 
 # metaMDBG install
 echo -e "\n\n #------ MetaMDBG path -------">>$HOME2/.bashrc 
