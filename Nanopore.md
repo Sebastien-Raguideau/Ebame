@@ -43,6 +43,7 @@ Nanopore sequencing results in fast5/pod5 files that contain raw signal data ter
 ## Need to activate LongReads environment
 ```
 conda activate LongReads
+export DATA=/ifb/data/public/teachdata/ebame/metagenomics-bining/Quince_datasets/ #export data variable
 ```
 
 It is important to store all data and outputs in directories contained within the mounted volume in `~/Projects` to insure you do not run out of space on your VMs.
