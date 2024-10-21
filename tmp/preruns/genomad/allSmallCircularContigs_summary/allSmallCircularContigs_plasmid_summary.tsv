@@ -1,0 +1,5 @@
+seq_name	length	topology	n_genes	genetic_code	plasmid_score	fdr	n_hallmarks	marker_enrichment	conjugation_genes	amr_genes
+metaflye_contig_728	61337	No terminal repeats	72	11	0.9953	NA	6	51.6580	NA	NA
+metaflye_contig_726	122295	No terminal repeats	139	11	0.9951	NA	30	90.1063	F_traL;F_traE;F_traK;F_traV;virb4;F_traW;F_traU;F_traN;F_traF;F_traH;F_traH;F_traG;MOBF	NF012174
+metaMDBG_ctg1275	231265	No terminal repeats	234	11	0.9929	NA	27	84.9920	F_traL;F_traE;F_traK;F_traV;virb4;F_traW;F_traU;F_traN;F_traF;F_traH;F_traG;MOBF	NF033134
+metaflye_contig_710	61294	No terminal repeats	56	11	0.9699	NA	3	6.5625	MOBP1	NA
