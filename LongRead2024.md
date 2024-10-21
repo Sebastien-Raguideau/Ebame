@@ -357,7 +357,7 @@ find ~/data/mydatalocal/LongReads/drep_circular/dereplicated_genomes/*.fa -size 
 
 The genomad database is located here:
 
-    ~/data/public/teachdata/ebame-2023/virome/db/genomad_db
+    ~/data/public/teachdata/ebame/viral-metagenomics/genomad_db/
 
 Let's run try to run genomad now.
 
