@@ -339,10 +339,10 @@ Genomad takes as input a single fasta file. It will then process the contigs one
 
 ```bash
 #Concatenate all circular contigs in a single fasta file
-cat ~/data/mydatalocal/HiFi/circularContigs/drep/dereplicated_genomes/*.fa > ~/data/mydatalocal/HiFi/circularContigs/allCircularContigs.fasta
+cat ~/data/mydatalocal/LongReads/drep_circular/dereplicated_genomes/*.fa > ~/data/mydatalocal/LongReads/allCircularContigs.fasta
 
 #Concatenante only small circular contigs
-find ~/data/mydatalocal/HiFi/circularContigs/drep/dereplicated_genomes/*.fa -size -500k | xargs cat > ~/data/mydatalocal/HiFi/circularContigs/allSmallCircularContigs.fasta
+find ~/data/mydatalocal/LongReads/drep_circular/dereplicated_genomes/*.fa -size -500k | xargs cat > ~/data/mydatalocal/LongReads/allSmallCircularContigs.fasta
 ```
 
 </p>
@@ -352,12 +352,13 @@ The genomad database is located here:
 
     ~/data/public/teachdata/ebame-2023/virome/db/genomad_db
 
-Let's run genomad (you can use option --sensitivity 1.0 to speed-up prediction, use only for this tutorial):
+Let's run try to run genomad now.
+
 <details><summary>Solution</summary>
 <p>
 
 ```bash
-genomad end-to-end ~/data/mydatalocal/HiFi/circularContigs/allSmallCircularContigs.fasta ~/data/mydatalocal/HiFi/circularContigs/genomad/ ~/data/public/teachdata/ebame-2023/virome/db/genomad_db --threads 4 --sensitivity 1.0
+genomad end-to-end ~/data/mydatalocal/LongReads/allSmallCircularContigs.fasta ~/data/mydatalocal/LongReads/genomad/ ~/appa/data/genomad/genomad_db/ --conservative --threads 4
 ```
 
 </p>
@@ -369,8 +370,8 @@ Read genomad logs and try to print plasmids and virus summaries:
 <p>
 
 ```bash
-cat ~/data/mydatalocal/HiFi/circularContigs/genomad/allSmallCircularContigs_summary/allSmallCircularContigs_plasmid_summary.tsv
-cat ~/data/mydatalocal/HiFi/circularContigs/genomad/allSmallCircularContigs_summary/allSmallCircularContigs_virus_summary.tsv
+cat ~/data/mydatalocal/LongReads/genomad/allSmallCircularContigs_summary/allSmallCircularContigs_plasmid_summary.tsv
+cat ~/data/mydatalocal/LongReads/genomad/allSmallCircularContigs_summary/allSmallCircularContigs_virus_summary.tsv
 ```
 
 </p>
