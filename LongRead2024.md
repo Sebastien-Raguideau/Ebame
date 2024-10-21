@@ -382,10 +382,10 @@ cat ~/data/mydatalocal/LongReads/preruns/genomad/allSmallCircularContigs_summary
 cat ~/data/mydatalocal/LongReads/preruns/genomad/allSmallCircularContigs_summary/allSmallCircularContigs_virus_summary.tsv
 ```
 
-By the way, there is a software called [checkv](https://www.nature.com/articles/s41587-020-00774-7) to assess the quality of viral contigs.
-
 </p>
 </details> 
+
+By the way, there is a software called [checkv](https://www.nature.com/articles/s41587-020-00774-7) to assess the quality of viral contigs.
 
 ## Other contigs
 
