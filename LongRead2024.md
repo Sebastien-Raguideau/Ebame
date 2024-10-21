@@ -263,30 +263,19 @@ For this task, we are going to use the software dRep. dRep has a lot of options,
 dRep dereplicate -h
 ```
 
-dRep takes a list of genomes as input (option -g), let's add all circular contig paths in a single file:
+* First choose a output folder
+* dRep takes a list of genomes as input (option -g), try to provide all the fasta file with regex
+    * Metaflye circular contigs are here: ~/data/mydatalocal/LongReads/circularContigs/metaflye/
+    * MetaMDBG circular contigs are here: ~/data/mydatalocal/LongReads/circularContigs/metaMDBG/
+* Disable quality check with option --ignoreGenomeQuality (we'll do it after dereplication)
+* Disable plotting with --skip_plots
+* Try to select the "skani" method for comparing the circular contigs quickly
 
 <details><summary>Solution</summary>
 <p>
 
 ```bash
-#Collect circular contig paths
-ls ~/data/mydatalocal/HiFi/circularContigs/hifiasm-meta/*.fa > ~/data/mydatalocal/HiFi/circularContigs/allCircularContigs.txt
-ls ~/data/mydatalocal/HiFi/circularContigs/metaMDBG/*.fa >> ~/data/mydatalocal/HiFi/circularContigs/allCircularContigs.txt
-
-#Check input file
-cat ~/data/mydatalocal/HiFi/circularContigs/allCircularContigs.txt
-```
-
-</p>
-</details>
-
-Let's run dRep in a fast fashion, first disable quality check with option --ignoreGenomeQuality (we'll do it after dereplication), and try to select the "fastANI" method for comparing the circular contigs:
-
-<details><summary>Solution</summary>
-<p>
-
-```bash
-dRep dereplicate ~/data/mydatalocal/HiFi/circularContigs/drep/ -p 4 -g ~/data/mydatalocal/HiFi/circularContigs/allCircularContigs.txt --S_algorithm fastANI --ignoreGenomeQuality
+dRep dereplicate ~/data/mydatalocal/LongReads/drep_circular/ -p 4 -g ~/data/mydatalocal/LongReads/circularContigs/metaflye/*.fa ~/data/mydatalocal/LongReads/circularContigs/metaMDBG/*.fa --S_algorithm skani --ignoreGenomeQuality --skip_plots
 ```
 
 </p>
@@ -299,7 +288,7 @@ Read dRep output information and try to list the folder containing dereplicated 
 <p>
 
 ```bash
-ls -lh ~/data/mydatalocal/HiFi/circularContigs/drep/dereplicated_genomes/
+ls -lh ~/data/mydatalocal/LongReads/drep_circular/dereplicated_genomes/
 ```
 
 </p>
@@ -307,12 +296,12 @@ ls -lh ~/data/mydatalocal/HiFi/circularContigs/drep/dereplicated_genomes/
 
 dRep provides a lot of useful information, for instance, we can look at the similarity between the pair of circular contigs:
 ```bash
-column -s, -t < ~/data/mydatalocal/HiFi/circularContigs/drep/data_tables/Ndb.csv
+column -s, -t < ~/data/mydatalocal/LongReads/drep_circular/data_tables/Ndb.csv
 ```
 
 Are there any circular contigs which are only found by one assembler?
 ```bash
-column -s, -t < ~/data/mydatalocal/HiFi/circularContigs/drep/data_tables/Cdb.csv
+column -s, -t < ~/data/mydatalocal/LongReads/drep_circular/data_tables/Cdb.csv
 ```
 
 #### Assess quality of circular contigs 
