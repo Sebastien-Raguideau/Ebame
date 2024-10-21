@@ -234,8 +234,8 @@ How do the base calling methods compare in terms of speed?
 ## Remove raw fast5 files from Longreads/ before continuing. 
 
 ```
-rm -r fast5_raw 
-
+rm -r fast5_raw
+rm -r pod5_raw
 ```
 
 ## Read preparation
@@ -261,7 +261,7 @@ cat pass/*.fastq.temp | grep 'read=' - -c
 | `-`                         |target the output from `cat`                                            |
 | `-c`                        |count                                                                   |
 
-or
+for dorado fastq use:
 
 ```
 echo $(cat pass/*.fastq.temp | wc -l)/4|bc
@@ -300,7 +300,7 @@ Count the reads in the two fastq files using grep or wc as before. Use the comma
 
 ### Read down sampling
 
-A number of programs are available to down-sample reads for onward analysis. Commonly used tool to downsample reads is [Filtlong](https://github.com/rrwick/Filtlong/blob/main/README.md) and to QC is [seqkit](https://bioinf.shenwei.me/seqkit/) . 
+A number of programs are available to down-sample reads for onward analysis. Commonly used tool to downsample reads is [Filtlong](https://github.com/rrwick/Filtlong/blob/main/README.md) and to QC / downsample is [seqkit](https://bioinf.shenwei.me/seqkit/). 
 
 Try and resample 10000000 bp  no shorter than 1000bp using Filtlong with a mean quality score of 10. Filtlong outputs to STDOUT by default. Use `>` to redirect output to a file.
 
@@ -315,9 +315,7 @@ Try and resample 10000000 bp  no shorter than 1000bp using Filtlong with a mean 
 Filtlong allows greater control over read length and average read quality weightings.
 
 ```
-
 filtlong -t 10000000 --min_length 1000 --length_weight 3  --min_mean_q 10 GutMock1.fastq > GutMock1_reads_downsample_FL.fastq
-  
 ```
 
 |Flag                         | Description                                                            | 
@@ -333,10 +331,17 @@ filtlong -t 10000000 --min_length 1000 --length_weight 3  --min_mean_q 10 GutMoc
 ```
 seqkit stats <infile> -a
 ```
+|Flag                         | Description                                                            | 
+| ----------------------------|:----------------------------------------------------------------------:| 
+| `-a`                        |all statistics                                                          | 
 
 ### Seqkit seq
 
 seqkit seq -m 1000 <infile> > <outfile>
+
+|Flag                         | Description                                                            | 
+| ----------------------------|:----------------------------------------------------------------------:| 
+| `-m`                        |min length filter                                                       |
 
 </details>
 
@@ -346,9 +351,8 @@ Examen the number of reads in each file and use seqkit to generate simple discri
 [Seqkit stats](https://bioinf.shenwei.me/seqkit/usage/#stats) can also be used to generate simple statistics for fasta/q files.
 
 ```
-seqkit stats 
 
-For reference, [Poretools](https://poretools.readthedocs.io/en/latest/content/examples.html) can be used to examine read length distribution and associated statistics but is not provided today. 
+For reference, [Poretools](https://poretools.readthedocs.io/en/latest/content/examples.html) can be used to examine read length distribution and associated statistics but is not provided today. Seqkit is a expansive toolkit for read QC and fastq / bam manipulations. 
 
 
 ## Fixing broken fastq files with Seqkit sana
@@ -398,7 +402,7 @@ kraken2 --db $KDBPATH --threads 8 --use-names --report kraken_report --output kr
 
 </details>
 
-Examine the Kraken report using the `more` function.
+Examine the Kraken report using the `more` or `less` commands.
 
 ```
 more kraken_report 
@@ -438,6 +442,8 @@ scp ubuntu@VMIPADDRESS:~/Projects/LongReads/kraken_krona_report.html .
 
 ```
 
+NB: If you are unable to scp from your vm to your local machine, a copy of the corona output is stored in the tmp directory of the github repo.
+
 An example Krona output:  
 ![alt text](https://github.com/RobSJames/EBAME6/blob/main/Raw_read_kraken.png "Raw read krona report") 
 
@@ -446,7 +452,12 @@ An example Krona output:
 
 Use `scp` to copy your Kraken2 report file to your local machine and upload your kraken report to Pavian, then explore the tabs available.
 
+NB: If you are unable to scp from your vm to your local machine, a copy of the Pavian output is stored in the tmp directory of the github repo.
+
 ![alt text](https://github.com/RobSJames/EBAME6/blob/main/Pavian_gut.png "Raw read sansky plot")
+
+The remainder of this tutorial focuses on assembly based metagenomics which will be covered in more detail with state of the art assemblers later in the week. You can continue with this tutorial at your own pace if you would like to compare the raw read approach with an assembly based approach using miniasm and metaFlye.
+ing this data set.
 
 ## Assembly and taxonomic classification via minimap2/miniasm and Kraken2
 
