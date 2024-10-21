@@ -365,7 +365,7 @@ Let's run try to run genomad now.
 <p>
 
 ```bash
-genomad end-to-end ~/data/mydatalocal/LongReads/allSmallCircularContigs.fasta ~/data/mydatalocal/LongReads/genomad/ ~/appa/data/genomad/genomad_db/ --conservative --threads 4
+genomad end-to-end ~/data/mydatalocal/LongReads/allSmallCircularContigs.fasta ~/data/mydatalocal/LongReads/genomad/ ~/data/public/teachdata/ebame/viral-metagenomics/genomad_db/ --conservative --threads 4
 ```
 
 </p>
@@ -381,6 +381,8 @@ Read genomad logs and try to print plasmids and virus summaries:
 cat ~/data/mydatalocal/LongReads/preruns/genomad/allSmallCircularContigs_summary/allSmallCircularContigs_plasmid_summary.tsv
 cat ~/data/mydatalocal/LongReads/preruns/genomad/allSmallCircularContigs_summary/allSmallCircularContigs_virus_summary.tsv
 ```
+
+By the way, there is a software called [checkv](https://www.nature.com/articles/s41587-020-00774-7) to assess the quality of viral contigs.
 
 </p>
 </details> 
