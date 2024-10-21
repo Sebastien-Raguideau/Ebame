@@ -336,8 +336,9 @@ seqkit stats <infile> -a
 | `-a`                        |all statistics                                                          | 
 
 ### Seqkit seq
-
+```
 seqkit seq -m 1000 <infile> > <outfile>
+```
 
 |Flag                         | Description                                                            | 
 | ----------------------------|:----------------------------------------------------------------------:| 
@@ -349,8 +350,6 @@ seqkit seq -m 1000 <infile> > <outfile>
 Examen the number of reads in each file and use seqkit to generate simple discriptive statistics for your read files. 
 
 [Seqkit stats](https://bioinf.shenwei.me/seqkit/usage/#stats) can also be used to generate simple statistics for fasta/q files.
-
-```
 
 For reference, [Poretools](https://poretools.readthedocs.io/en/latest/content/examples.html) can be used to examine read length distribution and associated statistics but is not provided today. Seqkit is a expansive toolkit for read QC and fastq / bam manipulations. 
 
