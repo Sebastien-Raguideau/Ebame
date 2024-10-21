@@ -99,10 +99,12 @@ Use Bandage to compare the Zymo ONT and HiFi assemblies.
 
 #Decompress gfa file first, then run Bandage
 gzip -d ~/data/mydatalocal/LongReads/preruns/assembly/SRR17913199_ONT_Q20/metaflye/assembly_graph.gfa.gz
+gzip -d ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaflye/assembly_graph.gfa.gz
+
+#ONT graph
 Bandage load ~/data/mydatalocal/LongReads/preruns/assembly/SRR17913199_ONT_Q20/metaflye/assembly_graph.gfa
 
 #Hifi graph
-gzip -d ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaflye/assembly_graph.gfa.gz
 Bandage load ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaflye/assembly_graph.gfa
 ```
 
