@@ -314,13 +314,13 @@ checkm lineage_wf  ~/data/mydatalocal/LongReads/drep_circular/dereplicated_genom
 
 CheckM is a bit slow, so let's check the prerun results
 ```bash
-cat ~/data/mydatalocal/LongReads/checkm_results.tsv
+cat ~/data/mydatalocal/LongReads/preruns/checkm_results.tsv
 ```
 
 Print columns corresponding to completeness and contamination:
 
 ```bash
-awk -F"\t" '{ print $1, "\t", $12, "\t", $13 }' ~/data/mydatalocal/LongReads/checkm_results.tsv
+awk -F"\t" '{ print $1, "\t", $12, "\t", $13 }' ~/data/mydatalocal/LongReads/preruns/checkm_results.tsv
 ```
 
 ## Plasmids and virus?
@@ -365,13 +365,14 @@ genomad end-to-end ~/data/mydatalocal/LongReads/allSmallCircularContigs.fasta ~/
 </details> 
 
 Read genomad logs and try to print plasmids and virus summaries:
+(pre-runs are located here: ~/data/mydatalocal/LongReads/preruns/genomad/)
 
 <details><summary>Solution</summary>
 <p>
 
 ```bash
-cat ~/data/mydatalocal/LongReads/genomad/allSmallCircularContigs_summary/allSmallCircularContigs_plasmid_summary.tsv
-cat ~/data/mydatalocal/LongReads/genomad/allSmallCircularContigs_summary/allSmallCircularContigs_virus_summary.tsv
+cat ~/data/mydatalocal/LongReads/preruns/genomad/allSmallCircularContigs_summary/allSmallCircularContigs_plasmid_summary.tsv
+cat ~/data/mydatalocal/LongReads/preruns/genomad/allSmallCircularContigs_summary/allSmallCircularContigs_virus_summary.tsv
 ```
 
 </p>
