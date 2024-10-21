@@ -223,10 +223,10 @@ If a header contains the field "circular=yes", it means that the contig is circu
 ```bash
 
 #Show all headers
-zcat ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaMDBG/assembly.fasta.gz | grep ">"
+zcat ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaMDBG/contigs.fasta.gz | grep ">"
 
 #Show header with the circular flag = "yes"
-zcat ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaMDBG/assembly.fasta.gz | grep ">" | grep "circular=yes"
+zcat ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaMDBG/contigs.fasta.gz | grep ">" | grep "circular=yes"
 ```
 
 Metaflye uses an extra metadata file for contig information
