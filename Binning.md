@@ -270,6 +270,7 @@ When doing metagenomic, it happens often that the MAGs you obtain are not in dat
 The gtdb toolkit does that for you:
 
 ```bash
+GTDBTK_DATA_PATH=/ifb/data/public/teachdata/ebame/metagenomics-bining/gtdb/release220 # change the db path to the correct dir 
 cd ~/Projects/AD_binning/Binning
 mkdir -p gtdb/scratch
 gtdbtk classify_wf --cpus 8 --genome_dir Bins --out_dir gtdb --extension .fa --scratch_dir gtdb/scratch --skip_ani_screen
