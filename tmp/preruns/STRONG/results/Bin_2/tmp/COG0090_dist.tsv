@@ -1,0 +1,13 @@
+Distance Matrix
+---------------
+
+Uncorrected for Multiple Substitutions
+Using base positions 123 in the codon
+Gap weighting is 0.000000
+
+	    1	    2	    3	    4	    5
+	  0.00	  2.06	  1.70	  1.21	  1.94		Bin_2_haplo_0 1
+		  0.00	  2.30	  1.33	  0.85		Bin_2_haplo_1 2
+			  0.00	  0.97	  1.70		Bin_2_haplo_2 3
+				  0.00	  1.45		Bin_2 4
+					  0.00		gtdb_GCA_002412425.1 5

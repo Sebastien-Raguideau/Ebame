@@ -1,0 +1,72 @@
+- STAGE: Assembling
+  args: []
+  config_dir: ''
+  del_after: []
+  output_files: []
+  path: 'true'
+  short_name: as_start
+- STAGE: K77
+  args:
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/K77/configs/config.info
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/K77/configs/mda_mode.info
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/K77/configs/meta_mode.info
+  config_dir: K77
+  del_after: []
+  output_files: []
+  path: /home/ubuntu/repos/STRONG/SPAdes/assembler/bin/spades-core
+  short_name: k77
+- STAGE: Copy files
+  args:
+  - /home/ubuntu/repos/STRONG/SPAdes/assembler/share/spades/spades_pipeline/scripts/copy_files.py
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/K77/before_rr.fasta
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/before_rr.fasta
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/K77/final_contigs.fasta
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/contigs.fasta
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/K77/first_pe_contigs.fasta
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/first_pe_contigs.fasta
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/K77/scaffolds.fasta
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/scaffolds.fasta
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/K77/scaffolds.paths
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/scaffolds.paths
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/K77/assembly_graph_with_scaffolds.gfa
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/assembly_graph_with_scaffolds.gfa
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/K77/assembly_graph.fastg
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/assembly_graph.fastg
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/K77/final_contigs.paths
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/contigs.paths
+  config_dir: ''
+  del_after:
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/.bin_reads
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/tmp/spades_29utgki5
+  output_files: []
+  path: /var/lib/miniconda3/envs/STRONG/bin/python
+  short_name: copy_files
+- STAGE: Assembling
+  args: []
+  config_dir: ''
+  del_after: []
+  output_files: []
+  path: 'true'
+  short_name: as_finish
+- STAGE: Breaking scaffolds
+  args:
+  - /home/ubuntu/repos/STRONG/SPAdes/assembler/share/spades/spades_pipeline/scripts/breaking_scaffolds_script.py
+  - --result_scaffolds_filename
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/scaffolds.fasta
+  - --misc_dir
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/misc
+  - --threshold_for_breaking_scaffolds
+  - '3'
+  config_dir: ''
+  del_after: []
+  output_files: []
+  path: /var/lib/miniconda3/envs/STRONG/bin/python
+  short_name: bs
+- STAGE: Terminate
+  args: []
+  config_dir: ''
+  del_after:
+  - /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/configs
+  output_files: []
+  path: 'true'
+  short_name: terminate

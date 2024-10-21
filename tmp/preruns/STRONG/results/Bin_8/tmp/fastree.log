@@ -1,0 +1,39 @@
+FastTree Version 2.1.10 Double precision (No SSE3), OpenMP (1 threads)
+Alignment: standard input
+Nucleotide distances: Jukes-Cantor Joins: balanced Support: SH-like 1000
+Search: Normal +NNI +SPR (2 rounds range 10) +ML-NNI opt-each=1
+TopHits: 1.00*sqrtN close=default refresh=0.80
+ML Model: Generalized Time-Reversible, CAT approximation with 20 rate categories
+Ignored unknown character n (seen 93 times)
+Initial topology in 0.02 seconds
+Refining topology: 8 rounds ME-NNIs, 2 rounds ME-SPRs, 4 rounds ML-NNIs
+Total branch-length 0.002 after 0.08 sec
+
+WARNING! This alignment consists of closely-related and very-long sequences.
+WARNING! FastTree (or other standard maximum-likelihood tools)
+may not be appropriate for aligments of very closely-related sequences
+like this one, as FastTree does not account for recombination or gene conversion
+
+      0.10 seconds: ML NNI round 1 of 4, 1 of 2 splits
+ML-NNI round 1: LogLk = -37988.147 NNIs 0 max delta 0.00 Time 0.16
+      0.23 seconds: Optimizing GTR model, step 2 of 12
+      0.36 seconds: Optimizing GTR model, step 4 of 12
+      0.51 seconds: Optimizing GTR model, step 5 of 12
+      0.64 seconds: Optimizing GTR model, step 7 of 12
+      0.78 seconds: Optimizing GTR model, step 10 of 12
+      0.89 seconds: Optimizing GTR model, step 12 of 12
+GTR Frequencies: 0.3450 0.1922 0.2374 0.2254
+GTR rates(ac ag at cg ct gt) 0.8997 1.6547 0.8839 0.0665 4.0501 1.0000
+      1.00 seconds: Site likelihoods with rate category 1 of 20
+      1.10 seconds: Site likelihoods with rate category 16 of 20
+Switched to using 20 rate categories (CAT approximation)
+Rate categories were divided by 0.624 so that average rate = 1.0
+CAT-based log-likelihoods may not be comparable across runs
+Use -gamma for approximate but comparable Gamma(20) log-likelihoods
+ML-NNI round 2: LogLk = -37272.649 NNIs 0 max delta 0.00 Time 1.28
+Turning off heuristics for final round of ML NNIs (converged)
+      1.27 seconds: ML NNI round 3 of 4, 1 of 2 splits
+ML-NNI round 3: LogLk = -37272.649 NNIs 0 max delta 0.00 Time 1.40 (final)
+      1.39 seconds: ML Lengths 1 of 2 splits
+Optimize all lengths: LogLk = -37272.649 Time 1.46
+Total time: 2.22 seconds Unique: 4/4 Bad splits: 0/1

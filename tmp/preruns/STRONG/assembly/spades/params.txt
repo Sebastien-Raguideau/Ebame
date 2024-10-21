@@ -1,0 +1,32 @@
+Command line: /home/ubuntu/repos/STRONG/SPAdes/assembler/bin/spades.py	--meta	--only-assembler	--save-gp	-t	8	-k	77	-m	2000	-1	/mnt/mydatalocal/Projects/STRONG_AD/data/sample1/sample1_R1.fastq	-1	/mnt/mydatalocal/Projects/STRONG_AD/data/sample10/sample10_R1.fastq	-1	/mnt/mydatalocal/Projects/STRONG_AD/data/sample2/sample2_R1.fastq	-1	/mnt/mydatalocal/Projects/STRONG_AD/data/sample3/sample3_R1.fastq	-1	/mnt/mydatalocal/Projects/STRONG_AD/data/sample4/sample4_R1.fastq	-1	/mnt/mydatalocal/Projects/STRONG_AD/data/sample5/sample5_R1.fastq	-1	/mnt/mydatalocal/Projects/STRONG_AD/data/sample6/sample6_R1.fastq	-1	/mnt/mydatalocal/Projects/STRONG_AD/data/sample7/sample7_R1.fastq	-1	/mnt/mydatalocal/Projects/STRONG_AD/data/sample8/sample8_R1.fastq	-1	/mnt/mydatalocal/Projects/STRONG_AD/data/sample9/sample9_R1.fastq	-2	/mnt/mydatalocal/Projects/STRONG_AD/data/sample1/sample1_R2.fastq	-2	/mnt/mydatalocal/Projects/STRONG_AD/data/sample10/sample10_R2.fastq	-2	/mnt/mydatalocal/Projects/STRONG_AD/data/sample2/sample2_R2.fastq	-2	/mnt/mydatalocal/Projects/STRONG_AD/data/sample3/sample3_R2.fastq	-2	/mnt/mydatalocal/Projects/STRONG_AD/data/sample4/sample4_R2.fastq	-2	/mnt/mydatalocal/Projects/STRONG_AD/data/sample5/sample5_R2.fastq	-2	/mnt/mydatalocal/Projects/STRONG_AD/data/sample6/sample6_R2.fastq	-2	/mnt/mydatalocal/Projects/STRONG_AD/data/sample7/sample7_R2.fastq	-2	/mnt/mydatalocal/Projects/STRONG_AD/data/sample8/sample8_R2.fastq	-2	/mnt/mydatalocal/Projects/STRONG_AD/data/sample9/sample9_R2.fastq	-o	/mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades	
+
+System information:
+  SPAdes version: 3.14.0
+  Python version: 3.6.12
+  OS: Linux-5.4.0-88-generic-x86_64-with-debian-bullseye-sid
+
+Output dir: /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades
+Mode: ONLY assembling (without read error correction)
+Debug mode is turned OFF
+
+Dataset parameters:
+  Metagenomic mode
+  Reads:
+    Library number: 1, library type: paired-end
+      orientation: fr
+      left reads: ['/mnt/mydatalocal/Projects/STRONG_AD/data/sample1/sample1_R1.fastq', '/mnt/mydatalocal/Projects/STRONG_AD/data/sample10/sample10_R1.fastq', '/mnt/mydatalocal/Projects/STRONG_AD/data/sample2/sample2_R1.fastq', '/mnt/mydatalocal/Projects/STRONG_AD/data/sample3/sample3_R1.fastq', '/mnt/mydatalocal/Projects/STRONG_AD/data/sample4/sample4_R1.fastq', '/mnt/mydatalocal/Projects/STRONG_AD/data/sample5/sample5_R1.fastq', '/mnt/mydatalocal/Projects/STRONG_AD/data/sample6/sample6_R1.fastq', '/mnt/mydatalocal/Projects/STRONG_AD/data/sample7/sample7_R1.fastq', '/mnt/mydatalocal/Projects/STRONG_AD/data/sample8/sample8_R1.fastq', '/mnt/mydatalocal/Projects/STRONG_AD/data/sample9/sample9_R1.fastq']
+      right reads: ['/mnt/mydatalocal/Projects/STRONG_AD/data/sample1/sample1_R2.fastq', '/mnt/mydatalocal/Projects/STRONG_AD/data/sample10/sample10_R2.fastq', '/mnt/mydatalocal/Projects/STRONG_AD/data/sample2/sample2_R2.fastq', '/mnt/mydatalocal/Projects/STRONG_AD/data/sample3/sample3_R2.fastq', '/mnt/mydatalocal/Projects/STRONG_AD/data/sample4/sample4_R2.fastq', '/mnt/mydatalocal/Projects/STRONG_AD/data/sample5/sample5_R2.fastq', '/mnt/mydatalocal/Projects/STRONG_AD/data/sample6/sample6_R2.fastq', '/mnt/mydatalocal/Projects/STRONG_AD/data/sample7/sample7_R2.fastq', '/mnt/mydatalocal/Projects/STRONG_AD/data/sample8/sample8_R2.fastq', '/mnt/mydatalocal/Projects/STRONG_AD/data/sample9/sample9_R2.fastq']
+      interlaced reads: not specified
+      single reads: not specified
+      merged reads: not specified
+Assembly parameters:
+  k: [77]
+  Repeat resolution is enabled
+  Mismatch careful mode is turned OFF
+  MismatchCorrector will be SKIPPED
+  Coverage cutoff is turned OFF
+Other parameters:
+  Dir for temp files: /mnt/mydatalocal/Projects/STRONG_AD/Results/assembly/spades/tmp
+  Threads: 8
+  Memory limit (in Gb): 2000
+

@@ -1,0 +1,34 @@
+Registered S3 method overwritten by 'treeio':
+  method     from
+  root.phylo ape 
+ggtree v2.2.1  For help: https://yulab-smu.github.io/treedata-book/
+
+If you use ggtree in published research, please cite the most appropriate paper(s):
+
+[36m-[39m Guangchuang Yu. Using ggtree to visualize data on tree-like structures. Current Protocols in Bioinformatics, 2020, 69:e96. doi:10.1002/cpbi.96
+[36m-[39m Guangchuang Yu, Tommy Tsan-Yuk Lam, Huachen Zhu, Yi Guan. Two methods for mapping and visualizing associated data on phylogeny using ggtree. Molecular Biology and Evolution 2018, 35(12):3041-3043. doi:10.1093/molbev/msy194
+[36m-[39m Guangchuang Yu, David Smith, Huachen Zhu, Yi Guan, Tommy Tsan-Yuk Lam. ggtree: an R package for visualization and annotation of phylogenetic trees with their covariates and other associated data. Methods in Ecology and Evolution 2017, 8(1):28-36. doi:10.1111/2041-210X.12628
+
+
+
+Attaching package: ‘ggtree’
+
+The following object is masked from ‘package:tidyr’:
+
+    expand
+
+Warning message:
+`tbl_df()` is deprecated as of dplyr 1.0.0.
+Please use `tibble::as_tibble()` instead.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_warnings()` to see where this warning was generated. 
+Warning message:
+`filter_()` is deprecated as of dplyr 0.7.0.
+Please use `filter()` instead.
+See vignette('programming') for more help
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_warnings()` to see where this warning was generated. 
+Scale for 'y' is already present. Adding another scale for 'y', which will
+replace the existing scale.
+null device 
+          1 

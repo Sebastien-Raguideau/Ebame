@@ -1,0 +1,6 @@
+/	Bin_2_haplo_0	Bin_2_haplo_1	Bin_2_haplo_2	Bin_2	gtdb_GCA_002412425.1
+Bin_2_haplo_0	0	0.87	0.29	0.29	0.43
+Bin_2_haplo_1	0.87	0	1.1	1.1	1.3
+Bin_2_haplo_2	0.29	1.1	0	0	0.43
+Bin_2	0.29	1.1	0	0	0.43
+gtdb_GCA_002412425.1	0.43	1.3	0.43	0.43	0

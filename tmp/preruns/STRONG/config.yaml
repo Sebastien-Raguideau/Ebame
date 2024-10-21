@@ -1,0 +1,35 @@
+# ------ Samples ------
+samples: '*' # specify a list samples to use or '*' to use all samples
+
+# ------ Resources ------
+threads : 8 # single task nb threads
+
+# ------ Assembly parameters ------ 
+data: /mnt/gpfs/seb/Project/Tuto/EBI/strain_11_21/AD_small  # path to data folder
+
+# ----- Annotation database -----
+cog_database: /home/sebr/seb/Database/rpsblast_cog_db/Cog # COG database
+
+# ----- Binning parameters ------
+concoct:
+    contig_size: 1000
+
+read_length: 150
+assembly: 
+    assembler: spades
+    k: [77]
+    mem: 2000
+    threads: 48
+
+# ----- BayesPaths parameters ------
+bayespaths:
+    min_orf_number_to_merge_bins: 10
+    min_orf_number_to_run_a_bin: 10
+    percent_unitigs_shared: 0.1
+    nb_strains: 8
+    nmf_runs: 1
+    max_giter: 1 
+    optional_args: '--nofilter'
+
+gtdb_path: "/mnt/gpfs/seb/Applications/miniconda3/share/gtdbtk-2.1.0/db"
+

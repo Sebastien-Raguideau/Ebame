@@ -1,0 +1,42 @@
+  0:00:00.000    24M / 24M   INFO    General                 (main.cpp                  : 134)   Starting SPAdes-based standalone graph simplifier, built from N/A, git revision N/A
+  0:00:00.003    25M / 25M   INFO    General                 (main.cpp                  : 143)   K-mer length set to 77
+  0:00:00.003    25M / 25M   INFO    General                 (main.cpp                  : 148)   # of threads to use: 8
+  0:00:00.003    25M / 25M   INFO    General                 (main.cpp                  : 152)   Loading de Bruijn graph from subgraphs/bin_merged/Bin_2/raw_subgraphs/COG0080.gfa
+  0:00:00.004    25M / 25M   INFO    General                 (utils.hpp                 :  35)   GFA segments: 3, links: 4
+  0:00:00.004    25M / 25M   INFO    General                 (utils.hpp                 :  40)   Graph loaded. Total vertices: 12 Total edges: 6
+  0:00:00.005    25M / 25M   INFO    General                 (main.cpp                  : 191)   Loading edge profiles from subgraphs/bin_merged/Bin_2/raw_subgraphs/COG0080.tsv
+  0:00:00.006    25M / 25M   INFO    General                 (main.cpp                  : 194)   Sample count determined as 10
+  0:00:00.007    25M / 25M   INFO    General                 (main.cpp                  : 204)   Loading stop codon positions from subgraphs/bin_merged/Bin_2/raw_subgraphs/COG0080.stops
+  0:00:00.008    25M / 25M   INFO    General                 (main.cpp                  : 216)   Estimated mean coverage was specified as 87.736362
+  0:00:00.008    25M / 25M   INFO    General                 (main.cpp                  : 230)   Erroneous connection coverage threshold set at 2.5
+  0:00:00.008    25M / 25M   INFO    General                 (simplification.hpp        : 111)   Graph simplification started
+  0:00:00.008    25M / 25M   INFO    General                 (simplification.hpp        : 114)   PROCEDURE == Simplification cycle, iteration 1
+  0:00:00.008    25M / 25M   INFO   Simplification           (parallel_processing.hpp   : 165)   Running Tip clipper
+  0:00:00.016    25M / 25M   INFO   Simplification           (parallel_processing.hpp   : 167)   Tip clipper triggered 0 times
+  0:00:00.016    25M / 25M   INFO   Simplification           (parallel_processing.hpp   : 165)   Running Low coverage edge remover with bounded length
+  0:00:00.016    25M / 25M   INFO   Simplification           (parallel_processing.hpp   : 167)   Low coverage edge remover with bounded length triggered 0 times
+  0:00:00.016    25M / 25M   INFO    General                 (simplification.hpp        : 114)   PROCEDURE == Simplification cycle, iteration 2
+  0:00:00.016    25M / 25M   INFO   Simplification           (parallel_processing.hpp   : 165)   Running Tip clipper
+  0:00:00.016    25M / 25M   INFO   Simplification           (parallel_processing.hpp   : 167)   Tip clipper triggered 0 times
+  0:00:00.016    25M / 25M   INFO   Simplification           (parallel_processing.hpp   : 165)   Running Low coverage edge remover with bounded length
+  0:00:00.016    25M / 25M   INFO   Simplification           (parallel_processing.hpp   : 167)   Low coverage edge remover with bounded length triggered 0 times
+  0:00:00.016    25M / 25M   INFO    General                 (simplification.hpp        : 114)   PROCEDURE == Simplification cycle, iteration 3
+  0:00:00.016    25M / 25M   INFO   Simplification           (parallel_processing.hpp   : 165)   Running Tip clipper
+  0:00:00.016    25M / 25M   INFO   Simplification           (parallel_processing.hpp   : 167)   Tip clipper triggered 0 times
+  0:00:00.016    25M / 25M   INFO   Simplification           (parallel_processing.hpp   : 165)   Running Low coverage edge remover with bounded length
+  0:00:00.016    25M / 25M   INFO   Simplification           (parallel_processing.hpp   : 167)   Low coverage edge remover with bounded length triggered 0 times
+  0:00:00.016    25M / 25M   INFO    General                 (simplification.hpp        : 143)   Unconditional coverage lower-bound set at 2
+  0:00:00.016    25M / 25M   INFO    General                 (graph_simplification.hpp  : 456)   Disconnection of relatively low covered edges disabled
+  0:00:00.016    25M / 25M   INFO    General                 (simplification.hpp        : 114)   PROCEDURE == Simplification cycle, iteration 1
+  0:00:00.017    25M / 25M   INFO   Simplification           (parallel_processing.hpp   : 165)   Running Tip clipper
+  0:00:00.017    25M / 25M   INFO   Simplification           (parallel_processing.hpp   : 167)   Tip clipper triggered 0 times
+  0:00:00.017    25M / 25M   INFO   Simplification           (parallel_processing.hpp   : 165)   Running Low coverage edge remover with bounded length
+  0:00:00.017    25M / 25M   INFO   Simplification           (parallel_processing.hpp   : 167)   Low coverage edge remover with bounded length triggered 0 times
+  0:00:00.017    25M / 25M   INFO   Simplification           (parallel_processing.hpp   : 165)   Running Removing all edges with coverage below 2.000000
+  0:00:00.017    25M / 25M   INFO   Simplification           (parallel_processing.hpp   : 167)   Removing all edges with coverage below 2.000000 triggered 0 times
+  0:00:00.017    25M / 25M   INFO    General                 (main.cpp                  : 243)   Saving graph to subgraphs/bin_merged/Bin_2/simplif//COG0080
+  0:00:00.019    25M / 25M   INFO    General                 (main.cpp                  : 253)   Saving GFA
+  0:00:00.036    25M / 25M   INFO    General                 (main.cpp                  : 261)   Saving profile storage
+  0:00:00.040    25M / 25M   INFO    General                 (main.cpp                  : 267)   Saving codons
+  0:00:00.043    25M / 25M   INFO    General                 (main.cpp                  : 273)   Saving deadends
+  0:00:00.046    25M / 25M   INFO    General                 (main.cpp                  : 286)   Finished

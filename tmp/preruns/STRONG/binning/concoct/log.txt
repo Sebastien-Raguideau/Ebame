@@ -1,0 +1,12 @@
+2021-11-01 16:40:53,786:INFO:root:Results created at /mnt/mydatalocal/Projects/STRONG_AD/Results/binning/concoct
+2021-11-01 16:40:55,889:INFO:root:Successfully loaded composition data.
+2021-11-01 16:40:55,928:INFO:root:Successfully loaded coverage data.
+2021-11-01 16:40:55,979:INFO:root:Performed PCA, resulted in 21 dimensions
+2021-11-01 16:40:56,263:INFO:root:Wrote original filtered data file.
+2021-11-01 16:40:56,308:INFO:root:Wrote PCA transformed file.
+2021-11-01 16:40:56,311:INFO:root:Wrote PCA components file.
+2021-11-01 16:40:56,311:INFO:root:PCA transformed data.
+2021-11-01 16:40:56,312:INFO:root:Will call vbgmm with parameters: binning/concoct/, 9, 1000, 8, 500
+2021-11-01 16:40:56,381:INFO:root:Wrote assign file.
+2021-11-01 16:40:56,381:INFO:root:CONCOCT Finished
+2021-11-01 16:40:56,381:INFO:root:CONCOCT Finished, the log shows how it went.

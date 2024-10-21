@@ -1,0 +1,27 @@
+  0:00:00.000    24M / 24M   INFO    General                 (main.cpp                  : 316)   Starting Extracting relevant subgraphs for (partial) predicted CDS, built from N/A, git revision N/A
+  0:00:00.004    25M / 25M   INFO    General                 (main.cpp                  : 324)   K-mer length set to 77
+  0:00:00.004    25M / 25M   INFO    General                 (main.cpp                  : 329)   # of threads to use: 8
+  0:00:00.020    25M / 25M   INFO    General                 (main.cpp                  : 336)   Loading de Bruijn graph from assembly/high_res/simplified.gfa
+  0:00:00.569    62M / 62M   INFO    General                 (utils.hpp                 :  35)   GFA segments: 62280, links: 165912
+  0:00:00.977    93M / 93M   INFO    General                 (utils.hpp                 :  40)   Graph loaded. Total vertices: 249120 Total edges: 124559
+  0:00:00.977    93M / 93M   INFO    General                 (graph_pack.hpp            : 105)   Index refill
+  0:00:01.070    93M / 93M   INFO   K-mer Index Building     (kmer_index_builder.hpp    : 301)   Building kmer index 
+  0:00:01.070    93M / 93M   INFO    General                 (kmer_index_builder.hpp    : 117)   Splitting kmer instances into 128 files using 8 threads. This might take a while.
+  0:00:01.173    93M / 93M   INFO    General                 (file_limit.hpp            :  32)   Open file limit set to 1024
+  0:00:01.174    93M / 93M   INFO    General                 (kmer_splitters.hpp        :  89)   Memory available for splitting buffers: 7.15828e+08 Gb
+  0:00:01.174    93M / 93M   INFO    General                 (kmer_splitters.hpp        :  97)   Using cell size of 174762
+  0:00:03.914     6G / 6G    INFO    General                 (edge_index_builders.hpp   :  77)   Processed 124559 edges
+  0:00:03.915     6G / 6G    INFO    General                 (edge_index_builders.hpp   :  82)   Used 124559 sequences.
+  0:00:03.948   193M / 282M  INFO    General                 (kmer_index_builder.hpp    : 120)   Starting k-mer counting.
+  0:00:07.014   195M / 282M  INFO    General                 (kmer_index_builder.hpp    : 127)   K-mer counting done. There are 8015349 kmers in total. 
+  0:00:07.014   195M / 282M  INFO    General                 (kmer_index_builder.hpp    : 133)   Merging temporary buckets.
+  0:00:08.191   195M / 282M  INFO   K-mer Index Building     (kmer_index_builder.hpp    : 314)   Building perfect hash indices
+  0:00:08.522   150M / 282M  INFO    General                 (kmer_index_builder.hpp    : 150)   Merging final buckets.
+  0:00:09.188   150M / 282M  INFO   K-mer Index Building     (kmer_index_builder.hpp    : 336)   Index built. Total 3724896 bytes occupied (3.71776 bits per kmer).
+  0:00:09.325   278M / 282M  INFO    General                 (edge_index_builders.hpp   : 107)   Collecting edge information from graph, this takes a while.
+  0:00:10.249   278M / 282M  INFO    General                 (edge_index.hpp            :  92)   Index refilled
+  0:00:10.250   278M / 282M  INFO    General                 (graph_pack.hpp            : 113)   Normalizing k-mer map. Total 0 kmers to process
+  0:00:10.251   278M / 282M  INFO    General                 (graph_pack.hpp            : 115)   Normalizing done
+  0:00:10.252   278M / 282M  INFO    General                 (main.cpp                  : 104)   Parsing estimated CDS lengths from /mnt/gpfs/seb/Project/STRONG/SnakeNest/scg_data/coreCogs.tsv
+  0:00:10.254   278M / 282M  INFO    General                 (main.cpp                  : 176)   Searching relevant subgraphs in parallel for all partial predictions
+  0:00:10.254   278M / 282M  INFO    General                 (main.cpp                  : 363)   Done

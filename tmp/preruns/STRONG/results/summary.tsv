@@ -1,0 +1,10 @@
+#-------- assembly statistics --------
+sequence #: 1966	total length: 6377796	max length: 174676	N50: 28942	N90: 3000
+#--------     MAGs summary    --------
+mags number: 3	resolved haplotypes: 7
+bacteria: 2	archeae: 3
+#-------- MAGs gtdb taxonomy  --------
+mag	nb_haplo	RED	Domain	Phylum	Class	Order	familly	genus	strain
+Bin_2	3	1	Bacteria	Bacteroidota	Bacteroidia	Bacteroidales	ML635J-15	Bact-19	Bact-19 sp002412425
+Bin_1	2	0.904250877846806	Archaea	Thermoplasmatota	Thermoplasmata	Methanomassiliicoccales	Methanomethylophilaceae	/	/
+Bin_8	2	1	Archaea	Methanobacteriota	Methanobacteria	Methanobacteriales	Methanobacteriaceae	Methanobacterium_A	Methanobacterium_A sp002494495
