@@ -34,8 +34,11 @@ This will involve a collection of different software programs:
 
 ## Getting started (VM, ssh & env)
 
-For this tutorial we will use an 8-core VM generated from [EBAME-Quince ](https://biosphere.france-bioinformatique.fr/catalogue/appliance/127/)
+For this tutorial we will use a VM with 8-core 32G ram (take this configuration M4.2XL 32G RAM 8CPU) from the appliance [EBAME-Quince](https://biosphere.france-bioinformatique.fr/catalogue/appliance/127/)
+
 **Please be  sure to use the ifb-core-cloudbis domain when launching** 
+
+
 
 Please ssh to your vm using the -Y option so that X forwarding can be done. 
 
@@ -65,14 +68,19 @@ For simplification sake, we are going to create a global variable:
 
 Use nano to edit your bashrc file:
 ```bash
+<<<<<<< HEAD
+nano ~/.bashrc
+export DATA=/ifb/data/public/teachdata/ebame/metagenomics-bining/Quince_datasets/
+=======
 nano ~.bashrc
 export DATA=/ifb/data/public/teachdata/ebame/metagenomics-bining/Quince_datasets/
+>>>>>>> 87c934dd1d877488bc8f0bdedb34621cc376ea35
 ```
 
-Also, let's remove the name of the VM from terminal:
-Remove, rename the \h you can find just after the @, from line:
+Also, each VM has been generated with a random name instead of the hostname which is a md5 string. You can alter it and rename your VM
+:
 
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[>
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@somename_you_would_rather_have\[\033[00m\]:\[\033[01;34m\]\w\[\033[>
 
 To quit use `ctrl+x`  and type yes
 # Manual bioinformatic
@@ -84,7 +92,7 @@ Let's create a Projects directory and work inside:
 
 All datasets for this tutorial can be found at: 
 
-    ~/Datasets/Quince_datasets
+    ~/Datasets/metagenomics-bining/Quince_datasets
 
 Or equivalently here:
 
