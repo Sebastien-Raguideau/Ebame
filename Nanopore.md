@@ -45,6 +45,11 @@ Nanopore sequencing results in fast5/pod5 files that contain raw signal data ter
 conda activate LongReads
 export DATA=/ifb/data/public/teachdata/ebame/metagenomics-bining/Quince_datasets/ #export data variable
 ```
+Navigate to repos/Ebame and pull the most recent repo via
+
+```
+git pull
+```
 
 It is important to store all data and outputs in directories contained within the mounted volume in `~/Projects` to insure you do not run out of space on your VMs.
 
@@ -55,10 +60,8 @@ mkdir -p ~/Projects/LongReads
 cd ~/Projects/LongReads
 
 cp $DATA/Rob_data/fast5_subset.tar.gz .
-cp $DATA/Rob_data/pod5_subset.tar.gz .
+cp repos/Ebame/tmp/preruns/datasets/pod5_downsample.pod5 .
 tar -xvzf fast5_subset.tar.gz
-tar -xvzf pod5_subset.tar.gz
-rm pod5_subset.tar.gz
 rm fast5_subset.tar.gz
 ```
 
@@ -76,7 +79,7 @@ rm fast5_subset.tar.gz
 
 
 
-Compare the different basecalling methods on the subset of pod5/fast5 files. Only try fast and high quality as SUP is very slow on CPUs. Basecalling will not complete in the time available, examine the fastq.temp files produced. Config files must be specified or kit and flow cell can be specified without a config file. `Dorado basecaller` can also be used to call modified base probibilites, currently 4mC, 5mC and 6mA are supported for bacterial epigenetic modifications. Dorado basecaller can demultiplex during basecalling or in post by using dorado demux. Further information can be found on the github page : [https://github.com/nanoporetech/dorado](https://github.com/nanoporetech/dorado)
+Compare the different basecalling methods (Dorado fast, hac and sup and/or Guppy - depreciated) on the subset of pod5/fast5 files. SUP is very slow on CPUs. Basecalling will not complete in the time available, examine the fastq files produced using more or head. `Dorado basecaller` can also be used to call modified base probibilites, currently 4mC, 5mC and 6mA are supported for bacterial epigenetic modifications. Dorado basecaller can demultiplex during basecalling or in post by using dorado demux. Further information can be found on the github page : [https://github.com/nanoporetech/dorado](https://github.com/nanoporetech/dorado)
 
 NB: When using dorado basecaller, it is possable to resume an interupted run by using the '--resume-from' flag.
 
@@ -157,9 +160,9 @@ Samples for guppy basecalling were sequenced with **LSK-109 kit** (ligation sequ
 <details><summary>SPOILER: Click for basecalling code reveal</summary>
 <p>
 
-### Dorado basecalling output in fastq (sup V.5 transformer model - very slow)
+### Dorado basecalling output in fastq (sup V.5 transformer model - very slow [)
 
-dorado basecaller --emit-fastq --min-qscore 10 -r path/to/model/dna_r10.4.1_e8.2_400bps_sup\@v5.0.0/ path/to/pod5s > path/to/output.fastq
+dorado basecaller sup --emit-fastq --min-qscore 10 path/to/pod5s > path/to/output.fastq
 
 |Flag / command            | Description               | 
 | -------------------------|:-------------------------:| 
@@ -170,24 +173,25 @@ dorado basecaller --emit-fastq --min-qscore 10 -r path/to/model/dna_r10.4.1_e8.2
 
 ### Dorado modified basecalling (unaligned bam file output)
 
-dorado basecaller --min-qscore 10 -r --modified-bases-models path/to/modfile1/dna_r10.4.1_e8.2_400bps_sup\@v5.0.0_4mC_5mC\@v1/,path/to/modfile2/dna_r10.4.1_e8.2_400bps_sup\@v5.0.0_6mA\@v1/ path/to/basecallingmodel/dna_r10.4.1_e8.2_400bps_sup\@v5.0.0/ path/to/pod5s > path/to/output/dir/out.bam
+dorado basecaller --min-qscore 10 hac,6mA Projects/pod5_downsample.pod5 > Projects/calls.bam
 
 |Flag / command            | Description               | 
 | -------------------------|:-------------------------:| 
 | `dorado`                 |call dorado                | 
 | `basecaller`             |call basecaller            | 
-| `-r`                     |recursive flag             |
+| `hac`                    |high accuracy              |
 | `--min-qscore`           |minimum qscore filter      |
-| `--modified-bases-models`|modified bases flag        |
+| `6mA`                    |modified bases flag        |
 
  
-View bam file structure with modified bases
+View bam file structure with modified bases.
+
 ```
 samtools view output_file.bam | head
 ```
+Modified bases can be further processed with MODKIT. Additional information on SAM tags cab be found in the samtools [documentation] (https://samtools.github.io/hts-specs/SAMtags.pdf)for MM and ML tags.
 
-
-### Guppy fast basecalling
+### Guppy fast basecalling (optional)
 
 ```
 guppy_basecaller -r --input_path fast5_raw --save_path raw_fastq --min_qscore 7 --cpu_threads_per_caller 4 --num_callers 2 --config dna_r9.4.1_450bps_fast.cfg -q 10 
@@ -204,7 +208,7 @@ guppy_basecaller -r --input_path fast5_raw --save_path raw_fastq --min_qscore 7 
 | `--config`               |Fast config file           |
 | `-q 10`                  |10 reads per fastq file    |
   
-### Guppy high accuracy basecalling
+### Guppy high accuracy basecalling (optional)
   
 ```
 guppy_basecaller -r --input_path fast5_raw --save_path raw_fastq_HQ --config dna_r9.4.1_450bps_hac.cfg --min_qscore 7 --cpu_threads_per_caller 4 --num_callers 2 -q 10 
@@ -223,27 +227,22 @@ When working with post processing basecalling it is usefull to use the `screen` 
 (optional) Once detached from a screen running 'guppy_basecaller', you can count the total number of reads being written in real time by changing to the `pass` directory in the raw_fastq dir where the fastq files are being written and implementing the following bash one-liner. Use `Ctr c` to exit `watch`.
 
 ```
-watch -n 5 'find . -name "*.fastq.temp" -exec grep 'read=' -c {} \; | paste -sd+ | bc'
+watch -n 5 'find . -name "*.fastq" -exec grep 'read=' -c {} \; | paste -sd+ | bc'
 ```
 
 Cancel the Guppy_basecaller and / or dorado basecaller commands in screen before continuing with this tutorial.
 
 ### Observations
 
-How do the base calling methods compare in terms of speed?   
+How do the base calling models compare in terms of speed?   
 
 ## Remove raw fast5 files from Longreads/ before continuing. 
-
-```
-rm -r fast5_raw
-rm -r pod5_raw
-```
 
 ## Read preparation
 
 Before starting any analysis, it is often advised to check the number of reads and quality of your run. You can start by using a simple bash one liner to count all reads in `pass/`.
 
-Count the number of fastq reads in the Guppy pass dir.
+Count the number of reads in the non modified .fastq.
 
 ### Code Example
 <details><summary>SPOILER: Click for read counting code reveal </summary>
@@ -262,12 +261,11 @@ cat pass/*.fastq.temp | grep 'read=' - -c
 | `-`                         |target the output from `cat`                                            |
 | `-c`                        |count                                                                   |
 
-for dorado fastq use:
 
 ```
-echo $(cat pass/*.fastq.temp | wc -l)/4|bc
+echo $(cat *.fastq | wc -l)/4|bc
   or
-cat pass/*.fastq.temp | echo $(wc -l)/4 | bc
+cat *.fastq | echo $(wc -l)/4 | bc
 ```
 
 |Flag                         | Description                                                            | 
