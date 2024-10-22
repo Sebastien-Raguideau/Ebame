@@ -597,7 +597,16 @@ from os.path import basename,dirname
 DATA="/home/ubuntu/data/public/teachdata/ebame/metagenomics-bining/Quince_datasets/AD_small"
 # use the glob function to find all R1.fastq file in each folder of DATA
 # then only keep the directory name wich is also the sample name
-SAMPLES = [basename(dirname(file)) for file in glob.glob("%s/*/*_R1.fastq"%DATA)]
+SAMPLES = list()
+for file in glob.glob(f"{DATA}/*/*_R1.fastq"):
+  # get the path for the parent folder
+  p_fold = dirname(file)
+  # remove the full path to keep just the folder name
+  sample_name = basename(p_fold)
+  SAMPLES.append(sample_name)
+
+# the same but using python idiomatic "list comprehension"
+SAMPLES = [basename(dirname(file)) for file in glob.glob(f"DATA/*/*_R1.fastq")]
 INPUT_FOR_GENERATE_COVERAGE = ["{path}/Map/%s.mapped.sorted.bam"%sample for sample in SAMPLES)]
 ```
 This create a list named SAMPLES, containing the name of each sample. 
