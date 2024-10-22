@@ -242,12 +242,12 @@ How do the base calling models compare in terms of speed?
 
 Before starting any analysis, it is often advised to check the number of reads and quality of your run. You can start by using a simple bash one liner to count all reads in `pass/`.
 
-Count the number of reads in the non modified .fastq.
+Count the number of reads in the non-modified .fastq.
 
 ### Code Example
 <details><summary>SPOILER: Click for read counting code reveal </summary>
 <p>
-
+For Guppy fastq files you can grep 'read='
 ```
 cat pass/*.fastq.temp | grep 'read=' - -c
 ```
@@ -261,7 +261,7 @@ cat pass/*.fastq.temp | grep 'read=' - -c
 | `-`                         |target the output from `cat`                                            |
 | `-c`                        |count                                                                   |
 
-
+for dorado fastq output you can do it properly.
 ```
 echo $(cat *.fastq | wc -l)/4|bc
   or
@@ -295,7 +295,7 @@ gzip -d GutMock1.fastq.gz
 
 ```
 
-Count the reads in the two fastq files using grep or wc as before. Use the command `more GutMock1.fastq` to familiarize yourself with nanopore fastq format.
+Count the reads in the two fastq files using grep or wc as before. You can again use the command `more GutMock1.fastq` to familiarize yourself with nanopore fastq format.
 
 ### Read down sampling
 
@@ -385,7 +385,7 @@ Kraken2 requires an `--output` flag to redirect output from STDOUT.
 
 ```
 export KDBPATH=/home/ubuntu/data/public/kraken2/k2_standard_08gb_20220926  
-kraken2 --db $KDBPATH --threads 8 --use-names --report kraken_report --output kraken_gut GutMock1.fastq 
+kraken2 --db $KDBPATH --threads 8 --use-names --report kraken_report --output kraken_gut GutMock1.fastq --memory-mapping
 
 ```
 
@@ -396,6 +396,7 @@ kraken2 --db $KDBPATH --threads 8 --use-names --report kraken_report --output kr
 | `--threads`                 |number of threads to use                                                |
 | `--report`                  |generate a user friendly report.txt of taxonomy                         |
 | `GutMock1.fastq`            |reads                                                                   |
+
 
 
 </details>
