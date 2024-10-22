@@ -1,0 +1,228 @@
+100.00	12637	0	R	1	root
+100.00	12637	0	R1	131567	  cellular organisms
+ 99.97	12633	0	D	2	    Bacteria
+ 56.18	7100	0	D1	1783272	      Terrabacteria group
+ 56.14	7095	0	P	1239	        Firmicutes
+ 56.14	7095	0	C	186801	          Clostridia
+ 56.14	7095	1	O	186802	            Eubacteriales
+ 39.95	5049	0	F	31979	              Clostridiaceae
+ 39.95	5049	0	G	1485	                Clostridium
+ 39.95	5049	5049	S	1492	                  Clostridium butyricum
+ 16.17	2044	0	F	186803	              Lachnospiraceae
+ 16.15	2041	0	G	207244	                Anaerostipes
+ 16.15	2041	16	S	105841	                  Anaerostipes caccae
+ 16.02	2025	2025	S1	411490	                    Anaerostipes caccae L1-92
+  0.02	2	0	G	572511	                Blautia
+  0.02	2	2	S	33035	                  Blautia producta
+  0.01	1	0	G	1506553	                Lachnoclostridium
+  0.01	1	1	S	1871021	                  Lachnoclostridium phocaeense
+  0.01	1	0	F	216572	              Oscillospiraceae
+  0.01	1	0	G	216851	                Faecalibacterium
+  0.01	1	1	S	853	                  Faecalibacterium prausnitzii
+  0.04	5	0	P	201174	        Actinobacteria
+  0.04	5	0	C	1760	          Actinomycetia
+  0.04	5	0	O	85004	            Bifidobacteriales
+  0.04	5	0	F	31953	              Bifidobacteriaceae
+  0.04	5	0	G	1678	                Bifidobacterium
+  0.04	5	0	S	216816	                  Bifidobacterium longum
+  0.04	5	5	S1	1682	                    Bifidobacterium longum subsp. infantis
+ 27.03	3416	0	P	1224	      Proteobacteria
+ 27.03	3416	0	C	1236	        Gammaproteobacteria
+ 27.03	3416	0	O	91347	          Enterobacterales
+ 27.03	3416	0	F	543	            Enterobacteriaceae
+ 27.02	3415	0	G	561	              Escherichia
+ 27.00	3412	1970	S	562	                Escherichia coli
+  1.80	227	188	S1	83334	                  Escherichia coli O157:H7
+  0.23	29	29	S2	1328859	                    Escherichia coli O157:H7 str. SS17
+  0.04	5	5	S2	155864	                    Escherichia coli O157:H7 str. EDL933
+  0.03	4	4	S2	502346	                    Escherichia coli O157:H7 str. TW14588
+  0.01	1	1	S2	1343836	                    Escherichia coli O157:H7 str. F8092B
+  0.72	91	91	S1	941322	                  Escherichia coli O25b:H4-ST131
+  0.49	62	62	S1	2874051	                  Escherichia coli O99:H6
+  0.39	49	49	S1	869729	                  Escherichia coli UM146
+  0.39	49	49	S1	2763104	                  Escherichia coli O150:H6
+  0.29	37	37	S1	1055538	                  Escherichia coli O145
+  0.28	35	11	S1	83333	                  Escherichia coli K-12
+  0.08	10	10	S2	511145	                    Escherichia coli str. K-12 substr. MG1655
+  0.06	7	7	S2	879462	                    Escherichia coli str. K-12 substr. MG1655star
+  0.02	3	3	S2	316407	                    Escherichia coli str. K-12 substr. W3110
+  0.02	3	3	S2	595496	                    Escherichia coli BW2952
+  0.01	1	1	S2	679895	                    Escherichia coli BW25113
+  0.27	34	34	S1	1045010	                  Escherichia coli O157
+  0.27	34	34	S1	585397	                  Escherichia coli ED1a
+  0.25	31	31	S1	2848144	                  Escherichia coli O158:H23
+  0.23	29	29	S1	2848143	                  Escherichia coli O85:H1
+  0.22	28	28	S1	1329907	                  Escherichia coli APEC IMT5155
+  0.20	25	25	S1	2048777	                  Escherichia coli O15:H11
+  0.19	24	24	S1	2773705	                  Escherichia coli O18ac:H14
+  0.17	22	22	S1	2697517	                  Escherichia coli O84:H7
+  0.17	21	21	S1	1446746	                  Escherichia coli O6:H16
+  0.17	21	0	S1	861906	                  Escherichia coli O44:H18
+  0.17	21	21	S2	216592	                    Escherichia coli 042
+  0.16	20	4	S1	1038927	                  Escherichia coli O104:H4
+  0.10	13	13	S2	1133852	                    Escherichia coli O104:H4 str. 2011C-3493
+  0.02	3	3	S2	1048254	                    Escherichia coli O104:H4 str. C227-11
+  0.16	20	14	S1	244320	                  Escherichia coli O55:H7
+  0.04	5	5	S2	701177	                    Escherichia coli O55:H7 str. CB9615
+  0.01	1	1	S2	1048689	                    Escherichia coli O55:H7 str. RM12579
+  0.15	19	19	S1	2605619	                  Escherichia coli O16:H48
+  0.15	19	19	S1	1412834	                  Escherichia coli FAP1
+  0.14	18	18	S1	2778655	                  Escherichia coli O167:H26
+  0.13	17	16	S1	930406	                  Escherichia coli O157:H16
+  0.01	1	1	S2	1446608	                    Escherichia coli O157:H16 str. 98-3133
+  0.13	17	17	S1	316435	                  Escherichia coli Nissle 1917
+  0.13	17	17	S1	481805	                  Escherichia coli ATCC 8739
+  0.13	16	16	S1	1322345	                  Escherichia coli ATCC 25922
+  0.13	16	16	S1	2773707	                  Escherichia coli O19:H7
+  0.11	14	14	S1	2773706	                  Escherichia coli O68:H12
+  0.11	14	14	S1	362663	                  Escherichia coli 536
+  0.10	13	13	S1	2848145	                  Escherichia coli O170:H18
+  0.10	13	13	S1	941280	                  Escherichia coli O25b:H4
+  0.09	12	12	S1	2027293	                  Escherichia coli O8:H8
+  0.09	12	12	S1	2048781	                  Escherichia coli O27:H7
+  0.09	12	12	S1	2778656	                  Escherichia coli O20:H12
+  0.09	11	0	S1	1446738	                  Escherichia coli O39:NM
+  0.09	11	11	S2	1446739	                    Escherichia coli O39:NM str. F8704-2
+  0.09	11	11	S1	2126982	                  Escherichia coli O18:H1
+  0.09	11	11	S1	2592065	                  Escherichia coli O1:H42
+  0.08	10	10	S1	2079157	                  Escherichia coli O2:H1
+  0.07	9	9	S1	2072463	                  Escherichia coli O78
+  0.07	9	9	S1	2067421	                  Escherichia coli O25:H4
+  0.07	9	9	S1	1392854	                  Escherichia coli M8
+  0.07	9	9	S1	1502658	                  Escherichia coli O2:H6
+  0.06	8	8	S1	2778653	                  Escherichia coli O112ab:H8
+  0.06	8	0	S1	1603259	                  Escherichia coli O139:H28
+  0.06	8	8	S2	331111	                    Escherichia coli O139:H28 str. E24377A
+  0.06	8	0	S1	2233553	                  Escherichia coli O43
+  0.06	8	8	S2	1055541	                    Escherichia coli O43 str. RM10042
+  0.06	8	8	S1	2491679	                  Escherichia coli O22:H8
+  0.06	8	8	S1	183192	                  Escherichia coli O157:H-
+  0.06	8	8	S1	199310	                  Escherichia coli CFT073
+  0.06	7	7	S1	1311757	                  Escherichia coli ACN001
+  0.06	7	0	S1	1072458	                  Escherichia coli O7:K1
+  0.06	7	7	S2	1072459	                    Escherichia coli O7:K1 str. CE10
+  0.06	7	0	S1	1055539	                  Escherichia coli O91
+  0.06	7	7	S2	1055545	                    Escherichia coli O91 str. RM7190
+  0.06	7	7	S1	585057	                  Escherichia coli IAI39
+  0.05	6	6	S1	1358422	                  Escherichia coli PCN061
+  0.05	6	6	S1	1382700	                  Escherichia coli PMV-1
+  0.05	6	6	S1	2861805	                  Escherichia coli O139:H1
+  0.05	6	6	S1	585055	                  Escherichia coli 55989
+  0.05	6	6	S1	2810404	                  Escherichia coli O7:H4
+  0.04	5	5	S1	696406	                  Escherichia coli UMNK88
+  0.04	5	5	S1	569579	                  Escherichia coli NU14
+  0.04	5	5	S1	2778657	                  Escherichia coli O9:H10
+  0.04	5	5	S1	340186	                  Escherichia coli E110019
+  0.04	5	3	S1	168807	                  Escherichia coli O127:H6
+  0.02	2	2	S2	574521	                    Escherichia coli O127:H6 str. E2348/69
+  0.04	5	5	S1	2027295	                  Escherichia coli O8:H28
+  0.04	5	5	S1	1954351	                  Escherichia coli APEC O2-211
+  0.03	4	4	S1	2810405	                  Escherichia coli O89m:H10
+  0.03	4	4	S1	1078034	                  Escherichia coli O145:H28
+  0.03	4	4	S1	1078032	                  Escherichia coli O45:H2
+  0.03	4	0	S1	685037	                  Escherichia coli O83:H1
+  0.03	4	4	S2	685038	                    Escherichia coli O83:H1 str. NRG 857C
+  0.03	4	4	S1	1355101	                  Escherichia coli JJ1887
+  0.03	4	4	S1	745156	                  Escherichia coli 1303
+  0.03	4	4	S1	405955	                  Escherichia coli APEC O1
+  0.03	4	4	S1	1446701	                  Escherichia coli O169:H41
+  0.03	4	4	S1	1446707	                  Escherichia coli O25:NM
+  0.03	4	4	S1	941323	                  Escherichia coli VR50
+  0.02	3	3	S1	409438	                  Escherichia coli SE11
+  0.02	3	2	S1	244319	                  Escherichia coli O26:H11
+  0.01	1	1	S2	573235	                    Escherichia coli O26:H11 str. 11368
+  0.02	3	1	S1	376725	                  Escherichia coli O103:H2
+  0.02	2	2	S2	585395	                    Escherichia coli O103:H2 str. 12009
+  0.02	3	3	S1	168927	                  Escherichia coli O111:H-
+  0.02	3	3	S1	439855	                  Escherichia coli SMS-3-5
+  0.02	3	3	S1	2861806	                  Escherichia coli O141:H4
+  0.02	3	3	S1	2874052	                  Escherichia coli O16:H6
+  0.02	3	3	S1	714962	                  Escherichia coli IHE3034
+  0.02	3	3	S1	577675	                  Escherichia coli O91:H21
+  0.02	3	3	S1	2778654	                  Escherichia coli O152:H23
+  0.02	3	3	S1	585035	                  Escherichia coli S88
+  0.02	3	3	S1	2810407	                  Escherichia coli O126:H45
+  0.02	3	3	S1	866789	                  Escherichia coli DSM 30083 = JCM 1649 = ATCC 11775
+  0.02	3	3	S1	2810406	                  Escherichia coli O89m:H9
+  0.02	2	2	S1	2048778	                  Escherichia coli O178:H19
+  0.02	2	2	S1	2048776	                  Escherichia coli O128:H27
+  0.02	2	2	S1	2048775	                  Escherichia coli O114:H49
+  0.02	2	2	S1	2048780	                  Escherichia coli O25:H16
+  0.02	2	2	S1	37762	                  Escherichia coli B
+  0.02	2	2	S1	591946	                  Escherichia coli LF82
+  0.02	2	2	S1	2491878	                  Escherichia coli O4:H5
+  0.02	2	2	S1	991915	                  Escherichia coli O121:H19
+  0.02	2	2	S1	655817	                  Escherichia coli ABU 83972
+  0.02	2	2	S1	585034	                  Escherichia coli IAI1
+  0.02	2	2	S1	2814546	                  Escherichia coli O1:HNT
+  0.02	2	2	S1	2603836	                  Escherichia coli O10:H32
+  0.02	2	2	S1	1401688	                  Escherichia coli APEC O18
+  0.02	2	2	S1	1050617	                  Escherichia coli UMNF18
+  0.02	2	2	S1	413997	                  Escherichia coli B str. REL606
+  0.02	2	0	S1	1055535	                  Escherichia coli O111
+  0.02	2	2	S2	1055542	                    Escherichia coli O111 str. RM9322
+  0.02	2	0	S1	1055536	                  Escherichia coli O103
+  0.02	2	2	S2	1055540	                    Escherichia coli O103 str. RM8385
+  0.02	2	2	S1	566546	                  Escherichia coli W
+  0.02	2	2	S1	431946	                  Escherichia coli SE15
+  0.01	1	0	S1	404399	                  Escherichia coli O26
+  0.01	1	1	S2	1055534	                    Escherichia coli O26 str. RM10386
+  0.01	1	1	S1	741093	                  Escherichia coli Xuzhou21
+  0.01	1	1	S1	758831	                  Escherichia coli ECC-1470
+  0.01	1	1	S1	2491692	                  Escherichia coli O39:H21
+  0.01	1	1	S1	2822132	                  Escherichia coli O128ac:H12
+  0.01	1	1	S1	1274814	                  Escherichia coli APEC O78
+  0.01	1	1	S1	1078021	                  Escherichia coli O113:H21
+  0.01	1	1	S1	469008	                  Escherichia coli BL21(DE3)
+  0.01	1	1	S1	1355100	                  Escherichia coli JJ1886
+  0.01	1	1	S1	913088	                  Escherichia coli TW11681
+  0.01	1	1	S1	2874053	                  Escherichia coli O25:H1
+  0.01	1	1	S1	585056	                  Escherichia coli UMN026
+  0.01	1	1	S1	1446600	                  Escherichia coli O15:H18
+  0.01	1	1	S1	1416676	                  Escherichia coli N40607
+  0.02	2	2	S	208962	                Escherichia albertii
+  0.01	1	1	S	564	                Escherichia fergusonii
+  0.01	1	0	G	547	              Enterobacter
+  0.01	1	0	G1	354276	                Enterobacter cloacae complex
+  0.01	1	1	S	158836	                  Enterobacter hormaechei
+ 16.75	2117	0	D1	1783270	      FCB group
+ 16.75	2117	0	D2	68336	        Bacteroidetes/Chlorobi group
+ 16.75	2117	0	P	976	          Bacteroidetes
+ 16.75	2117	0	C	200643	            Bacteroidia
+ 16.75	2117	0	O	171549	              Bacteroidales
+ 16.75	2117	0	F	815	                Bacteroidaceae
+ 16.75	2117	0	G	816	                  Bacteroides
+ 16.73	2114	2063	S	818	                    Bacteroides thetaiotaomicron
+  0.40	51	51	S1	226186	                      Bacteroides thetaiotaomicron VPI-5482
+  0.02	2	2	S	817	                    Bacteroides fragilis
+  0.01	1	1	S	246787	                    Bacteroides cellulosilyticus
+  0.03	4	0	D	2759	    Eukaryota
+  0.03	4	0	D1	33154	      Opisthokonta
+  0.03	4	0	K	33208	        Metazoa
+  0.03	4	0	K1	6072	          Eumetazoa
+  0.03	4	0	K2	33213	            Bilateria
+  0.03	4	0	K3	33511	              Deuterostomia
+  0.03	4	0	P	7711	                Chordata
+  0.03	4	0	P1	89593	                  Craniata
+  0.03	4	0	P2	7742	                    Vertebrata
+  0.03	4	0	P3	7776	                      Gnathostomata
+  0.03	4	0	P4	117570	                        Teleostomi
+  0.03	4	0	P5	117571	                          Euteleostomi
+  0.03	4	0	P6	8287	                            Sarcopterygii
+  0.03	4	0	P7	1338369	                              Dipnotetrapodomorpha
+  0.03	4	0	P8	32523	                                Tetrapoda
+  0.03	4	0	P9	32524	                                  Amniota
+  0.03	4	0	C	40674	                                    Mammalia
+  0.03	4	0	C1	32525	                                      Theria
+  0.03	4	0	C2	9347	                                        Eutheria
+  0.03	4	0	C3	1437010	                                          Boreoeutheria
+  0.03	4	0	C4	314146	                                            Euarchontoglires
+  0.03	4	0	O	9443	                                              Primates
+  0.03	4	0	O1	376913	                                                Haplorrhini
+  0.03	4	0	O2	314293	                                                  Simiiformes
+  0.03	4	0	O3	9526	                                                    Catarrhini
+  0.03	4	0	O4	314295	                                                      Hominoidea
+  0.03	4	0	F	9604	                                                        Hominidae
+  0.03	4	0	F1	207598	                                                          Homininae
+  0.03	4	0	G	9605	                                                            Homo
+  0.03	4	4	S	9606	                                                              Homo sapiens
