@@ -112,8 +112,8 @@ Use the -h flag on megahit and try to craft a command line to launch the assembl
 
 ```bash
 cd ~/Projects/AD_binning
-ls $DATA/AD_small/*/*R1.fastq | tr "\n" "," | sed 's/,$//' > R1.csv
-ls $DATA/AD_small/*/*R2.fastq | tr "\n" "," | sed 's/,$//' > R2.csv
+ls $DATA/AD_small/*/*R1.fastq | grep -v Filtered | tr "\n" "," | sed 's/,$//' > R1.csv
+ls $DATA/AD_small/*/*R2.fastq | grep -v Filtered | tr "\n" "," | sed 's/,$//' > R2.csv
 megahit -1 $(<R1.csv) -2 $(<R2.csv) -t 8 -o Assembly
 ```
 It should take about 782.40 seconds
