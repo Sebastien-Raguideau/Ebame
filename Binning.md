@@ -68,13 +68,8 @@ For simplification sake, we are going to create a global variable:
 
 Use nano to edit your bashrc file:
 ```bash
-<<<<<<< HEAD
 nano ~/.bashrc
 export DATA=/ifb/data/public/teachdata/ebame/metagenomics-bining/Quince_datasets/
-=======
-nano ~.bashrc
-export DATA=/ifb/data/public/teachdata/ebame/metagenomics-bining/Quince_datasets/
->>>>>>> 87c934dd1d877488bc8f0bdedb34621cc376ea35
 ```
 
 Also, each VM has been generated with a random name instead of the hostname which is a md5 string. You can alter it and rename your VM
