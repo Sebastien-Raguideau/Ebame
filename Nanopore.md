@@ -385,7 +385,7 @@ Kraken2 requires an `--output` flag to redirect output from STDOUT.
 
 ```
 export KDBPATH=/home/ubuntu/data/public/kraken2/k2_standard_08gb_20220926  
-kraken2 --db $KDBPATH --threads 8 --use-names --report kraken_report --output kraken_gut GutMock1.fastq --memory-mapping
+kraken2 --db $KDBPATH --threads 8 --use-names --report kraken_report --output kraken_gut GutMock1.fastq
 
 ```
 
