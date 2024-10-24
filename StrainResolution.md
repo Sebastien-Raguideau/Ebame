@@ -521,7 +521,7 @@ more summary.tsv
 To run gtdb you need to add these lines inside the config file with the path to gtdb database and a scratch file to save RAM.
 
 ```
-gtdb_path: /home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/gtdbtk/release207_v2
+gtdb_path: $DATA/../gtdb/release220
 
 scratch_gtdb: /home/ubuntu/Projects/STRONG_AD/gtdb_scratch
 ```
