@@ -48,7 +48,7 @@ Try activating the relevant conda environment :
 **Databases**
 
  - [COG database](ftp://ftp.ncbi.nlm.nih.gov/pub/mmdb/cdd/little_endian) , you will find it installed at
-    `/home/ubuntu/data/public/teachdata/ebame/metagenomics-bining/rpsblast_cog_db`
+    `$DATA/../rpsblast_cog_db`
 
  - (optional) [GTDB](https://pubmed.ncbi.nlm.nih.gov/30148503/) , used
    with gtdb-tk, (77Gb) too much ram needed and execution too slow for this present tutorial.
@@ -56,10 +56,10 @@ Try activating the relevant conda environment :
 #### Dataset
 Anaerobic digester metagenomic time series subsampled for this tutorial, reads mapping only to a few bins of interest.
 
-Start off by moving into the ~/data/mydatalocal directory create new directory Projects (if not already there) and subdirectory STRONG_AD:
+Start off by moving into the ~/Projects directory create new directory Projects (if not already there) and subdirectory STRONG_AD:
 
 ```
-cd ~/data/mydatalocal
+cd ~/Projects
 
 mkdir STRONG_AD
 
@@ -73,7 +73,7 @@ Then link in the short reads:
 
 ```
 
-ln -s /home/ubuntu/data/public/teachdata/ebame/metagenomics-bining/Quince_datasets/AD_small data
+ln -s $DATA/AD_small data
 
 ```
 
@@ -97,11 +97,9 @@ while not exhaustive, have a look at cheatsheets for bash [commands](https://che
 Some part of STRONG are a bit too slow and we will have to work with pre-run results. Please download and extract theses files:
 ```bash
 
-cd ~/data/mydatalocal/STRONG_AD
+cd ~/Projects/STRONG_AD
 
-cp /home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/STRONG_prerun.tar.gz .
-
-tar -xvzf STRONG_prerun.tar.gz
+ln -s ~/repos/Ebame/tmp/preruns/STRONG STRONG_prerun
 
 ```
 
@@ -116,7 +114,7 @@ PS1='\u:\W\$ '
 Let's copy the config file template:
 
 ```bash
-cd ~/data/mydatalocal/STRONG_AD
+cd ~/Projects/STRONG_AD
 cp ~/repos/Ebame/config_template.yaml config.yaml
 ```
 Look at the config.yaml with more:
@@ -125,12 +123,12 @@ more config.yaml
 ```
 For 5-10 mins try to use the STRONG [documentation](https://github.com/chrisquince/STRONG) to fill in this config file. Edit the config file with nano or vi so that it runs the samples in:
 ```
- /home/ubuntu/data/mydatalocal/STRONG_AD/data
+ /home/ubuntu/Projects/STRONG_AD/data
 ```
 
 Check that your config file works with the dryrun command.
 ```bash
-cd  ~/data/mydatalocal/STRONG_AD
+cd  ~/Projects/STRONG_AD
 rm -r STRONG_OUT
 STRONG --config config.yaml STRONG_OUT assembly --threads 8 --dryrun --verbose
 ```
@@ -141,14 +139,14 @@ Debuging a config file:
  - First it has to be a valid .yaml file, [here](https://en.wikipedia.org/wiki/YAML) is the format definition and [here](http://www.yamllint.com/) is a validator. In short, don't forget indentations or colons. 
  - you only have 2 paths to fill the path to the sample **folder** and the path to the cog database. If you have issues, you may have mispellled any of these. Use the  `ls`   command to check the path exists.
  - the cog database path is `/home/ubuntu/data/public/teachdata/ebame/metagenomics-bining/rpsblast_cog_db`
- - the data folder path is:  `/home/ubuntu/data/mydatalocal/STRONG_AD/data`
+ - the data folder path is:  `/home/ubuntu/Projects/STRONG_AD/data`
  <details><summary>It's still not working? </summary>
 <p>
 
 Well, we can't spend too long on debugging everybody, just copy and paste the correct config file from the Ebame repo.
 
 ```bash
-cd  ~/data/mydatalocal/STRONG_AD
+cd  ~/Projects/STRONG_AD
 cp  ~/repos/Ebame/config_correct.yaml config.yaml
 ```
 
@@ -162,7 +160,7 @@ When using the dryrun option what happens?
 ### Assembly
 Let's launch STRONG for real this time:
 ```bash
-cd ~/data/mydatalocal/STRONG_AD
+cd ~/Projects/STRONG_AD
 rm -r STRONG_OUT
 STRONG --config config.yaml STRONG_OUT assembly --threads 8
 ```
@@ -173,10 +171,10 @@ We only started running the first step of STRONG, the assembly step, it consists
 This should take about thirty minutes. We are not waiting for that instead kill the strong run using ***Ctrl-C*** and copy in the prerun assembly after cleaning up the output directory:
 
 ```
-    cd  ~/data/mydatalocal/STRONG_AD/
+    cd  ~/Projects/STRONG_AD/
     rm -r -f STRONG_OUT
     mkdir STRONG_OUT
-    cp -r ~/data/mydatalocal/STRONG_AD/STRONG_prerun/assembly ~/data/mydatalocal/STRONG_AD/STRONG_OUT
+    cp -r ~/Projects/STRONG_AD/STRONG_prerun/assembly ~/Projects/STRONG_AD/STRONG_OUT
 ```
 
 The restart the assembly step:
@@ -191,7 +189,7 @@ Whilst that is running login on a separate terminal so we can look at the assemb
 #### Coassembly
 
 ```bash
-cd ~/data/mydatalocal/STRONG_AD/STRONG_OUT
+cd ~/Projects/STRONG_AD/STRONG_OUT
 ls -lh assembly/spades/contigs.fasta
 ```
 
@@ -225,7 +223,7 @@ Bandage can be run on the VMs and viewed through X-windows if that is installed 
 If the connection is bad an alternative is to install Bandage on your laptop and download the gfa files e.g.:
 
 ```
-scp ubuntu@my.ip.add:~/data/mydatalocal/STRONG_AD/STRONG_prerun/assembly/high_res/simplified.gfa .
+scp ubuntu@my.ip.add:~/Projects/STRONG_AD/STRONG_prerun/assembly/high_res/simplified.gfa .
 ``` 
 
 
@@ -292,7 +290,7 @@ This step of the pipeline also does bowtie2 mapping of reads onto contigs to get
 profiles for binning:
 
 ```bash
-cd ~/data/mydatalocal/STRONG_AD/STRONG_OUT
+cd ~/Projects/STRONG_AD/STRONG_OUT
 head profile/split/coverage.tsv 
 ```
 
@@ -328,7 +326,7 @@ evince SCG_table_concoct.pdf
 The next step is to extract out and simplify the SCG subgraphs for the actual bayespaths strain finding. We run this as above just change assembly to graphextraction:
 
 ```bash
-cd ~/data/mydatalocal/STRONG_AD/
+cd ~/Projects/STRONG_AD/
 STRONG --config config.yaml STRONG_OUT graphextraction --threads 8 --verbose
 ```
 
@@ -345,7 +343,7 @@ Which are again in gfa format with coverages.
 These steps generate all the input required for the strain resolving algorithm BayesPaths. As it takes about 20~30 min to run automatically, let's launch it now. 
 
 ```bash
-cd ~/data/mydatalocal/STRONG_AD/
+cd ~/Projects/STRONG_AD/
 STRONG --config config.yaml STRONG_OUT bayespaths --threads 8 --verbose
 ```
 
@@ -354,7 +352,7 @@ STRONG --config config.yaml STRONG_OUT bayespaths --threads 8 --verbose
 Whilst we wait for that login on a separate terminal (don't forget to reactivate STRONG) and do a few trial runs to better understand the inputs first. Let's test out the most complex bin Bin_2 in my run:
 
 ```bash
-cd ~/data/mydatalocal/STRONG_AD/STRONG_OUT/subgraphs/bin_merged
+cd ~/Projects/STRONG_AD/STRONG_OUT/subgraphs/bin_merged
 wc Bin_*/simplif/*0060*tsv
 ```
 
@@ -379,7 +377,7 @@ Can you find and load the raw graph next - is there any difference?
 We might estimate this contains three strains, can we confirm that. We will do a trial run of BayesPaths to test this, in a new directory:
 
 ```bash
-cd ~/data/mydatalocal/STRONG_AD/STRONG_OUT
+cd ~/Projects/STRONG_AD/STRONG_OUT
 mkdir BPTest
 cd BPTest
 ```
@@ -421,7 +419,7 @@ This will take a little time. It should select three strains. We can have a look
 
 If it takes too long on your VM have a look at the prerun results:
 ```bash
-cd ~/data/mydatalocal/STRONG_AD/STRONG_prerun/bayespaths/Bin_2
+cd ~/Projects/STRONG_AD/STRONG_prerun/bayespaths/Bin_2
 ```
 Otherwise stay in this dir.
 
@@ -480,7 +478,7 @@ q()
 If the STRONG bayespaths step has finished we can generate results dir now:
  
 ```bash
-cd ~/data/mydatalocal/STRONG_AD/
+cd ~/Projects/STRONG_AD/
 STRONG --config config.yaml STRONG_OUT results --threads 8 --verbose
 
 ```    
@@ -490,7 +488,7 @@ The summary files gives information on number of mags, strains and taxonomy. Oth
 
 #### Bin specific results
 ```
-cd ~/data/mydatalocal/STRONG_AD/STRONG_OUT/results/Bin_2
+cd ~/Projects/STRONG_AD/STRONG_OUT/results/Bin_2
 ```
 
 Joined graph is useful indicates that we have probably missed a strain on this example, this might be down to not running gene filtering or multiple NMF iterations.
@@ -510,8 +508,8 @@ The haplotypes_tree.pdf has a phylogeny of strains and a heatmap giving percent 
 STRONG will run gtdb on MAGs as standard but this is too slow and uses too much RAM. For now just have a look at the pre-run results: 
 
 ```bash
-cd ~/data/mydatalocal/STRONG_AD/STRONG_OUT
-ln -s ~/data/mydatalocal/STRONG_AD/STRONG_prerun/results result_prerun
+cd ~/Projects/STRONG_AD/STRONG_OUT
+ln -s ~/Projects/STRONG_AD/STRONG_prerun/results result_prerun
 ```
 
 Have a look at the summary file to find out the identity of the MAGs.
@@ -525,7 +523,7 @@ To run gtdb you need to add these lines inside the config file with the path to 
 ```
 gtdb_path: /home/ubuntu/data/public/teachdata/ebame-2022/metagenomics/gtdbtk/release207_v2
 
-scratch_gtdb: /home/ubuntu/data/mydatalocal/STRONG_AD/gtdb_scratch
+scratch_gtdb: /home/ubuntu/Projects/STRONG_AD/gtdb_scratch
 ```
 
 ## Extra things
