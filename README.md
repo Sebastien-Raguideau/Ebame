@@ -5,6 +5,6 @@ These tutorial needs the [EBAME-Quince](https://biosphere.france-bioinformatique
 _Wednesday 22_:  [From read to MAGs, bash then Snakemake](Binning.md)\
 _Wednesday 22_:  [De novo short read strain resolution](StrainResolution.md)\
 _Thursday 23_:  [Nanopore bioinformatics](Nanopore.md)\
-_Thursday 23_:  [Long-read assembly](LongRead2024.md)\
+_Thursday 23_:  [Long-read assembly](Assembly2025.md)\
 _(optional)_:  [Trait inference for MAGs](TraitInference.md)
 
