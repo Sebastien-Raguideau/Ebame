@@ -43,15 +43,17 @@ Pre-runs for seqkit are located here: ~/data/mydatalocal/LongReads/preruns/datas
 ## Assembly
 
 
-Mostly 3 software have been developed for assembling long-read metagenomic datasets.
+Mostly 4 software have been developed for assembling long-read metagenomic datasets.
 
 - [metaFlye](https://www.nature.com/articles/s41592-020-00971-x) 
 
-- [hifiasm-meta](https://www.nature.com/articles/s41592-022-01478-3)
+- [hifiasm-meta](https://www.nature.com/articles/s41592-022-01478-3) (HiFi only)
 
 - [metaMDBG](https://www.nature.com/articles/s41587-023-01983-6)
 
-In this tutorial, we are going to run metaflye and metaMDBG separatly, then use a method to merge their results.
+- [myloasm](https://www.biorxiv.org/content/10.1101/2025.09.05.674543v1)
+
+In this tutorial, we are going to run metaflye, metaMDBG and myloasm separatly, then use a method to merge their results.
 
 As usual, try to craft your own command line to run the software. 
 
