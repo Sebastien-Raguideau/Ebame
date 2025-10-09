@@ -10,10 +10,10 @@ dependencies:
   - minimap2==2.28
   - mummer4==4.0.0rc1
   - networkx==2.5
-  - numpy==1.24.4
+  - numpy
   - pygraphviz==1.11
   - pysam==0.22.0
-  - python==3.10
+  - python
   - pyvcf==0.6.8
   - wtdbg==2.5
   - canu==2.2
