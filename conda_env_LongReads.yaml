@@ -30,5 +30,3 @@ dependencies:
   - checkm-genome
   - drep
   - gtdbtk
-  - metamdbg==1.2
-  - checkm2
