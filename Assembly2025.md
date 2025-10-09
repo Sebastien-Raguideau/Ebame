@@ -56,6 +56,12 @@ In this tutorial, we are going to run metaflye and metaMDBG separatly, then use 
 As usual, try to craft your own command line to run the software. 
 
 
+
+
+
+
+
+
 #### Run metaflye
 
 Let's run metaflye first.
@@ -79,6 +85,69 @@ flye --pacbio-hifi ~/data/public/teachdata/ebame/metagenomics-assembly/SRR131280
 ```
 </p>
 </details>
+
+
+
+
+
+
+
+
+#### Run metaMDBG
+
+Now, let's try to run metaMDBG on the zymo mock communities.
+
+```bash
+metaMDBG asm -h
+```
+
+<details><summary>Solution</summary>
+<p>
+
+```bash
+
+Hifi:
+metaMDBG asm --in-hifi ~/data/public/teachdata/ebame/metagenomics-assembly/SRR13128014_subreads.fastq.gz --out-dir ~/data/mydatalocal/LongReads/metaMDBG_asm_hifi --threads 4
+
+ONT:
+metaMDBG asm --in-ont ~/data/public/teachdata/ebame/metagenomics-assembly/SRR17913199_1.fastq.gz --out-dir ~/data/mydatalocal/LongReads/metaMDBG_asm_ont --threads 4
+
+```
+</p>
+</details>
+
+
+
+
+
+
+
+
+#### Run myloasm
+
+Use the following commands to see usage information for myloasm:
+
+```bash
+myloasm -h
+```
+
+<details><summary>Solution</summary>
+<p>
+
+```bash
+
+ONT:
+myloasm --threads 4 --nano-r10 ~/data/public/teachdata/ebame/metagenomics-assembly/SRR17913199_1.fastq.gz --output-dir ~/data/mydatalocal/LongReads/myloasm_asm_ont
+
+Hifi:
+myloasm --threads 4  --hifi ~/data/public/teachdata/ebame/metagenomics-assembly/SRR13128014_subreads.fastq.gz --output-dir ~/data/mydatalocal/LongReads/myloasm_asm_hifi
+```
+</p>
+</details>
+
+
+
+#### Assembly stats
 
 Assembly takes a lot of time, so instead lets comment on the pre-run version.
 
@@ -138,50 +207,7 @@ This Zymo mock community contains 5 ecoli strains, let's try to find them using 
 * Click "Run blast search"
 * Recommanded: try to tune the blast filter (alignment length and identity)
 
-#### Run metaMDBG
 
-Now, let's try to run metaMDBG on the zymo mock communities.
-
-```bash
-metaMDBG asm -h
-```
-
-<details><summary>Solution</summary>
-<p>
-
-```bash
-
-Hifi:
-metaMDBG asm --in-hifi ~/data/public/teachdata/ebame/metagenomics-assembly/SRR13128014_subreads.fastq.gz --out-dir ~/data/mydatalocal/LongReads/metaMDBG_asm_hifi --threads 4
-
-ONT:
-metaMDBG asm --in-ont ~/data/public/teachdata/ebame/metagenomics-assembly/SRR17913199_1.fastq.gz --out-dir ~/data/mydatalocal/LongReads/metaMDBG_asm_ont --threads 4
-
-```
-</p>
-</details>
-
-Let's wait for metaMDBG to finish a few multi-k iterations.
-
-With the command "metaMDBG gfa", we can generate the assembly graph corresponding to each multi-k iteration. Lower-k graph will have more connectivity, while higher-k graph will have more repeats solved but also more fragmentation. It is interesting to work on lower-k graph if you have external source of data that could solve long repeat (for instance, HiC, ultra long reads, binning metrics). 
-
-Let' try to generate an assembly graph with a low k value. The following command shows the available values for k and their corresponding size in bps. 
-
-```bash
-metaMDBG gfa --assembly-dir ~/data/mydatalocal/LongReads/metaMDBG_asm_ont --k 0
-```
-
-Choose a value for k and wait for metaMDBG to generate the graph.
-
-
-<details><summary>Solution</summary>
-<p>
-
-```bash
-metaMDBG gfa ~/data/mydatalocal/LongReads/metaMDBG_asm_ont/ --k 10
-```
-</p>
-</details>
 
 Visualize the assembly graph with Bandage
 
