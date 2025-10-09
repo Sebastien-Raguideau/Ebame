@@ -7,7 +7,7 @@ dependencies:
   - samtools==1.6
   - biopython==1.81
   - longshot==0.4.1
-  - minimap2==2.24
+  - minimap2==2.28
   - mummer4==4.0.0rc1
   - networkx==2.5
   - numpy==1.24.4
@@ -30,9 +30,5 @@ dependencies:
   - checkm-genome
   - drep
   - gtdbtk
-  - zlib
-  - openmp
-  - cxx-compiler
-  - cmake
-  - gsl=2.7=he838d99_0
-  - wfmash=0.8.2
+  - metamdbg==1.2
+  - checkm2
