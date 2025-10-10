@@ -68,6 +68,7 @@ tar -xvf dorado-0.8.1-linux-x64.tar.gz
 
 # --- everything else ---
 mamba env create -f $HOME2/repos/Ebame/conda_env_LongReads.yaml
+mamba env create -f $HOME2/repos/Ebame/conda_env_Assembly.yaml
 
 # --- download db for LongReads env --
 . $CONDA/deactivate

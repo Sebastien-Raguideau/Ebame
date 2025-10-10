@@ -1,0 +1,13 @@
+name: Assembly
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - samtools
+  - biopython
+  - seqkit==2.5.1
+  - flye
+  - genomad
+  - drep
+  - checkm2
