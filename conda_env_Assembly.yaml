@@ -11,3 +11,7 @@ dependencies:
   - genomad
   - drep
   - checkm2
+  - metamdbg
+  - myloasm
+  - bandage
+  - blast
