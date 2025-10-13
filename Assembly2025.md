@@ -264,12 +264,19 @@ Metaflye uses an extra metadata file for contig information
 cat ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaflye/assembly_info.txt
 ```
 
+Myloasm uses similar format as metaMDBG
+```bash
+
+#Show contig metadata
+cat ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/myloasm/assembly_primary.fa.gz | grep ">" | grep "circular-yes"
+```
 
 Let's create folders for the circular contigs:
 ```bash
 mkdir -p ~/data/mydatalocal/HiFi/circularContigs/
 mkdir -p ~/data/mydatalocal/HiFi/circularContigs/metaflye/
 mkdir -p ~/data/mydatalocal/HiFi/circularContigs/metaMDBG/
+mkdir -p ~/data/mydatalocal/HiFi/circularContigs/myloasm/
 ```
 
 We use a custom script to extract all circular contigs:
@@ -280,6 +287,9 @@ python3 ~/repos/Ebame/scripts/extractCircularContigs.py ~/data/mydatalocal/LongR
 
 #Extract metaMDBG circular contigs (HiFi)
 python3 ~/repos/Ebame/scripts/extractCircularContigs.py ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaMDBG/contigs.fasta.gz ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/metaMDBG/contigs.fasta.gz metaMDBG ~/data/mydatalocal/LongReads/circularContigs/metaMDBG/
+
+#Extract myloasm circular contigs (HiFi)
+python3 ~/repos/Ebame/scripts/extractCircularContigs.py ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/myloasm/assembly_primary.fa.gz ~/data/mydatalocal/LongReads/preruns/assembly/SRR13128014_hifi/myloasm/assembly_primary.fa.gz myloasm ~/data/mydatalocal/LongReads/circularContigs/myloasm/
 ```
 
 List the extracted circular contigs:

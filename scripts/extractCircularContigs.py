@@ -21,7 +21,7 @@ def main(argv):
     dataFilename = args.dataFilename
     minContigLength = 0 #int(args.minLength)
     assembler = args.assembler
-    
+
     outputDir = args.outputDir
     if not os.path.exists(outputDir):
         os.makedirs(outputDir)
@@ -45,6 +45,9 @@ def extractCircularContigs(inputFilename, dataFilename, assembler, minContigLeng
         if len(seq) < minContigLength: continue
 
         header = header.split(" ")[0]
+
+        if assembler == "myloasm":
+            header = header.split(" ")[0].split("_")[0]
 
         if header in isCircularContig:
             nbCircularContigs += 1
@@ -70,7 +73,7 @@ def loadCircularContigs(inputFilename, assembler, minContigLength, collectCircul
         fileHandle = gzip.open(inputFilename, "rt")
     else:
         fileHandle = open(inputFilename)
-        
+
     if "metaMDBG" in assembler or "nanoMDBG" in assembler:
 
         for header, seq in SimpleFastaParser(fileHandle):
@@ -111,6 +114,21 @@ def loadCircularContigs(inputFilename, assembler, minContigLength, collectCircul
 
             contigLength = int(fields[1])
             if contigLength >= minContigLength:
+                isLongContig.add(contigName)
+    elif "myloasm" in assembler:
+
+        for header, seq in SimpleFastaParser(fileHandle):
+
+            
+            contigName, lengthStr, circularStr, coverageStr, duplicatedStr = header.split(" ")[0].split("_")
+            #contigName = header.split(" ")[0]
+
+            #print(circularStr.split("-"), circularStr.split("-")[1] == "yes")
+
+            if circularStr.split("-")[1] == "yes":
+                isCircularContig.add(contigName)
+
+            if len(seq) >= minContigLength:
                 isLongContig.add(contigName)
 
     if collectCircularContigs:
