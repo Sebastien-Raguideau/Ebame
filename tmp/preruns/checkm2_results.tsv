@@ -1,0 +1,18 @@
+Name	Completeness	Contamination	Completeness_Model_Used	Translation_Table_Used	Coding_Density	Contig_N50	Average_Gene_Length	Genome_Size	GC_Content	Total_Coding_Sequences	Total_Contigs	Max_Contig_Length	Additional_Notes
+metaMDBG_ctg1243	5.24	0.0	Neural Network (Specific Model)	11	0.858	110014	256.4471544715447	110014	0.47	123	1	110014	None
+metaMDBG_ctg1298	100.0	0.3	Neural Network (Specific Model)	11	0.878	2851630	346.2100248550124	2851630	0.55	2414	1	2851630	None
+metaMDBG_ctg1301	100.0	1.76	Neural Network (Specific Model)	11	0.827	4209244	312.71136241249326	4209244	0.29	3714	1	4209244	None
+metaflye_contig_389	99.98	0.2	Neural Network (Specific Model)	11	0.869	2028387	363.34959851760345	2028387	0.59	1619	1	2028387	None
+metaflye_contig_684	11.34	0.0	Neural Network (Specific Model)	11	0.82	424080	322.65555555555557	424080	0.49	360	1	424080	None
+metaflye_contig_710	2.87	0.0	Neural Network (Specific Model)	11	0.737	61294	268.98214285714283	61294	0.56	56	1	61294	None
+myloasm_u137083ctg	99.99	0.18	Neural Network (Specific Model)	11	0.865	2158073	318.39059304703477	2158073	0.39	1956	1	2158073	None
+myloasm_u1833005ctg	99.76	0.99	Neural Network (Specific Model)	11	0.889	5167278	358.5382456140351	5167278	0.43	4275	1	5167278	None
+myloasm_u1863477ctg	100.0	0.16	Neural Network (Specific Model)	11	0.896	2448213	317.5305591677503	2448213	0.27	2307	1	2448213	None
+myloasm_u371550ctg	99.94	1.57	Neural Network (Specific Model)	11	0.861	2914007	314.67104769057454	2914007	0.58	2663	1	2914007	None
+myloasm_u427639ctg	4.15	0.0	Neural Network (Specific Model)	11	0.824	122295	234.52083333333334	122295	0.51	144	1	122295	None
+myloasm_u463828ctg	3.73	0.0	Neural Network (Specific Model)	11	0.803	61339	228.61111111111111	61339	0.5	72	1	61339	None
+myloasm_u475314ctg	99.98	0.23	Neural Network (Specific Model)	11	0.86	1936570	292.5578947368421	1936570	0.52	1900	1	1936570	None
+myloasm_u696850ctg	86.86	0.1	Neural Network (Specific Model)	11	0.858	2503312	320.7791685292803	2503312	0.44	2237	1	2503312	None
+myloasm_u798373ctg	100.0	0.39	Neural Network (Specific Model)	11	0.884	3463293	327.0054382597569	3463293	0.49	3126	1	3463293	None
+myloasm_u852119ctg	100.0	0.15	Neural Network (Specific Model)	11	0.883	4898340	315.55417212756663	4898340	0.51	4578	1	4898340	None
+myloasm_u884270ctg	5.52	0.0	Neural Network (Specific Model)	11	0.834	231548	272.61181434599155	231548	0.5	237	1	231548	None
