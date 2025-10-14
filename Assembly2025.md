@@ -257,14 +257,14 @@ Metaflye uses an extra metadata file for contig information
 ```bash
 
 #Show contig metadata
-cat ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/metaflye/assembly_info.txt
+head -n 30 ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/metaflye/assembly_info.txt
 ```
 
 Myloasm uses similar format as metaMDBG
 ```bash
 
 #Show contig metadata
-cat ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/myloasm/assembly_primary.fa.gz | grep ">" | grep "circular-yes"
+zcat ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/myloasm/assembly_primary.fa.gz | grep ">" | grep "circular-yes"
 ```
 
 Let's create folders for the circular contigs:
@@ -292,11 +292,12 @@ List the extracted circular contigs:
 ```bash
 ls -lh ~/data/mydatalocal/Assembly/circularContigs/metaflye/
 ls -lh ~/data/mydatalocal/Assembly/circularContigs/metaMDBG/
+ls -lh ~/data/mydatalocal/Assembly/circularContigs/myloasm/
 ```
 
 #### Assembly reconciliation
 
-We are now going to merge the results of metaMDBG and metaflye. The idea is to compute the similarity (ANI) between the circular contigs, and to choose only one representative if two contigs are duplicated (ANI > 0.95 by default).
+We are now going to merge the results of metaMDBG, metaflye and myloasm. The idea is to compute the similarity (ANI) between the circular contigs, and to choose only one representative if two contigs are duplicated (ANI > 0.95 by default).
 
 For this task, we are going to use the software dRep. dRep has a lot of options, let's craft the command together, first display de-replicate options:
 
@@ -316,7 +317,7 @@ dRep dereplicate -h
 <p>
 
 ```bash
-dRep dereplicate ~/data/mydatalocal/Assembly/drep_circular/ -p 4 -g ~/data/mydatalocal/Assembly/circularContigs/metaflye/*.fa ~/data/mydatalocal/Assembly/circularContigs/metaMDBG/*.fa --S_algorithm skani --ignoreGenomeQuality --skip_plots
+dRep dereplicate ~/data/mydatalocal/Assembly/drep_circular/ -p 4 -g ~/data/mydatalocal/Assembly/circularContigs/metaflye/*.fa ~/data/mydatalocal/Assembly/circularContigs/metaMDBG/*.fa ~/data/mydatalocal/Assembly/circularContigs/myloasm/*.fa --S_algorithm skani --ignoreGenomeQuality --skip_plots
 ```
 
 </p>
@@ -347,10 +348,11 @@ column -s, -t < ~/data/mydatalocal/Assembly/drep_circular/data_tables/Cdb.csv
 
 #### Assess quality of circular contigs 
 Clearly some of these are not genomes, let's run checkm on the dereplicated contigs:
-(by the way, sorry, there is a checkm2 version now which is way faster and user-friendly)
 
 ```bash
-checkm lineage_wf  ~/data/mydatalocal/Assembly/drep_circular/dereplicated_genomes/ ~/data/mydatalocal/Assembly/checkm_output/ -t 4 --pplacer_threads 4  -r -x .fa --tab_table -f ~/data/mydatalocal/Assembly/checkm_results.tsv
+#checkm lineage_wf  ~/data/mydatalocal/Assembly/drep_circular/dereplicated_genomes/ ~/data/mydatalocal/Assembly/checkm_output/ -t 4 --pplacer_threads 4  -r -x .fa --tab_table -f ~/data/mydatalocal/Assembly/checkm_results.tsv
+
+checkm2 predict --force --threads 4 -x fa -i ~/data/mydatalocal/Assembly/drep_circular/dereplicated_genomes/ -o ~/data/mydatalocal/Assembly/checkm_output/
 ```
 
 CheckM is a bit slow, so let's check the prerun results

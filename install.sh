@@ -34,7 +34,7 @@ sudo apt-get update
 # STRONG compilation
 sudo apt-get -y install libbz2-dev libreadline-dev cmake g++ zlib1g zlib1g-dev
 # bandage and utils
-sudo apt-get -y install bandage gzip unzip feh evince ncbi-blast+
+#sudo apt-get -y install bandage gzip unzip feh evince ncbi-blast+
 
 
 # ------------------------------
@@ -73,6 +73,7 @@ mamba env create -f $HOME2/repos/Ebame/conda_env_Assembly.yaml
 # --- download db for LongReads env --
 . $CONDA/deactivate
 . $CONDA/activate LongReads
+
 
 # metamdbg
 #conda env config vars set CPATH=${CONDA_PREFIX}/include:${CPATH}
@@ -152,6 +153,9 @@ echo -e 'export PATH=/home/ubuntu/repos/PlasmidNet/bin:$PATH'>>$HOME2/.bashrc
 echo -e "\n\n #------ Dorado path -------">>$HOME2/.bashrc 
 echo -e 'export PATH=~/repos/dorado-0.8.1-linux-x64/bin:$PATH'>>$HOME2/.bashrc
 
+
+echo -e "\n\n #------ Checkm2 database path -------">>$HOME2/.bashrc 
+echo -e 'export CHECKM2DB=/ifb/data/public/teachdata/ebame/metagenomics-assembly/CheckM2_database/uniref100.KO.1.dmnd:$CHECKM2DB'>>$HOME2/.bashrc
 
 # metaMDBG install
 #echo -e "\n\n #------ MetaMDBG path -------">>$HOME2/.bashrc 
