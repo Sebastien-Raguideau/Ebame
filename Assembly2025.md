@@ -355,15 +355,9 @@ Clearly some of these are not genomes, let's run checkm on the dereplicated cont
 checkm2 predict --force --threads 4 -x fa -i ~/data/mydatalocal/Assembly/drep_circular/dereplicated_genomes/ -o ~/data/mydatalocal/Assembly/checkm_output/
 ```
 
-CheckM is a bit slow, so let's check the prerun results
+CheckM2 is a bit slow, so let's check the prerun results
 ```bash
-cat ~/data/mydatalocal/Assembly/preruns/checkm_results.tsv
-```
-
-Print columns corresponding to completeness and contamination:
-
-```bash
-awk -F"\t" '{ print $1, "\t", $12, "\t", $13 }' ~/data/mydatalocal/Assembly/preruns/checkm_results.tsv
+cat ~/data/mydatalocal/Assembly/preruns/checkm2_results.tsv
 ```
 
 ## Plasmids and virus?
@@ -440,4 +434,11 @@ Bandage reduce ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/met
 awk '/^S/{print ">"$2"\n"$3}' ~/data/mydatalocal/Assembly/<Node>.gfa > ~/data/mydatalocal/Assembly/<Node>.fasta
 
 ```
+
+--> For myloasm: another script to extract contig by name from a fasta file:
+```bash
+mkdir ~/data/mydatalocal/Assembly/mycontigs/
+python3 ~/repos/Ebame/scripts/extractSequenceFasta.py ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/myloasm/assembly_primary.fa.gz u[ID]ctg ~/data/mydatalocal/Assembly/mycontigs/contig.fa
+```
+
 --> use checkm 
