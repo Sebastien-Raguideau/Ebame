@@ -410,7 +410,7 @@ cp ~/repos/STRONG/BayesPaths/Data/coreCogs.tsv .
 and finally bayespaths itself:
 
 ```bash
-export BPATH=/home/ubuntu/repos/STRONG/BayesPaths/bin/bayespaths 
+export BPATH=/home/ubuntu/repos/STRONG/BayesPaths/bin
 
 $BPATH/bayespaths Bin_2/simplif 77 Bin_2 -r 150 -l Bin_2/selected_cogs.tsv -t coreCogs.tsv -g 4 --nofilter -nr 1 -e ~/repos/STRONG/BayesPaths/runfg_source/
 ```
@@ -434,7 +434,7 @@ R
 Pred <- read.csv('Bin_2F_Pred.csv',header=T)
 library(ggplot2)
 pdf('X.pdf')
-qplot(data=Pred,x=X_est,y=X) + geom_smooth() + theme_bw()
+ggplot(Pred, aes(x = X_est, y = X)) + geom_point() + geom_smooth(method = "loess", se = TRUE) + theme_bw()
 dev.off()
 q()
 ```
