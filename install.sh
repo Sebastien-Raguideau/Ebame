@@ -34,16 +34,60 @@ sudo apt-get update
 # STRONG compilation
 sudo apt-get -y install libbz2-dev libreadline-dev cmake g++ zlib1g zlib1g-dev
 # bandage and utils
-#sudo apt-get -y install bandage gzip unzip feh evince ncbi-blast+
+sudo apt-get -y install bandage gzip unzip feh evince ncbi-blast+
 
+# ------------------------------
+# ------ byobu fixes -----------
+# ------------------------------
+# fix conda within byobu
+printf 'set -g default-shell /bin/bash\nset -g default-command "bash -l"\n' >> ~/.byobu/.tmux.conf
+
+#fix X forwarding within byobu
+printf 'set -g update-environment "DISPLAY SSH_AUTH_SOCK SSH_ASKPASS SSH_CONNECTION XAUTHORITY"' >> ~/.byobu/.tmux.conf
 
 # ------------------------------
 # ----- Chris tuto -------------
 # ------------------------------
 cd $HOME2/repos/STRONG
 
+# use already resolved env
+cp $APP_DIR/strong_resolved.yaml .
+
+sed -i 's/conda_env.yaml/strong_resolved.yaml/g' ./install_STRONG.sh
 # conda/mamba is not in the path for root, so I need to add it
-#./install_STRONG.sh
+./install_STRONG.sh
+
+# fix STRONG for latest more up to date snakemake
+sed -i 's/base_params.extend(\["-p", "-r", "--verbose"\])/base_params.extend(\["-p", "--verbose"\])/g' ./bin/STRONG
+
+# fix R install for plot_scg_tree.R
+sed -i -E '/attr\(p2,\s*["'\''"]mapping["'\''"]\)\s*<-\s*mapping/d' ./SnakeNest/scripts/results/plot_scg_tree.R
+sed -i '/library(ggplot2)/a \
+# ggplot2>=4.0 compat: ggtree still calls is.waive(); define it if missing\nif (!exists("is.waive")) is.waive <- function(x) inherits(x, "waiver")' ./SnakeNest/scripts/results/plot_scg_tree.R
+
+# fix os.stat during dag evaluation....
+FILE=SnakeNest/HeavyLifting.snake
+sed -i '/os\.stat("subgraphs\/bin_merged\/bins_to_merge\.tsv").st_size/i\    if os.path.exists("subgraphs/bin_merged/bins_to_merge.tsv"):' "$FILE"
+sed -i '/os\.stat("subgraphs\/bin_merged\/bins_to_merge\.tsv").st_size/s/^/    /' "$FILE"
+sed -i '/os\.stat("subgraphs\/bin_merged\/bins_to_merge\.tsv").st_size/{n; s/^/    /}' "$FILE"
+
+# fix STRONG's Filter_Cogs.py for more recent numpy
+sed -i '/import sys/a import warnings' SnakeNest/scripts/Filter_Cogs.py
+sed -i 's/np.warnings/warnings/g' SnakeNest/scripts/Filter_Cogs.py
+
+# fix spades install for python 3.12
+sed -i 's/collections\.Hashable/collections.abc.Hashable/g' ./SPAdes/assembler/share/spades/pyyaml3/*.py
+
+# deal with double samples in AD_small generating a bug
+sed -i '/detect_reads(/a SAMPLE_READS = {k:[v for v in val if "trimmed" not in v if "Filtered" not in v] for k,val in SAMPLE_READS.items()}' $HOME2/repos/STRONG/SnakeNest/Common.snake
+
+# fix Bayespath numpy type
+sed -i -E 's/\bnp\.float\b/float/g' /var/lib/miniforge/envs/STRONG/lib/python3.12/site-packages/BayesPaths/UtilsFunctions.py
+# fix Bayespath pygam .A 
+sed -i 's/\.A/.toarray()/g' \
+/var/lib/miniforge/envs/STRONG/lib/python3.12/site-packages/pygam/*.py
+
+
 
 # trait inference
 mamba env create -f $HOME2/repos/Ebame/conda_env_Trait_inference.yaml
@@ -74,7 +118,6 @@ mamba env create -f $HOME2/repos/Ebame/conda_env_Assembly.yaml
 . $CONDA/deactivate
 . $CONDA/activate LongReads
 
-
 # metamdbg
 #conda env config vars set CPATH=${CONDA_PREFIX}/include:${CPATH}
 #. $CONDA/deactivate
@@ -104,15 +147,15 @@ checkm data setRoot /ifb/data/public/teachdata/ebame/metagenomics-bining/checkm_
 # -----------Seb Tuto --------------
 # -------------------------------------
 
-#. $CONDA/deactivate
-#. $CONDA/activate STRONG
-#mamba install -c bioconda checkm-genome megahit bwa -y
+. $CONDA/deactivate
+. $CONDA/activate STRONG
+mamba install -c bioconda checkm-genome megahit bwa -y
 
 # add checkm database
-#checkm data setRoot /ifb/data/public/teachdata/ebame/metagenomics-bining/checkm_data_2015_01_16
+# checkm data setRoot /ifb/data/public/teachdata/ebame/metagenomics-bining/checkm_data_2015_01_16
 
 # same but with gtdb
-#conda env config vars set GTDBTK_DATA_PATH=/ifb/data/public/teachdata/ebame/metagenomics-bining/gtdb/release220
+conda env config vars set GTDBTK_DATA_PATH=/ifb/data/public/teachdata/ebame/metagenomics-bining/gtdb/release220
 
 # -------------------------------------
 # ---------- modify .bashrc -----------
@@ -130,8 +173,8 @@ echo -e "\n\n #------ guppy path -------">>$HOME2/.bashrc
 echo -e 'export PATH=~/repos/ont-guppy-cpu/bin:$PATH'>>$HOME2/.bashrc
 
 # STRONG install
-#echo -e "\n\n #------ STRONG path -------">>$HOME2/.bashrc 
-#echo -e 'export PATH=~/repos/STRONG/bin:$PATH '>>$HOME2/.bashrc
+echo -e "\n\n #------ STRONG path -------">>$HOME2/.bashrc 
+echo -e 'export PATH=~/repos/STRONG/bin:$PATH '>>$HOME2/.bashrc
 
 #  add repos scripts 
 echo -e "\n\n #------ Ebame -------">>$HOME2/.bashrc
@@ -154,9 +197,6 @@ echo -e "\n\n #------ Dorado path -------">>$HOME2/.bashrc
 echo -e 'export PATH=~/repos/dorado-0.8.1-linux-x64/bin:$PATH'>>$HOME2/.bashrc
 
 
-echo -e "\n\n #------ Checkm2 database path -------">>$HOME2/.bashrc 
-echo -e 'export CHECKM2DB=/ifb/data/public/teachdata/ebame/metagenomics-assembly/CheckM2_database/uniref100.KO.1.dmnd:$CHECKM2DB'>>$HOME2/.bashrc
-
 # metaMDBG install
 #echo -e "\n\n #------ MetaMDBG path -------">>$HOME2/.bashrc 
 #echo -e 'export PATH=~/repos/metaMDBG/build/bin:$PATH'>>$HOME2/.bashrc
@@ -168,6 +208,7 @@ echo -e 'export CHECKM2DB=/ifb/data/public/teachdata/ebame/metagenomics-assembly
 # create a project folder corresponding to 
 ln -s /ifb/data/mydatalocal $HOME2/Projects
 ln -s /ifb/data/public/teachdata/ebame $HOME2/Datasets
+rm $HOME2/data
 
 # --------------------------------------------
 # ------------ fix rigths --------------------
@@ -181,8 +222,10 @@ chown -R 1000:1000 /var/lib/miniforge
 # --------------------------------------------
 # -------- sily hostname ---------------------
 # --------------------------------------------
+# new approached, this is called here-document
+cat >> $HOME2/.bashrc <<'BASHRC_BALISE'
 
-hostnames=("saperlipopette" "sacrebleu" "mouhahaha" "prepare_for_AI_uprising" "this_is_the_bestest_tuto" "chubbybunny" "sillygoose" "badger_badger_badger_mushroom" "ebame_forever" "church_of_anvio" "zippydoodah" "metagnomonique" "bubblesnuggle" "whatchamacallit" "gobbleggidillygook" "wobbledeewoodoo" "tigglewaggle" "zapyzippity" "make_iuem_great_again" "Mr_Tux_president" "bamboozle_bop" "squigglewiggle" "flapdoodle" "fuzzyfizzle" "snickerdoodle" "boopityboop" "oodlesofnoodles" "supercalifragiawesome" "quackityquack" "beepboopbeep" "lollygagging_legion" "spiffytastic")
+hostnames=("saperlipopette" "sacrebleu" "mouhahaha" "prepare_for_AI_uprising" "this_is_the_bestest_tuto" "chubbybunny" "sillygoose" "badger_badger_badger_mushroom" "ebame_forever" "church_of_anvio" "zippydoodah" "metagnomonique" "bubblesnuggle" "whatchamacallit" "gobbleggidillygook" "wobbledeewoodoo" "tigglewaggle" "zapyzippity" "make_iuem_great_again" "Mr_Tux_president" "bamboozle_bop" "squigglewiggle" "flapdoodle" "fuzzyfizzle" "snickerdoodle" "boopityboop" "supercalifragiawesome" "quackityquack" "beepboopbeep" )
 
 # Select a random index from the array
 random_index=$((RANDOM % ${#hostnames[@]}))
@@ -191,6 +234,7 @@ random_hostname="${hostnames[random_index]}"
 echo $random_hostname
 
 # Set the PS1 prompt with the random hostname
-new_PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@$random_hostname\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
-echo "PS1='$new_PS1'">>$HOME2/.bashrc
+PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@${random_hostname}\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$"
+
+BASHRC_BALISE
 
