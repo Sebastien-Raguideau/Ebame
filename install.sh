@@ -40,10 +40,10 @@ sudo apt-get -y install bandage gzip unzip feh evince ncbi-blast+
 # ------ byobu fixes -----------
 # ------------------------------
 # fix conda within byobu
-printf 'set -g default-shell /bin/bash\nset -g default-command "bash -l"\n' >> ~/.byobu/.tmux.conf
+printf 'set -g default-shell /bin/bash\nset -g default-command "bash -l"\n' >> $HOME2/.byobu/.tmux.conf
 
 #fix X forwarding within byobu
-printf 'set -g update-environment "DISPLAY SSH_AUTH_SOCK SSH_ASKPASS SSH_CONNECTION XAUTHORITY"' >> ~/.byobu/.tmux.conf
+printf 'set -g update-environment "DISPLAY SSH_AUTH_SOCK SSH_ASKPASS SSH_CONNECTION XAUTHORITY"' >> $HOME2/.byobu/.tmux.conf
 
 # ------------------------------
 # ----- Chris tuto -------------
@@ -167,6 +167,9 @@ sed -i "s/alias ll='ls -alF'/alias ll='ls -alhF'/g" $HOME2/.bashrc
 # add multitude of export to .bashrc
 echo -e "\n\n#--------------------------------------\n#------ export path to repos/db -------\n#--------------------------------------">>$HOME2/.bashrc
 
+# export DATA in the path
+echo -e  'export DATA=/ifb/data/public/teachdata/ebame/metagenomics-bining/Quince_datasets'
+
 # ---------- add things in path --------------
 # guppy install
 echo -e "\n\n #------ guppy path -------">>$HOME2/.bashrc 
@@ -225,7 +228,7 @@ chown -R 1000:1000 /var/lib/miniforge
 # new approached, this is called here-document
 cat >> $HOME2/.bashrc <<'BASHRC_BALISE'
 
-hostnames=("saperlipopette" "sacrebleu" "mouhahaha" "prepare_for_AI_uprising" "this_is_the_bestest_tuto" "chubbybunny" "sillygoose" "badger_badger_badger_mushroom" "ebame_forever" "church_of_anvio" "zippydoodah" "metagnomonique" "bubblesnuggle" "whatchamacallit" "gobbleggidillygook" "wobbledeewoodoo" "tigglewaggle" "zapyzippity" "make_iuem_great_again" "Mr_Tux_president" "bamboozle_bop" "squigglewiggle" "flapdoodle" "fuzzyfizzle" "snickerdoodle" "boopityboop" "supercalifragiawesome" "quackityquack" "beepboopbeep" )
+hostnames=("saperlipopette" "sacrebleu" "mouhahaha" "prepare_for_AI_uprising" "this_is_the_bestest_tuto" "chubbybunny" "sillygoose" "badger_badger_badger_mushroom" "ebame_forever" "church_of_anvio" "metagnomonique" "wobbledeewoodoo" "tigglewaggle" "zapyzippity" "make_iuem_great_again" "Mr_Tux_president" "metaMDBG_always_wins" "beepboopbeep" "all_your_base_are_belong_to_us" "↑↑↓↓← → ← → BA" "snakemake_is_life")
 
 # Select a random index from the array
 random_index=$((RANDOM % ${#hostnames[@]}))
@@ -234,7 +237,7 @@ random_hostname="${hostnames[random_index]}"
 echo $random_hostname
 
 # Set the PS1 prompt with the random hostname
-PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@${random_hostname}\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$"
+PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@${random_hostname}\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
 
 BASHRC_BALISE
 
