@@ -449,7 +449,7 @@ evince X.pdf
 #### Bin_2F_maxPath.tsv
 ```
 grep "COG0060" Bin_2F_maxPath.tsv | sed 's/COG0060_//g' > Bin_2F_maxPath_COG0060.tsv
-python ~/repos/STRONG/BayesPaths/scripts/Add_color.py ../subgraphs/bin_merged/Bin_2/simplif/COG0060.gfa Bin_2F_maxPath_COG0060.tsv > COG0060_color.gfa
+python ~/repos/STRONG/BayesPaths/scripts/Add_color.py ../../subgraphs/bin_merged/Bin_2/simplif/COG0060.gfa Bin_2F_maxPath_COG0060.tsv > COG0060_color.gfa
 ```
 
 This can be visualised in Bandage on your local machine may be easier
