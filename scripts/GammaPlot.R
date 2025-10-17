@@ -3,7 +3,7 @@ library(reshape2)
 
 rm(list=ls())
 
-Gamma <- read.csv("Bin_2_smallF_Intensity.csv",header=TRUE,row.names=1)
+Gamma <- read.csv("Bin_2F_Intensity.csv",header=TRUE,row.names=1)
 Gamma <- t(Gamma)
 GammaP <- Gamma/rowSums(Gamma)
 
