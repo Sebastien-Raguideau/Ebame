@@ -1,0 +1,34 @@
+name: LongReads
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - samtools==1.6
+  - biopython==1.81
+  - longshot==0.4.1
+  - minimap2==2.28
+  - mummer4==4.0.0rc1
+  - networkx==2.5
+  - numpy==1.24.4
+  - pygraphviz==1.11
+  - pysam==0.22.0
+  - python==3.10
+  - pyvcf==0.6.8
+  - wtdbg==2.5
+  - canu==2.2
+  - filtlong==0.2.1
+  - seqkit==2.5.1
+  - kraken2==2.1.3
+  - krona==2.8.1
+  - racon==1.5.0
+  - miniasm==0.3
+  - flye==2.9.2
+  - r-base==4.3.1
+  - hifiasm_meta==hamtv0.3.1
+  - genomad==1.7.0
+  - checkm-genome
+  - drep
+  - gtdbtk
+  - remag
+  - metabat2
