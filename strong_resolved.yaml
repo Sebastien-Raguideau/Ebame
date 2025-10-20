@@ -12,6 +12,7 @@ dependencies:
   - annotated-types=0.7.0=pyhd8ed1ab_1
   - appdirs=1.4.4=pyhd8ed1ab_1
   - argparse-dataclass=2.0.0=pyhd8ed1ab_0
+  - attmap=0.13.2=pyhd8ed1ab_0
   - attr=2.5.2=h39aace5_0
   - attrs=25.4.0=pyh71513ae_0
   - bam-readcount=1.0.1=h43eeafb_2
@@ -97,7 +98,7 @@ dependencies:
   - gsl=2.7=he838d99_0
   - gst-plugins-base=1.24.11=h651a532_0
   - gstreamer=1.24.11=hc37bda9_0
-  - gtdbtk=1.7.0=pyhdfd78af_0
+  - gtdbtk=2.5.2=pyh1f0d9b5_0
   - gxx_impl_linux-64=15.2.0=h54ccb8d_7
   - h2=4.3.0=pyhcf101f3_0
   - harfbuzz=12.1.0=h15599e2_0
@@ -240,8 +241,7 @@ dependencies:
   - pathos=0.3.4=pyhd8ed1ab_0
   - patsy=1.0.1=pyhd8ed1ab_1
   - pcre2=10.46=h1321c63_0
-  - pephubclient=0.4.4=pyhd8ed1ab_1
-  - peppy=0.40.7=pyhd8ed1ab_2
+  - peppy=0.40.7=pyhd8ed1ab_0
   - perl=5.32.1=7_hd590300_perl5
   - perl-archive-tar=3.04=pl5321hdfd78af_0
   - perl-carp=1.50=pl5321hd8ed1ab_0
@@ -282,7 +282,7 @@ dependencies:
   - pulp=2.8.0=py312hd0750ca_3
   - pulseaudio-client=17.0=h9a8bead_2
   - pycparser=2.22=pyh29332c3_1
-  - pydantic=2.12.2=pyh3cfb1c2_0
+  - pydantic=1.10.22=pyh3cfb1c2_0
   - pydantic-core=2.41.4=py312h868fb18_0
   - pygam=0.9.1=pyhd8ed1ab_1
   - pygments=2.19.2=pyhd8ed1ab_0
@@ -383,6 +383,7 @@ dependencies:
   - shellingham=1.5.4=pyhd8ed1ab_1
   - sip=6.10.0=py312h1289d80_1
   - six=1.17.0=pyhe01879c_1
+  - skani=0.3.1=ha6fb395_0
   - slack-sdk=3.37.0=pyhd8ed1ab_0
   - slack_sdk=3.37.0=hd8ed1ab_0
   - smart_open=7.3.1=pyhcf101f3_0
@@ -457,4 +458,6 @@ dependencies:
   - pip:
       - bayespaths==0.1
       - desman==2.1.1
-prefix: /var/lib/miniforge/envs/STRONG_test
+variables:
+  GTDBTK_DATA_PATH: /ifb/data/public/teachdata/ebame/metagenomics-bining/gtdb/release220
+prefix: /var/lib/miniforge/envs/STRONG
