@@ -168,7 +168,7 @@ sed -i "s/alias ll='ls -alF'/alias ll='ls -alhF'/g" $HOME2/.bashrc
 echo -e "\n\n#--------------------------------------\n#------ export path to repos/db -------\n#--------------------------------------">>$HOME2/.bashrc
 
 # export DATA in the path
-echo -e  'export DATA=/ifb/data/public/teachdata/ebame/metagenomics-bining/Quince_datasets'
+echo -e  'export DATA=/ifb/data/public/teachdata/ebame/metagenomics-bining/Quince_datasets' >>$HOME2/.bashrc
 
 # ---------- add things in path --------------
 # guppy install
