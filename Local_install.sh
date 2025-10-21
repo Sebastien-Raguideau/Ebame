@@ -1,16 +1,12 @@
 #!/usr/bin/env bash
 
-# define home
-export HOME2=/home/ubuntu
-export CONDA=/var/lib/miniforge/bin
-export APP_DIR=/ifb/apprepo/Ebame-quince
+export HOME2=$HOME/EBAME
+export CONDA=$CONDA_PREFIX/bin
 
-# This fuck over conda if not unset
-unset PYTHONPATH
-export PATH=$CONDA:$PATH
+mkdir -p $HOME2/repos
+cd $HOME2/repos
 
-# for conda install
-ulimit -n 63852
+
 
 # ------------------------------
 # ----- get all repos ---------- 
@@ -24,7 +20,7 @@ git clone --recurse-submodules https://github.com/chrisquince/STRONG.git
 git clone https://github.com/chrisquince/genephene.git
 git clone https://github.com/rvicedomini/strainberry.git
 git clone https://github.com/kkpsiren/PlasmidNet.git
-#git clone https://github.com/GaetanBenoitDev/metaMDBG.git
+
 
 # ------------------------------
 # ----- all sudo installs ------
@@ -36,14 +32,6 @@ sudo apt-get -y install libbz2-dev libreadline-dev cmake g++ zlib1g zlib1g-dev
 # bandage and utils
 sudo apt-get -y install bandage gzip unzip feh evince ncbi-blast+
 
-# ------------------------------
-# ------ byobu fixes -----------
-# ------------------------------
-# fix conda within byobu
-printf 'set -g default-shell /bin/bash\nset -g default-command "bash -l"\n' >> $HOME2/.byobu/.tmux.conf
-
-#fix X forwarding within byobu
-printf 'set -g update-environment "DISPLAY SSH_AUTH_SOCK SSH_ASKPASS SSH_CONNECTION XAUTHORITY"' >> $HOME2/.byobu/.tmux.conf
 
 # ------------------------------
 # ----- Chris tuto -------------
@@ -51,7 +39,7 @@ printf 'set -g update-environment "DISPLAY SSH_AUTH_SOCK SSH_ASKPASS SSH_CONNECT
 cd $HOME2/repos/STRONG
 
 # use already resolved env
-cp $APP_DIR/strong_resolved.yaml .
+cp $repos/Ebame/strong_resolved.yaml .
 
 sed -i 's/conda_env.yaml/strong_resolved.yaml/g' ./install_STRONG.sh
 # conda/mamba is not in the path for root, so I need to add it
@@ -87,8 +75,6 @@ sed -i -E 's/\bnp\.float\b/float/g' /var/lib/miniforge/envs/STRONG/lib/python3.1
 sed -i 's/\.A/.toarray()/g' \
 /var/lib/miniforge/envs/STRONG/lib/python3.12/site-packages/pygam/*.py
 
-
-
 # trait inference
 mamba env create -f $HOME2/repos/Ebame/conda_env_Trait_inference.yaml
 
@@ -97,20 +83,16 @@ mamba create -c bioconda --name plasmidnet python=3.8 prodigal -y
 . $CONDA/activate plasmidnet
 pip install -r $HOME2/repos/PlasmidNet/requirements.txt
 
+
 # -------------------------------------
 # -----------LongRead Tuto --------------
 # -------------------------------------
-# # --- guppy ---
-# cd $HOME2/repos
-# wget https://europe.oxfordnanoportal.com/software/analysis/ont-guppy-cpu_5.0.16_linux64.tar.gz
-# tar -xvzf ont-guppy-cpu_5.0.16_linux64.tar.gz && mv ont-guppy-cpu_5.0.16_linux64.tar.gz ont-guppy-cpu/
-
 # --- dorado ---
 cd $HOME2/repos
 wget https://cdn.oxfordnanoportal.com/software/analysis/dorado-0.8.1-linux-x64.tar.gz
 tar -xvf dorado-0.8.1-linux-x64.tar.gz
 
-# --- everything else ---
+
 mamba env create -f $HOME2/repos/Ebame/conda_env_LongReads.yaml
 mamba env create -f $HOME2/repos/Ebame/conda_env_Assembly.yaml
 
@@ -118,30 +100,12 @@ mamba env create -f $HOME2/repos/Ebame/conda_env_Assembly.yaml
 . $CONDA/deactivate
 . $CONDA/activate LongReads
 
-# metamdbg
-#conda env config vars set CPATH=${CONDA_PREFIX}/include:${CPATH}
-#. $CONDA/deactivate
-#. $CONDA/activate LongReads
-
-#cd $HOME2/repos/metaMDBG && mkdir build && cd build
-#cmake .. && make -j3
-
 # krona
 rm -rf $CONDA/envs/LongReads/opt/krona/taxonomy
 mkdir $HOME2/repos/krona_taxonomy
 ln -s $HOME2/repos/krona_taxonomy $CONDA/envs/LongReads/opt/krona/taxonomy
 ktUpdateTaxonomy.sh
 
-# same with gtdb
-conda env config vars set GTDBTK_DATA_PATH=/ifb/data/public/teachdata/ebame/metagenomics-bining/gtdb/release220
-
-# checkm
-checkm data setRoot /ifb/data/public/teachdata/ebame/metagenomics-bining/checkm_data_2015_01_16
-
-# --- Pavian ---
-#source /var/lib/miniconda3/bin/activate LongReads
-#R -e 'if (!require(remotes)) { install.packages("remotes",repos="https://cran.irsn.fr") }
-#remotes::install_github("fbreitwieser/pavian")'
 
 # -------------------------------------
 # -----------Seb Tuto --------------
@@ -157,9 +121,11 @@ mamba install -c bioconda checkm-genome megahit bwa -y
 # same but with gtdb
 conda env config vars set GTDBTK_DATA_PATH=/ifb/data/public/teachdata/ebame/metagenomics-bining/gtdb/release220
 
+
 # -------------------------------------
 # ---------- modify .bashrc -----------
 # -------------------------------------
+cp $HOME/.bashrc $HOME2/.bashrc
 
 # add -h to ll 
 sed -i "s/alias ll='ls -alF'/alias ll='ls -alhF'/g" $HOME2/.bashrc 
@@ -246,4 +212,28 @@ else
 fi
 
 BASHRC_BALISE
+
+
+# ------------------------------
+# ----- get all Datasets ------- 
+# ------------------------------
+mkdir -p $HOME2/Datasets
+cd $HOME2/Datasets
+
+# BINNING + STRONG
+curl -LJO "https://biosphere-s3.france-bioinformatique.fr/public/ebame/metagenomics-QR/AD_small.tar.gz" && tar -xvf AD_small.tar.gz && rm AD_small.tar.gz
+curl -LJO "https://biosphere-s3.france-bioinformatique.fr/public/ebame/metagenomics-QR/rpsblast_cog_db.tar.gz" && tar -xvf rpsblast_cog_db.tar.gz && rpsblast_cog_db.tar.gz
+
+
+# LONGREAD Gaetan
+curl -LJO "https://biosphere-s3.france-bioinformatique.fr/public/ebame/metagenomics-QR/SRR13128014_subreads.fastq.gz"
+curl -LJO "https://biosphere-s3.france-bioinformatique.fr/public/ebame/metagenomics-QR/SRR17913199_1.fastq.gz"
+curl -LJO "https://biosphere-s3.france-bioinformatique.fr/public/ebame/metagenomics-QR/SRR17913200_1.fastq.gz"
+
+# LONGREAD rob tut
+curl -LJO "https://biosphere-s3.france-bioinformatique.fr/public/ebame/metagenomics-QR/GutMock1.fastq.gz"
+curl -LJO "https://biosphere-s3.france-bioinformatique.fr/public/ebame/metagenomics-QR/fast5_subset.tar.gz"
+
+
+source $HOME2/.bashrc
 
