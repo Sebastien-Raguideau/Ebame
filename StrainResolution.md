@@ -48,7 +48,7 @@ Try activating the relevant conda environment :
 **Databases**
 
  - [COG database](ftp://ftp.ncbi.nlm.nih.gov/pub/mmdb/cdd/little_endian) , you will find it installed at
-    `$DATA/../rpsblast_cog_db`
+    `$DATA/rpsblast_cog_db`
 
  - (optional) [GTDB](https://pubmed.ncbi.nlm.nih.gov/30148503/) , used
    with gtdb-tk, (77Gb) too much ram needed and execution too slow for this present tutorial.
@@ -105,11 +105,6 @@ ln -s ~/repos/Ebame/tmp/preruns/STRONG STRONG_prerun
 
 ### Launching STRONG :  config file
 To use STRONG, you need to create a config file which is  used to store the parameters of a run. It is divided into  sections with parts corresponding to the different steps of the pipeline.
-
-First minimise that pesky prompt!
-```
-PS1='\u:\W\$ ' 
-```
 
 Let's copy the config file template:
 
