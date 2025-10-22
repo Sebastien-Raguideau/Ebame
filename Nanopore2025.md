@@ -33,7 +33,7 @@ Sequencing data is located:
 /ifb/data/public/teachdata/ebame/metagenomics-QR/fast5_subset.tar.gz
 
 Kraken2 database is located:
-/home/ubuntu/data/public/kraken2/k2_standard_08gb_20220926
+***/home/ubuntu/data/public/kraken2/k2_standard_08gb_20220926*** problem
 
 ## Tutorial
 ### Basecalling
@@ -43,12 +43,17 @@ Nanopore sequencing results in fast5/pod5 files that contain raw signal data ter
 ## Need to activate LongReads environment
 ```
 conda activate LongReads
-export DATA=/ifb/data/public/teachdata/ebame/metagenomics-bining/Quince_datasets/ #export data variable
+export DATA=/ifb/data/public/teachdata/ebame/metagenomics-QR/
 ```
 Navigate to repos/Ebame and pull the most recent repo via
 
 ```
 git pull
+```
+
+Check $DATA points at:
+```
+/ifb/data/public/teachdata/ebame/metagenomics-QR/
 ```
 
 It is important to store all data and outputs in directories contained within the mounted volume in `~/Projects` to insure you do not run out of space on your VMs.
@@ -60,15 +65,12 @@ mkdir -p ~/Projects/LongReads
 cd ~/Projects/LongReads
 
 cp $DATA/fast5_subset.tar.gz .
-cp repos/Ebame/tmp/preruns/datasets/pod5_downsample.pod5 .
+cp ~/repos/Ebame/tmp/preruns/datasets/pod5_downsample.pod5 .
 tar -xvzf fast5_subset.tar.gz
 rm fast5_subset.tar.gz
 ```
 
-Check $DATA points at:
-```
-/ifb/data/public/teachdata/ebame/metagenomics-QR/
-```
+
 
 |Flag / command            | Description               | 
 | -------------------------|:-------------------------:| 
