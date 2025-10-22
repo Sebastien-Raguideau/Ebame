@@ -146,10 +146,11 @@ Optional arguments:
 <details><summary>SPOILER: Click for basecalling code reveal</summary>
 <p>
 
-### Dorado basecalling output in fastq (sup V.5 transformer model - very slow [)
-
 dorado basecaller sup --emit-fastq --min-qscore 10 path/to/pod5s > path/to/output.fastq
 
+</details>
+
+### Dorado basecalling output in fastq (sup V.5 transformer model - very slow [)
 
 |Flag / command            | Description               | 
 | -------------------------|:-------------------------:| 
