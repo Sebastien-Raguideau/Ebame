@@ -138,30 +138,9 @@ Optional arguments:
   --junc-bed                	Optional file with gene annotations in the BED12 format (aka 12-column BED), or intron positions in 5-column BED. With this option, minimap2 prefers splicing in annotations.
   --mm2-preset              	minimap2 preset for indexing and mapping. Alias for the -x option in minimap2. [default: "lr:hq"]
 
-Guppy Usage:
-
-# With config file:
-guppy_basecaller -r -i <input dir> -s <save path> -c <config file> [options]
-
-#Fast basecalling config file: 
-dna_r9.4.1_450bps_fast.cfg
-#High accuracy config file:  
-dna_r9.4.1_450bps_hac.cfg
-
-#With flowcell and kit name:
-guppy_basecaller -i <input path> -s <save path> --flowcell <flowcell name>
-    --kit <kit name>
-
-#List supported flowcells and kits:
-guppy_basecaller --print_workflows
  
 
 ```
-Guppy can be run by specifiying kit and flowcell OR config file.
-
-NB: Try `guppy_basecaller -h` for help. 
-
-Samples for guppy basecalling were sequenced with **LSK-109 kit** (ligation sequencing kit) with **flow MIN 106** flowcell.
 
 ### Code Example
 <details><summary>SPOILER: Click for basecalling code reveal</summary>
@@ -169,7 +148,7 @@ Samples for guppy basecalling were sequenced with **LSK-109 kit** (ligation sequ
 
 ### Dorado basecalling output in fastq (sup V.5 transformer model - very slow [)
 
-dorado basecaller sup --emit-fastq --min-qscore 10 path/to/pod5s > path/to/output.fastq
+dorado basecaller sup --emit-fastq --min-qscore 10 pod5_downsample.pod5 > test.fastq
 
 |Flag / command            | Description               | 
 | -------------------------|:-------------------------:| 
@@ -180,7 +159,7 @@ dorado basecaller sup --emit-fastq --min-qscore 10 path/to/pod5s > path/to/outpu
 
 ### Dorado modified basecalling (unaligned bam file output)
 
-dorado basecaller --min-qscore 10 hac,6mA Projects/pod5_downsample.pod5 > Projects/calls.bam
+dorado basecaller --min-qscore 10 hac,6mA pod5_downsample.pod5 > calls.bam
 
 |Flag / command            | Description               | 
 | -------------------------|:-------------------------:| 
@@ -194,50 +173,10 @@ dorado basecaller --min-qscore 10 hac,6mA Projects/pod5_downsample.pod5 > Projec
 View bam file structure with modified bases.
 
 ```
-samtools view output_file.bam | head
+samtools view calls.bam | head
 ```
 Modified bases can be further processed with MODKIT. Additional information on SAM tags cab be found in the samtools [documentation] (https://samtools.github.io/hts-specs/SAMtags.pdf)for MM and ML tags.
 
-### Guppy fast basecalling (optional)
-
-```
-guppy_basecaller -r --input_path fast5_raw --save_path raw_fastq --min_qscore 7 --cpu_threads_per_caller 4 --num_callers 2 --config dna_r9.4.1_450bps_fast.cfg -q 10 
-```
-|Flag / command            | Description               | 
-| -------------------------|:-------------------------:| 
-| `guppy_basecaller`       |call guppy.                | 
-| `-r`                     |recursive                  | 
-| `-input_path`            |path/to/fast5/dir          |
-| `--save_path`            |path/to/fastq/output/dir   |
-| `--min_qscore`           |mean min quality score     |
-| `-cpu_threads_per_caller`|cpu threads                |
-| `-num_callers`           |parallisation              |
-| `--config`               |Fast config file           |
-| `-q 10`                  |10 reads per fastq file    |
-  
-### Guppy high accuracy basecalling (optional)
-  
-```
-guppy_basecaller -r --input_path fast5_raw --save_path raw_fastq_HQ --config dna_r9.4.1_450bps_hac.cfg --min_qscore 7 --cpu_threads_per_caller 4 --num_callers 2 -q 10 
-```
-|Flag / command            | Description               | 
-| -------------------------|:-------------------------:| 
-| `--config`               |High accuracy config file  |
-  
-  
-</p>
-</details>
-
-
-When working with post processing basecalling it is usefull to use the `screen` command. This allows you to run the command in the background by detaching from the current process (TMUX also available). To detach from a screen, us `ctrl + A D`. To resume a screen, use the command `screen -r`. To close a screen use `exit` within the screen environment. `conda init` may be required to run `conda LongReads` in screen for the first use.
-
-(optional) Once detached from a screen running 'guppy_basecaller', you can count the total number of reads being written in real time by changing to the `pass` directory in the raw_fastq dir where the fastq files are being written and implementing the following bash one-liner. Use `Ctr c` to exit `watch`.
-
-```
-watch -n 5 'find . -name "*.fastq" -exec grep 'read=' -c {} \; | paste -sd+ | bc'
-```
-
-Cancel the Guppy_basecaller and / or dorado basecaller commands in screen before continuing with this tutorial.
 
 ### Observations
 
