@@ -150,6 +150,8 @@ Optional arguments:
 
 dorado basecaller sup --emit-fastq --min-qscore 10 pod5_downsample.pod5 > test.fastq
 
+</p>
+
 |Flag / command            | Description               | 
 | -------------------------|:-------------------------:| 
 | `dorado`                 |call dorado                | 
