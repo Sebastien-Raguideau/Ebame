@@ -144,13 +144,13 @@ Optional arguments:
 
 ### Code Example
 <details><summary>SPOILER: Click for basecalling code reveal</summary>
-<p>
+
 
 ### Dorado basecalling output in fastq (sup V.5 transformer model - very slow [)
 
 dorado basecaller sup --emit-fastq --min-qscore 10 pod5_downsample.pod5 > test.fastq
 
-</p>
+<p>
 
 |Flag / command            | Description               | 
 | -------------------------|:-------------------------:| 
