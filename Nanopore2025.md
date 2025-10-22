@@ -59,10 +59,15 @@ Get the pod5/fast5 reads into the `Projects` dir on our VM:
 mkdir -p ~/Projects/LongReads
 cd ~/Projects/LongReads
 
-cp $DATA/Rob_data/fast5_subset.tar.gz .
+cp $DATA/fast5_subset.tar.gz .
 cp repos/Ebame/tmp/preruns/datasets/pod5_downsample.pod5 .
 tar -xvzf fast5_subset.tar.gz
 rm fast5_subset.tar.gz
+```
+
+Check $DATA points at:
+```
+/ifb/data/public/teachdata/ebame/metagenomics-QR/
 ```
 
 |Flag / command            | Description               | 
