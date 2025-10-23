@@ -12,13 +12,13 @@ If this is not the case yet remember to activate the correct conda env:
 We are going to work in the following directory:
 
 ```bash
-mkdir -p ~/data/mydatalocal/Assembly
-cd ~/data/mydatalocal/Assembly
+mkdir -p ~/Projects/Assembly
+cd ~/Projects/Assembly
 ```
 
 Copy the pre-runs folder in your working directory:
 ```bash
-cp -r ~/repos/Ebame/tmp/preruns ~/data/mydatalocal/Assembly
+cp -r ~/repos/Ebame/tmp/preruns ~/Projects/Assembly
 ```
 
 ## Dataset
@@ -35,7 +35,7 @@ From the stats, try to guess which one is the Hifi, ONT_R9 and ONT_R10.
 seqkit stats --all $DATA/SRR13128014_subreads.fastq.gz
 ```
 
-Pre-runs for seqkit are located here: ~/data/mydatalocal/Assembly/preruns/datasets/
+Pre-runs for seqkit are located here: ~/Projects/Assembly/preruns/datasets/
 
 </p>
 </details>
@@ -79,10 +79,10 @@ flye -h
 ```bash
 
 ONT:
-flye --nano-hq ~/data/public/teachdata/ebame/metagenomics-assembly/SRR17913199_1.fastq.gz --out-dir ~/data/mydatalocal/Assembly/metaflye_asm_ont --threads 4 --meta
+flye --nano-hq $DATA/SRR17913199_1.fastq.gz --out-dir ~/Projects/Assembly/metaflye_asm_ont --threads 4 --meta
 
 Hifi:
-flye --pacbio-hifi ~/data/public/teachdata/ebame/metagenomics-assembly/SRR13128014_subreads.fastq.gz --out-dir ~/data/mydatalocal/Assembly/metaflye_asm_hifi --threads 4 --meta
+flye --pacbio-hifi $DATA/SRR13128014_subreads.fastq.gz --out-dir ~/Projects/Assembly/metaflye_asm_hifi --threads 4 --meta
 ```
 </p>
 </details>
@@ -108,10 +108,10 @@ metaMDBG asm -h
 ```bash
 
 Hifi:
-metaMDBG asm --in-hifi ~/data/public/teachdata/ebame/metagenomics-assembly/SRR13128014_subreads.fastq.gz --out-dir ~/data/mydatalocal/Assembly/metaMDBG_asm_hifi --threads 4
+metaMDBG asm --in-hifi $DATA/SRR13128014_subreads.fastq.gz --out-dir ~/Projects/Assembly/metaMDBG_asm_hifi --threads 4
 
 ONT:
-metaMDBG asm --in-ont ~/data/public/teachdata/ebame/metagenomics-assembly/SRR17913199_1.fastq.gz --out-dir ~/data/mydatalocal/Assembly/metaMDBG_asm_ont --threads 4
+metaMDBG asm --in-ont $DATA/SRR17913199_1.fastq.gz --out-dir ~/Projects/Assembly/metaMDBG_asm_ont --threads 4
 
 ```
 </p>
@@ -138,10 +138,10 @@ myloasm -h
 ```bash
 
 ONT:
-myloasm --threads 4 --nano-r10 ~/data/public/teachdata/ebame/metagenomics-assembly/SRR17913199_1.fastq.gz --output-dir ~/data/mydatalocal/Assembly/myloasm_asm_ont
+myloasm --threads 4 --nano-r10 $DATA/SRR17913199_1.fastq.gz --output-dir ~/Projects/Assembly/myloasm_asm_ont
 
 Hifi:
-myloasm --threads 4  --hifi ~/data/public/teachdata/ebame/metagenomics-assembly/SRR13128014_subreads.fastq.gz --output-dir ~/data/mydatalocal/Assembly/myloasm_asm_hifi
+myloasm --threads 4  --hifi $DATA/SRR13128014_subreads.fastq.gz --output-dir ~/Projects/Assembly/myloasm_asm_hifi
 ```
 </p>
 </details>
@@ -154,10 +154,10 @@ Assembly takes a lot of time, so instead lets comment on the pre-run version.
 
 ```bash
 #Metaflye results on ONT
-ls ~/data/mydatalocal/Assembly/preruns/assembly/SRR17913199_ONT_Q20/metaflye/
+ls ~/Projects/Assembly/preruns/assembly/SRR17913199_ONT_Q20/metaflye/
 
 #Metaflye results on HiFi
-ls ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/metaflye/
+ls ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/metaflye/
 ```
 
 -->  look at assembly statistics
@@ -168,14 +168,14 @@ Use Bandage to compare the Zymo ONT and HiFi assemblies.
 ```bash
 
 #Decompress gfa file first, then run Bandage
-gzip -d ~/data/mydatalocal/Assembly/preruns/assembly/SRR17913199_ONT_Q20/metaflye/assembly_graph.gfa.gz
-gzip -d ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/metaflye/assembly_graph.gfa.gz
+gzip -d ~/Projects/Assembly/preruns/assembly/SRR17913199_ONT_Q20/metaflye/assembly_graph.gfa.gz
+gzip -d ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/metaflye/assembly_graph.gfa.gz
 
 #ONT graph
-Bandage load ~/data/mydatalocal/Assembly/preruns/assembly/SRR17913199_ONT_Q20/metaflye/assembly_graph.gfa
+Bandage load ~/Projects/Assembly/preruns/assembly/SRR17913199_ONT_Q20/metaflye/assembly_graph.gfa
 
 #Hifi graph
-Bandage load ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/metaflye/assembly_graph.gfa
+Bandage load ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/metaflye/assembly_graph.gfa
 ```
 
 <details><summary> If you have issues with Bandage </summary>
@@ -204,7 +204,7 @@ https://docs.google.com/document/d/1VPnL-5mXXQimkXQNiQagPhgzRn8j1JBHCLV42r8-Wqc/
 This Zymo mock community contains 5 ecoli strains, let's try to find them using the blast feature.
 * Click "Create/view Blast search" button
 * Click "Build Blast database"
-* Click "Load from fasta file" -> Select a reference genome in ~/data/mydatalocal/Assembly/references/
+* Click "Load from fasta file" -> Select a reference genome in ~/Projects/Assembly/references/
 * Click "Run blast search"
 * Recommanded: try to tune the blast filter (alignment length and identity)
 
@@ -214,8 +214,8 @@ Now let's check metaMDBG and myloasm graphs:
 
 ```bash
 #Show output files
-ls -lh ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/metaMDBG/
-ls -lh ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/myloasm/
+ls -lh ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/metaMDBG/
+ls -lh ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/myloasm/
 ```
 
 Let's run Bandage and check how metaMDBG and myloasm handle the ecoli strains:
@@ -225,12 +225,12 @@ Let's run Bandage and check how metaMDBG and myloasm handle the ecoli strains:
 #Decompress gfa file first, then run Bandage
 
 #metaMDBG
-gzip -d ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/metaMDBG/assemblyGraph_k105_20813bps.gfa.gz
-Bandage load ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/metaMDBG/assemblyGraph_k105_20813bps.gfa
+gzip -d ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/metaMDBG/assemblyGraph_k105_20813bps.gfa.gz
+Bandage load ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/metaMDBG/assemblyGraph_k105_20813bps.gfa
 
 #myloasm
-gzip -d ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/myloasm/final_contig_graph.gfa.gz
-Bandage load ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/myloasm/final_contig_graph.gfa
+gzip -d ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/myloasm/final_contig_graph.gfa.gz
+Bandage load ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/myloasm/final_contig_graph.gfa
 
 ```
 
@@ -246,24 +246,24 @@ If a header contains the field "circular=yes", it means that the contig is circu
 ```bash
 
 #Show all headers
-zcat ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/metaMDBG/contigs.fasta.gz | grep ">"
+zcat ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/metaMDBG/contigs.fasta.gz | grep ">"
 
 #Show header with the circular flag = "yes"
-zcat ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/metaMDBG/contigs.fasta.gz | grep ">" | grep "circular=yes"
+zcat ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/metaMDBG/contigs.fasta.gz | grep ">" | grep "circular=yes"
 ```
 
 Metaflye uses an extra metadata file for contig information
 ```bash
 
 #Show contig metadata
-head -n 30 ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/metaflye/assembly_info.txt
+head -n 30 ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/metaflye/assembly_info.txt
 ```
 
 Myloasm uses similar format as metaMDBG
 ```bash
 
 #Show contig metadata
-zcat ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/myloasm/assembly_primary.fa.gz | grep ">" | grep "circular-yes"
+zcat ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/myloasm/assembly_primary.fa.gz | grep ">" | grep "circular-yes"
 ```
 
 Let's create folders for the circular contigs:
@@ -278,20 +278,20 @@ We use a custom script to extract all circular contigs:
 
 ```bash
 #Extract metaflye circular contigs (HiFi)
-python3 ~/repos/Ebame/scripts/extractCircularContigs.py ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/metaflye/assembly.fasta.gz ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/metaflye/assembly_info.txt metaflye ~/data/mydatalocal/Assembly/circularContigs/metaflye/
+python3 ~/repos/Ebame/scripts/extractCircularContigs.py ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/metaflye/assembly.fasta.gz ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/metaflye/assembly_info.txt metaflye ~/Projects/Assembly/circularContigs/metaflye/
 
 #Extract metaMDBG circular contigs (HiFi)
-python3 ~/repos/Ebame/scripts/extractCircularContigs.py ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/metaMDBG/contigs.fasta.gz ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/metaMDBG/contigs.fasta.gz metaMDBG ~/data/mydatalocal/Assembly/circularContigs/metaMDBG/
+python3 ~/repos/Ebame/scripts/extractCircularContigs.py ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/metaMDBG/contigs.fasta.gz ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/metaMDBG/contigs.fasta.gz metaMDBG ~/Projects/Assembly/circularContigs/metaMDBG/
 
 #Extract myloasm circular contigs (HiFi)
-python3 ~/repos/Ebame/scripts/extractCircularContigs.py ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/myloasm/assembly_primary.fa.gz ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/myloasm/assembly_primary.fa.gz myloasm ~/data/mydatalocal/Assembly/circularContigs/myloasm/
+python3 ~/repos/Ebame/scripts/extractCircularContigs.py ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/myloasm/assembly_primary.fa.gz ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/myloasm/assembly_primary.fa.gz myloasm ~/Projects/Assembly/circularContigs/myloasm/
 ```
 
 List the extracted circular contigs:
 ```bash
-ls -lh ~/data/mydatalocal/Assembly/circularContigs/metaflye/
-ls -lh ~/data/mydatalocal/Assembly/circularContigs/metaMDBG/
-ls -lh ~/data/mydatalocal/Assembly/circularContigs/myloasm/
+ls -lh ~/Projects/Assembly/circularContigs/metaflye/
+ls -lh ~/Projects/Assembly/circularContigs/metaMDBG/
+ls -lh ~/Projects/Assembly/circularContigs/myloasm/
 ```
 
 #### Assembly reconciliation
@@ -306,8 +306,8 @@ dRep dereplicate -h
 
 * First choose a output folder
 * dRep takes a list of genomes as input (option -g), try to provide all the fasta file with regex
-    * Metaflye circular contigs are here: ~/data/mydatalocal/Assembly/circularContigs/metaflye/
-    * MetaMDBG circular contigs are here: ~/data/mydatalocal/Assembly/circularContigs/metaMDBG/
+    * Metaflye circular contigs are here: ~/Projects/Assembly/circularContigs/metaflye/
+    * MetaMDBG circular contigs are here: ~/Projects/Assembly/circularContigs/metaMDBG/
 * Disable quality check with option --ignoreGenomeQuality (we'll do it after dereplication)
 * Disable plotting with --skip_plots
 * Try to select the "skani" method for comparing the circular contigs quickly
@@ -316,7 +316,7 @@ dRep dereplicate -h
 <p>
 
 ```bash
-dRep dereplicate ~/data/mydatalocal/Assembly/drep_circular/ -p 4 -g ~/data/mydatalocal/Assembly/circularContigs/metaflye/*.fa ~/data/mydatalocal/Assembly/circularContigs/metaMDBG/*.fa ~/data/mydatalocal/Assembly/circularContigs/myloasm/*.fa --S_algorithm skani --ignoreGenomeQuality --skip_plots
+dRep dereplicate ~/Projects/Assembly/drep_circular/ -p 4 -g ~/Projects/Assembly/circularContigs/metaflye/*.fa ~/Projects/Assembly/circularContigs/metaMDBG/*.fa ~/Projects/Assembly/circularContigs/myloasm/*.fa --S_algorithm skani --ignoreGenomeQuality --skip_plots
 ```
 
 </p>
@@ -329,7 +329,7 @@ Read dRep output information and try to list the folder containing dereplicated 
 <p>
 
 ```bash
-ls -lh ~/data/mydatalocal/Assembly/drep_circular/dereplicated_genomes/
+ls -lh ~/Projects/Assembly/drep_circular/dereplicated_genomes/
 ```
 
 </p>
@@ -337,26 +337,26 @@ ls -lh ~/data/mydatalocal/Assembly/drep_circular/dereplicated_genomes/
 
 dRep provides a lot of useful information, for instance, we can look at the similarity between the pair of circular contigs:
 ```bash
-column -s, -t < ~/data/mydatalocal/Assembly/drep_circular/data_tables/Ndb.csv
+column -s, -t < ~/Projects/Assembly/drep_circular/data_tables/Ndb.csv
 ```
 
 Are there any circular contigs which are only found by one assembler?
 ```bash
-column -s, -t < ~/data/mydatalocal/Assembly/drep_circular/data_tables/Cdb.csv
+column -s, -t < ~/Projects/Assembly/drep_circular/data_tables/Cdb.csv
 ```
 
 #### Assess quality of circular contigs 
 Clearly some of these are not genomes, let's run checkm on the dereplicated contigs:
 
 ```bash
-#checkm lineage_wf  ~/data/mydatalocal/Assembly/drep_circular/dereplicated_genomes/ ~/data/mydatalocal/Assembly/checkm_output/ -t 4 --pplacer_threads 4  -r -x .fa --tab_table -f ~/data/mydatalocal/Assembly/checkm_results.tsv
+#checkm lineage_wf  ~/Projects/Assembly/drep_circular/dereplicated_genomes/ ~/Projects/Assembly/checkm_output/ -t 4 --pplacer_threads 4  -r -x .fa --tab_table -f ~/Projects/Assembly/checkm_results.tsv
 
-checkm2 predict --force --threads 4 -x fa -i ~/data/mydatalocal/Assembly/drep_circular/dereplicated_genomes/ -o ~/data/mydatalocal/Assembly/checkm_output/
+checkm2 predict --force --threads 4 -x fa -i ~/Projects/Assembly/drep_circular/dereplicated_genomes/ -o ~/Projects/Assembly/checkm_output/
 ```
 
 CheckM2 is a bit slow, so let's check the prerun results
 ```bash
-cat ~/data/mydatalocal/Assembly/preruns/checkm2_results.tsv
+cat ~/Projects/Assembly/preruns/checkm2_results.tsv
 ```
 
 ## Plasmids and virus?
@@ -375,14 +375,15 @@ Genomad takes as input a single fasta file. It will then process the contigs one
 
 ```bash
 #Concatenate all circular contigs in a single fasta file
-cat ~/data/mydatalocal/Assembly/drep_circular/dereplicated_genomes/*.fa > ~/data/mydatalocal/Assembly/allCircularContigs.fasta
+cat ~/Projects/Assembly/drep_circular/dereplicated_genomes/*.fa > ~/Projects/Assembly/allCircularContigs.fasta
 
 #Concatenante only small circular contigs
-find ~/data/mydatalocal/Assembly/drep_circular/dereplicated_genomes/*.fa -size -500k | xargs cat > ~/data/mydatalocal/Assembly/allSmallCircularContigs.fasta
+find ~/Projects/Assembly/drep_circular/dereplicated_genomes/*.fa -size -500k | xargs cat > ~/Projects/Assembly/allSmallCircularContigs.fasta
 ```
 
 </p>
 </details> 
+<span style="color:red">   **BROKEN**
 
 The genomad database is located here:
 
@@ -390,25 +391,29 @@ The genomad database is located here:
 
 Let's run try to run genomad now.
 
+
+
 <details><summary>Solution</summary>
 <p>
 
 ```bash
-genomad end-to-end ~/data/mydatalocal/Assembly/allSmallCircularContigs.fasta ~/data/mydatalocal/Assembly/genomad/ ~/data/public/teachdata/ebame/viral-metagenomics/genomad_db/ --conservative --threads 4
+genomad end-to-end ~/Projects/Assembly/allSmallCircularContigs.fasta ~/Projects/Assembly/genomad/ ~/data/public/teachdata/ebame/viral-metagenomics/genomad_db/ --conservative --threads 4
 ```
 
 </p>
 </details> 
 
+</span>
+
 Read genomad logs and try to print plasmids and virus summaries:
-(pre-runs are located here: ~/data/mydatalocal/Assembly/preruns/genomad/)
+(pre-runs are located here: ~/Projects/Assembly/preruns/genomad/)
 
 <details><summary>Solution</summary>
 <p>
 
 ```bash
-cat ~/data/mydatalocal/Assembly/preruns/genomad/allSmallCircularContigs_summary/allSmallCircularContigs_plasmid_summary.tsv
-cat ~/data/mydatalocal/Assembly/preruns/genomad/allSmallCircularContigs_summary/allSmallCircularContigs_virus_summary.tsv
+cat ~/Projects/Assembly/preruns/genomad/allSmallCircularContigs_summary/allSmallCircularContigs_plasmid_summary.tsv
+cat ~/Projects/Assembly/preruns/genomad/allSmallCircularContigs_summary/allSmallCircularContigs_virus_summary.tsv
 ```
 
 </p>
@@ -426,18 +431,18 @@ Retry to use checkm on a contigs you chose and saved with Bandage.
 Or from the command line, use the following command line replacing \<NODE\>:
 
 ```bash
-Bandage reduce ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/metaflye/assembly_graph.gfa ~/data/mydatalocal/Assembly/<Node>.gfa  --scope aroundnodes --nodes <NODE> --distance 0
+Bandage reduce ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/metaflye/assembly_graph.gfa ~/Projects/Assembly/<Node>.gfa  --scope aroundnodes --nodes <NODE> --distance 0
 ```
 --> use a bash online to extract, name and sequence from that gfa graph:
 ```bash
-awk '/^S/{print ">"$2"\n"$3}' ~/data/mydatalocal/Assembly/<Node>.gfa > ~/data/mydatalocal/Assembly/<Node>.fasta
+awk '/^S/{print ">"$2"\n"$3}' ~/Projects/Assembly/<Node>.gfa > ~/Projects/Assembly/<Node>.fasta
 
 ```
 
 --> For myloasm: another script to extract contig by name from a fasta file:
 ```bash
-mkdir ~/data/mydatalocal/Assembly/mycontigs/
-python3 ~/repos/Ebame/scripts/extractSequenceFasta.py ~/data/mydatalocal/Assembly/preruns/assembly/SRR13128014_hifi/myloasm/assembly_primary.fa.gz u[ID]ctg ~/data/mydatalocal/Assembly/mycontigs/contig.fa
+mkdir ~/Projects/Assembly/mycontigs/
+python3 ~/repos/Ebame/scripts/extractSequenceFasta.py ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/myloasm/assembly_primary.fa.gz u[ID]ctg ~/Projects/Assembly/mycontigs/contig.fa
 ```
 
 --> use checkm 
