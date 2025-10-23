@@ -236,7 +236,8 @@ random_index=$((RANDOM % ${#hostnames[@]}))
 random_hostname="${hostnames[random_index]}"
 
 # Set the PS1 prompt with the random hostname
-PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@${random_hostname}\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@${random_hostname}\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ " # blue they can't see the path
+PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@${random_hostname}\[\033[00m\]:\[\033[01;31m\]\w\[\033[00m\]\$ " # RED they can see
 
 # keep Conda's env prefix if present
 if [[ -n "${CONDA_PROMPT_MODIFIER-}" ]]; then
