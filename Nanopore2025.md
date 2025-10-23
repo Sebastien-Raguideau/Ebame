@@ -142,7 +142,7 @@ Optional arguments:
 
 ### Dorado basecalling output in fastq (sup V.5 transformer model - very slow 
 
-Try running the with the sup setting
+Try running the with the sup setting, use the option to create fastq!
 
 <details><summary>SPOILER: search first please :)</summary>
 <p>
