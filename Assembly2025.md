@@ -24,7 +24,7 @@ cp -r ~/repos/Ebame/tmp/preruns ~/data/mydatalocal/Assembly
 ## Dataset
 There are 3 Zymo mock samples, available at:
 
-    ls -lh ~/data/public/teachdata/ebame/metagenomics-assembly/
+    ls -lh $DATA/SRR*fastq.gz
 
 As previously we can use the command seqkit stats to assess these samples.
 From the stats, try to guess which one is the Hifi, ONT_R9 and ONT_R10.
@@ -32,14 +32,18 @@ From the stats, try to guess which one is the Hifi, ONT_R9 and ONT_R10.
 <p>
 
 ```bash
-seqkit stats --all ~/data/public/teachdata/ebame/metagenomics-assembly/SRR13128014_subreads.fastq.gz
+seqkit stats --all $DATA/SRR13128014_subreads.fastq.gz
 ```
 
-Pre-runs for seqkit are located here: ~/data/mydatalocal/Assembly/preruns/datasets/
+#Pre-runs for seqkit are located here: ~/data/mydatalocal/Assembly/preruns/datasets/
 
 </p>
 </details>
 
+If DATA is not correctly set you will need to set it:
+
+	export DATA=/ifb/data/public/teachdata/ebame/metagenomics-QR/
+	
 ## Assembly
 
 
@@ -56,11 +60,6 @@ Mostly 4 software have been developed for assembling long-read metagenomic datas
 In this tutorial, we are going to run metaflye, metaMDBG and myloasm separatly, then use a method to merge their results.
 
 As usual, try to craft your own command line to run the software. 
-
-
-
-
-
 
 
 
