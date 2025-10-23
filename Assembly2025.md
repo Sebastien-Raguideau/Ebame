@@ -35,7 +35,7 @@ From the stats, try to guess which one is the Hifi, ONT_R9 and ONT_R10.
 seqkit stats --all $DATA/SRR13128014_subreads.fastq.gz
 ```
 
-#Pre-runs for seqkit are located here: ~/data/mydatalocal/Assembly/preruns/datasets/
+Pre-runs for seqkit are located here: ~/data/mydatalocal/Assembly/preruns/datasets/
 
 </p>
 </details>
