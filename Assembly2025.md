@@ -441,3 +441,41 @@ python3 ~/repos/Ebame/scripts/extractSequenceFasta.py ~/data/mydatalocal/Assembl
 ```
 
 --> use checkm 
+
+#Optional binning challenge
+
+Short-read binners can be used for long reads. Can you adapt the commands in the binning tutorial to bin these contigs. You will need to switch to the LongReads conda where minimap2 which you should use in place of bwa to create a bam file. 
+
+```
+conda activate LongReads
+```
+
+Good luck :)
+
+
+Here are the commands necessary but you should try to figure them out:
+
+
+Mapping:
+<details>
+```
+gunzip contigs.fasta.gz
+
+minimap2 -t 4 -x map-hifi -a contigs.fasta $DATA/SRR*subreads.fastq.gz | samtools sort -@ 4 -o reads_sorted.bam
+```
+</details>
+
+This step will nearly 30 mins. You could subsample first with seqkit. 
+
+Coverage depth and binning:
+<details>
+```
+samtools index reads_sorted.bam
+
+jgi_summarize_bam_contig_depths --outputDepth depth.txt reads_sorted.bam
+
+metabat2 -i contigs.fasta -a depth.txt -o bins_dir/bin -t 4
+```
+</details>
+
+Also now run checkm on bins.
