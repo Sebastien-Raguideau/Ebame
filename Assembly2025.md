@@ -456,9 +456,9 @@ Good luck :)
 Here are the commands necessary but you should try to figure them out:
 
 
-Mapping:
-<details>
-```
+<details> ><summary>Mapping:</summary>
+
+```bash
 gunzip contigs.fasta.gz
 
 minimap2 -t 4 -x map-hifi -a contigs.fasta $DATA/SRR*subreads.fastq.gz | samtools sort -@ 4 -o reads_sorted.bam
@@ -467,15 +467,17 @@ minimap2 -t 4 -x map-hifi -a contigs.fasta $DATA/SRR*subreads.fastq.gz | samtool
 
 This step will nearly 30 mins. You could subsample first with seqkit. 
 
-Coverage depth and binning:
-<details>
-```
+
+<details> <summary>Coverage depth and binning:</summary>
+
+```bash
 samtools index reads_sorted.bam
 
 jgi_summarize_bam_contig_depths --outputDepth depth.txt reads_sorted.bam
 
 metabat2 -i contigs.fasta -a depth.txt -o bins_dir/bin -t 4
 ```
+
 </details>
 
 Also now run checkm on bins.
