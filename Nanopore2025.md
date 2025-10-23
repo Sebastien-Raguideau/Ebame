@@ -32,8 +32,6 @@ The tools required to undertake this tutorial are supplied in the LongReads cond
 Sequencing data is located:
 /ifb/data/public/teachdata/ebame/metagenomics-QR/fast5_subset.tar.gz
 
-Kraken2 database is located:
-***/home/ubuntu/data/public/kraken2/k2_standard_08gb_20220926*** problem
 
 ## Tutorial
 ### Basecalling
@@ -142,15 +140,16 @@ Optional arguments:
 
 ```
 
-### Code Example
-<details><summary>SPOILER: Click for basecalling code reveal</summary>
+### Dorado basecalling output in fastq (sup V.5 transformer model - very slow 
+
+Try running the with the sup setting
+
+<details><summary>SPOILER: search first please :)</summary>
 <p>
 
+```bash
 dorado basecaller sup --emit-fastq --min-qscore 10 path/to/pod5s > path/to/output.fastq
-
-</details>
-
-### Dorado basecalling output in fastq (sup V.5 transformer model - very slow [)
+```
 
 |Flag / command            | Description               | 
 | -------------------------|:-------------------------:| 
@@ -159,9 +158,18 @@ dorado basecaller sup --emit-fastq --min-qscore 10 path/to/pod5s > path/to/outpu
 | `--emit-fastq`           |fastq output               |
 | `--min-qscore`           |minimum qscore filter      |
 
+</details>
+
 ### Dorado modified basecalling (unaligned bam file output)
 
+Try running the with the hac setting and metylation calling
+
+<details><summary>SPOILER: search first please :) </summary>
+<p>
+
+```bash
 dorado basecaller --min-qscore 10 hac,6mA pod5_downsample.pod5 > calls.bam
+```
 
 |Flag / command            | Description               | 
 | -------------------------|:-------------------------:| 
@@ -178,6 +186,8 @@ View bam file structure with modified bases.
 samtools view calls.bam | head
 ```
 Modified bases can be further processed with MODKIT. Additional information on SAM tags cab be found in the samtools [documentation] (https://samtools.github.io/hts-specs/SAMtags.pdf)for MM and ML tags.
+
+</details>
 
 ## Remove raw fast5 files from Longreads/ before continuing. 
 
