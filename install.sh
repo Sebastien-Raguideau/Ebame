@@ -240,6 +240,7 @@ PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@${random_hostname}\[\03
 PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@${random_hostname}\[\033[00m\]:\[\033[01;31m\]\w\[\033[00m\]\$ " # RED they can see
 
 # keep Conda's env prefix if present
+BASE_PS1="${PS1}"
 if [[ -n "${CONDA_PROMPT_MODIFIER-}" ]]; then
   PS1="${CONDA_PROMPT_MODIFIER}${BASE_PS1}"
 else
