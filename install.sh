@@ -40,6 +40,7 @@ sudo apt-get -y install bandage gzip unzip feh evince ncbi-blast+
 # ------ byobu fixes -----------
 # ------------------------------
 # fix conda within byobu
+mkdir -p $HOME2/.byobu/
 printf 'set -g default-shell /bin/bash\nset -g default-command "bash -l"\n' >> $HOME2/.byobu/.tmux.conf
 
 #fix X forwarding within byobu
