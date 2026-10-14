@@ -229,7 +229,7 @@ chown -R 1000:1000 /var/lib/miniforge
 # new approached, this is called here-document
 cat >> $HOME2/.bashrc <<'BASHRC_BALISE'
 
-hostnames=("saperlipopette" "sacrebleu" "mouhahaha" "prepare_for_AI_uprising" "this_is_the_bestest_tuto" "chubbybunny" "sillygoose" "badger_badger_badger_mushroom" "ebame_forever" "church_of_anvio" "metagnomonique" "wobbledeewoodoo" "tigglewaggle" "zapyzippity" "make_iuem_great_again" "Mr_Tux_president" "metaMDBG_always_wins" "beepboopbeep" "all_your_base_are_belong_to_us" "↑↑↓↓← → ← → BA" "snakemake_is_life")
+hostnames=("saperlipopette" "sacrebleu" "mouhahaha" "prepare_for_AI_uprising" "this_is_the_bestest_tuto" "chatgpt_would_get_it" "sillygoose"  "ebame_forever" "church_of_anvio" "metagnomonique"  "make_iuem_great_again" "metaMDBG_always_wins" "beepboopbeep" "↑↑↓↓← → ← → BA" "snakemake_is_life" "hocus_pocus" "hakuna_matata" )
 
 # Select a random index from the array
 random_index=$((RANDOM % ${#hostnames[@]}))
