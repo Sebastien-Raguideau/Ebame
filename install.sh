@@ -150,7 +150,7 @@ checkm data setRoot /ifb/data/public/teachdata/ebame/metagenomics-bining/checkm_
 
 . $CONDA/deactivate
 . $CONDA/activate STRONG
-mamba install -c bioconda checkm-genome megahit bwa -y
+mamba install -c bioconda megahit bwa -y
 
 # add checkm database
 # checkm data setRoot /ifb/data/public/teachdata/ebame/metagenomics-bining/checkm_data_2015_01_16
