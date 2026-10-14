@@ -38,7 +38,6 @@ dependencies:
   - certifi=2025.10.5=pyhd8ed1ab_0
   - cffi=2.0.0=py312h35888ee_0
   - charset-normalizer=3.4.4=pyhd8ed1ab_0
-  - checkm-genome=1.2.3=pyhdfd78af_0
   - click=8.3.0=pyh707e725_0
   - cmake=4.1.2=hc85cc9f_0
   - coin-or-cbc=2.10.12=h4d16d09_4
@@ -456,6 +455,7 @@ dependencies:
   - zstandard=0.25.0=py312h5253ce2_0
   - zstd=1.5.7=hb8e6e7a_2
   - pip:
+      - checkm-genome==1.2.3
       - bayespaths==0.1
       - desman==2.1.1
 variables:
