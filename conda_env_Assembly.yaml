@@ -9,9 +9,10 @@ dependencies:
   - seqkit==2.5.1
   - flye
   - genomad
-  - drep
   - checkm2
   - metamdbg
   - myloasm
   - bandage
   - blast
+  - pip:
+    - drep
