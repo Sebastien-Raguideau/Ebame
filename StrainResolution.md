@@ -26,7 +26,7 @@ STRONG is already installed on your VM, you will find the git repos at:
 It is a clone of the one available online and installation steps are detailed [there](https://github.com/chrisquince/STRONG).
 
 **Packages needed**:
-Current installation depend entirely on [conda](https://docs.conda.io/en/latest/), by creating an environment where all packages and their dependencies are installed. 
+Current installations depend entirely on [conda](https://docs.conda.io/en/latest/), by creating an environment where all packages and their dependencies are installed. 
 
 Look at : `~/repos/STRONG/conda_env.yaml`
 
@@ -48,7 +48,7 @@ Try activating the relevant conda environment :
 **Databases**
 
  - [COG database](ftp://ftp.ncbi.nlm.nih.gov/pub/mmdb/cdd/little_endian) , you will find it installed at
-    `$DATA/rpsblast_cog_db`
+    `/ifb/data/public/teachdata/ebame/metagenomics-bining/rpsblast_cog_db`
 
  - (optional) [GTDB](https://pubmed.ncbi.nlm.nih.gov/30148503/) , used
    with gtdb-tk, (77Gb) too much ram needed and execution too slow for this present tutorial.
