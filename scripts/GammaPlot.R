@@ -21,6 +21,6 @@ p <- p + theme_bw() + ylab("Relative frequency")
 
 p <- p + theme(axis.title = element_text(size=12, face="bold")) 
 
-png("TimeSeries.png")
+pdf("TimeSeries.pdf")
 plot(p + geom_smooth(se=F))
 dev.off()

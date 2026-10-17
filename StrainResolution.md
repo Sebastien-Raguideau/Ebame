@@ -371,9 +371,6 @@ Then visualise the simplified COG gfa in bandage:
 Bandage load Bin_2/simplif/COG0060.gfa
 ```
 
-Can you find and load the raw graph next - is there any difference?
-
-
 
 We might estimate this contains three strains, can we confirm that. We will do a trial run of BayesPaths to test this, in a new directory:
 
@@ -450,7 +447,7 @@ evince X.pdf
 #### Bin_2F_maxPath.tsv
 ```
 grep "COG0060" Bin_2F_maxPath.tsv | sed 's/COG0060_//g' > Bin_2F_maxPath_COG0060.tsv
-python ~/repos/STRONG/BayesPaths/scripts/Add_color.py ../../subgraphs/bin_merged/Bin_2/simplif/COG0060.gfa Bin_2F_maxPath_COG0060.tsv > COG0060_color.gfa
+python ~/repos/STRONG/BayesPaths/scripts/Add_color.py ../subgraphs/bin_merged/Bin_2/simplif/COG0060.gfa Bin_2F_maxPath_COG0060.tsv > COG0060_color.gfa
 ```
 
 This can be visualised in Bandage on your local machine may be easier
@@ -464,10 +461,10 @@ Bandage load COG0060_color.gfa
 We can also look at the time series of strain abundances: 
 
 ```
+
 cp ~/repos/Ebame/scripts/GammaPlot.R .
-R
-source('GammaPlot.R')
-q()
+Rscript GammaPlot.R 
+evince TimeSeries.pdf
 ```
 
 ![X](Figures/TimeSeries.png)
