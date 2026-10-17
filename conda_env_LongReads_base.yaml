@@ -30,5 +30,4 @@ dependencies:
   - checkm-genome
   - drep
   - gtdbtk
-  - remag
   - metabat2
