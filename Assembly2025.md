@@ -404,7 +404,6 @@ find ~/Projects/Assembly/drep_circular/dereplicated_genomes/*.fa -size -500k | x
 
 </p>
 </details> 
-<span style="color:red">   **BROKEN**
 
 The genomad database is located here:
 
