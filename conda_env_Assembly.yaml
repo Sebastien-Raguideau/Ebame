@@ -14,5 +14,6 @@ dependencies:
   - myloasm
   - bandage
   - blast
+  - skani
   - pip:
     - drep
