@@ -237,17 +237,6 @@ Bandage load ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/myloasm/final
 
 --> Assess quality of a contig: find a long contigs from Bandage. Then click on "Output" menu -> "Save selected node sequence to FASTA"
 
-Or from the command line, use the following command line replacing \<NODE\>:
-
-```bash
-Bandage reduce ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/metaflye/assembly_graph.gfa ~/Projects/Assembly/<Node>.gfa  --scope aroundnodes --nodes <NODE> --distance 0
-```
---> use a bash online to extract, name and sequence from that gfa graph:
-```bash
-awk '/^S/{print ">"$2"\n"$3}' ~/Projects/Assembly/<Node>.gfa > ~/Projects/Assembly/<Node>.fasta
-
-```
-
 --> For myloasm: another script to extract contig by name from a fasta file:
 ```bash
 mkdir ~/Projects/Assembly/mycontigs/
