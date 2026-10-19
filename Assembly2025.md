@@ -42,7 +42,7 @@ Pre-runs for seqkit are located here: ~/Projects/Assembly/preruns/datasets/
 
 If DATA is not correctly set you will need to set it:
 
-	export DATA=/ifb/data/public/teachdata/ebame/metagenomics-QR/
+	export DATA=/ifb/data/public/teachdata/ebame/metagenomics-assembly/
 	
 ## Assembly
 
