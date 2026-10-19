@@ -204,7 +204,7 @@ https://docs.google.com/document/d/1VPnL-5mXXQimkXQNiQagPhgzRn8j1JBHCLV42r8-Wqc/
 This Zymo mock community contains 5 ecoli strains, let's try to find them using the blast feature.
 * Click "Create/view Blast search" button
 * Click "Build Blast database"
-* Click "Load from fasta file" -> Select a reference genome in ~/Projects/Assembly/references/
+* Click "Load from fasta file" -> Select a reference genome in ~/Projects/Assembly/preruns/references/
 * Click "Run blast search"
 * Recommanded: try to tune the blast filter (alignment length and identity)
 
