@@ -235,7 +235,7 @@ Bandage load ~/Projects/Assembly/preruns/assembly/SRR13128014_hifi/myloasm/final
 ```
 
 
---> Assess quality of a contig: find a long contigs from Bandage. Then click on "Output" menu -> "Save selected node sequence to FASTA"
+--> Assess quality of a contig (completeness and contamination) with checkm2: find a long contigs from Bandage. Then click on "Output" menu -> "Save selected node sequence to FASTA"
 
 --> For myloasm: another script to extract contig by name from a fasta file:
 ```bash
