@@ -261,7 +261,7 @@ python3 ~/repos/Ebame/scripts/extractSequenceFasta.py ~/Projects/Assembly/prerun
 
 ```bash
 
-checkm2 predict --input ~/Projects/Assembly/mycontigs/contig.fa --output-directory ~/Projects/Assembly/checkm2_out --threads 4 --force
+checkm2 predict --input ~/Projects/Assembly/mycontigs/contig.fa --output-directory ~/Projects/Assembly/checkm2_out --threads 4 --force --database_path /ifb/data/public/teachdata/ebame/metagenomics-assembly/CheckM2_database/uniref100.KO.1.dmnd
 ```
 </p>
 </details>
@@ -383,7 +383,7 @@ Clearly some of these are not genomes, let's run checkm on the dereplicated cont
 ```bash
 #checkm lineage_wf  ~/Projects/Assembly/drep_circular/dereplicated_genomes/ ~/Projects/Assembly/checkm_output/ -t 4 --pplacer_threads 4  -r -x .fa --tab_table -f ~/Projects/Assembly/checkm_results.tsv
 
-checkm2 predict --force --threads 4 -x fa -i ~/Projects/Assembly/drep_circular/dereplicated_genomes/ -o ~/Projects/Assembly/checkm_output/
+checkm2 predict --force --threads 4 -x fa -i ~/Projects/Assembly/drep_circular/dereplicated_genomes/ -o ~/Projects/Assembly/checkm_output/ --database_path /ifb/data/public/teachdata/ebame/metagenomics-assembly/CheckM2_database/uniref100.KO.1.dmnd
 ```
 
 CheckM2 is a bit slow, so let's check the prerun results
