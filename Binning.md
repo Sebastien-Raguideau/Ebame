@@ -69,7 +69,7 @@ For simplification sake, we are going to create a global variable:
 Use nano to edit your bashrc file:
 ```bash
 nano ~/.bashrc
-export DATA=/ifb/data/public/teachdata/ebame/metagenomics-QR/
+export DATA=/ifb/data/public/teachdata/ebame/metagenomics-bining/Quince_datasets/
 ```
 
 Also, each VM has been generated with a random name instead of the hostname which is a md5 string. You can alter it and rename your VM
@@ -87,11 +87,12 @@ Let's create a Projects directory and work inside:
 
 All datasets for this tutorial can be found at: 
 
-    ~/Datasets/metagenomics-QR
+    ~/Datasets/metagenomics-bining/Quince_datasets
+
 
 Or equivalently here:
 
-    /ifb/data/public/teachdata/ebame/metagenomics-QR/
+    /ifb/data/public/teachdata/ebame/metagenomics-bining/Quince_datasets
     
 
 We have here different dataset subsampled so they can run in real time during the workshop.
