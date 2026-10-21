@@ -195,7 +195,7 @@ cd ~/Projects/AD_binning
 # downstream jgi_summarize_bam_contig_depths script
 rm ~/Projects/AD_binning/Map/*
 
-for file in $DATA/AD_small/*/*R1.fastq
+for file in $DATA/AD_small/*/s*R1.fastq
 do 
    
    stub=${file%_R1.fastq}
