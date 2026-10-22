@@ -118,10 +118,6 @@ wget -O metamdbg/contigs.fasta.gz https://zenodo.org/records/23511123/files/chee
 seqkit stats -a metamdbg/contigs.fasta.gz
 ```
 
-> **Questions**
->
-> - How does this assembly compare to yours?
-
 ### 4. Mapping with minimap2 (env LongReads)
 
 <details><summary>Solution</summary>
