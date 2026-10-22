@@ -110,8 +110,6 @@ seqkit stats -a metamdbg/contigs.fasta.gz
 > - What are the more informative columns?
 > - How's the quality of the assembly looking?
 
-### 3. Download the course assembly
-
 For reproducibility, we will continue with a prepared assembly of the same reads, so that everyone gets the same bins. Download it and replace your own:
 
 ```bash
@@ -120,7 +118,7 @@ wget -O metamdbg/contigs.fasta.gz https://zenodo.org/records/23511123/files/chee
 seqkit stats -a metamdbg/contigs.fasta.gz
 ```
 
-### 4. Mapping with minimap2 (env LongReads)
+### 3. Mapping with minimap2 (env LongReads)
 
 <details><summary>Solution</summary>
 <p>
@@ -146,7 +144,7 @@ minimap2 -t 16 -ax map-hifi metamdbg/contigs.fasta.gz data/cheese_balanced_reads
 </p>
 </details>
 
-### 5. Use samtools to get a bam file, sort it and index it (env LongReads)
+### 4. Use samtools to get a bam file, sort it and index it (env LongReads)
 
 <details><summary>Solution</summary>
 <p>
@@ -176,7 +174,7 @@ Your project folder now looks like this:
 </p>
 </details>
 
-### 6. Run MetaBAT2 and check the bins with seqkit stats (env binning)
+### 5. Run MetaBAT2 and check the bins with seqkit stats (env binning)
 
 The `binning` environment contains MetaBAT2, REMAG and BUSCO, but not seqkit. Install it first:
 
