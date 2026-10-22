@@ -110,7 +110,9 @@ seqkit stats -a metamdbg/contigs.fasta.gz
 > - What are the more informative columns?
 > - How's the quality of the assembly looking?
 
-### 3. Use the course assembly
+### 3. Download the course assembly
+
+For reproducibility, we will continue with a prepared assembly of the same reads, so that everyone gets the same bins. Download it and replace your own:
 
 ```bash
 cd ~/Projects/Cheese_Tuto
