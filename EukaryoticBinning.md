@@ -4,7 +4,7 @@
 
 Washed-rind cheeses (Beaufort, Morbier or Reblochon) are washed with brine during ripening. The salty, moist surface selects for a microbial community that forms the sticky, often orange rind, and is responsible for much of the strong aroma of these cheeses.
 
-Early in this procesess, the curd surface is acidic and salty, and few bacteria can grow on it. Salt- and acid-tolerant yeasts colonise it first: they consume lactate and break down proteins, releasing ammonia, which raises the surface pH. This deacidification allows salt-tolerant bacteria to take over. Fungi also can influence which bacteria establish.
+Early in this process, the curd surface is acidic and salty, and few bacteria can grow on it. Salt- and acid-tolerant yeasts colonise it first: they consume lactate and break down proteins, releasing ammonia, which raises the surface pH. This deacidification allows salt-tolerant bacteria to take over. Fungi can also influence which bacteria establish.
 
 ## Dataset
 
@@ -16,33 +16,27 @@ _Rinds of the three washed-rind cheeses during ripening. Our reads come from Che
 
 The goal of this tutorial is to demonstrate how to bin eukaryotic genomes from metagenomic data starting from the raw reads. We will use two different binning tools, MetaBAT2 and REMAG, and compare their results. We will also assess the quality of the bins with BUSCO and EukCC. Finally, we will compare the bins to a set of reference genomes to see how well they match.
 
-Now for the next 15 minutes, please try to use what you learned in the previous sessions to 
+## Download the dataset
 
-1. Assembly with metamdbg (env Assembly)
-2. mapping with minimap2 (env LongReads)
-3. use samtools to get a bam file, sort it and index it (env LongReads)
-4. run metabat2 (env LongReads)
-
-<details><summary>Full solution is here, please try first</summary>
-<p>
-
-
-## Assembly
-
-### Download the dataset
-
-Let's create a data folder within binning and download the raw reads there. Note that as it is PacBio HiFi data, the reads are unpaired and stored in a single fastq.gz file.
+Let's create a project folder (`~/Projects/Cheese_Tuto`) with a `data` subfolder, and download the raw reads there. Note that as it is PacBio HiFi data, the reads are unpaired and stored in a single fastq.gz file.
 
 ```bash
-mkdir -p Projects/Cheese_Tuto/data
-cd Projects/Cheese_Tuto/data
+mkdir -p ~/Projects/Cheese_Tuto/data
+cd ~/Projects/Cheese_Tuto/data
 
 wget -c https://zenodo.org/records/23511123/files/cheese_balanced_reads.fastq.gz
 
 cd ..
 ```
 
-### Activate the environment
+## From reads to bins
+
+Now, for the next 15 minutes, please try to use what you learned in the previous sessions to do the following steps. A solution is given below each step, but please try first.
+
+### 1. Assembly with metaMDBG (env Assembly)
+
+<details><summary>Solution</summary>
+<p>
 
 Activate the environment which will be used for assembly. It contains metaMDBG and seqkit for quality control.
 
@@ -52,16 +46,20 @@ conda info --envs
 conda activate Assembly
 ```
 
-### Run metaMDBG
-
-[metaMDBG](https://github.com/GaetanBenoitDev/metaMDBG) ([paper](https://www.nature.com/articles/s41587-023-01983-6))
+We will now assemble the reads with [metaMDBG](https://github.com/GaetanBenoitDev/metaMDBG) ([paper](https://www.nature.com/articles/s41587-023-01983-6)) using the appropriate preset for PacBio HiFi reads.
 
 ```bash
 cd ~/Projects/Cheese_Tuto
 metaMDBG asm --in-hifi data/cheese_balanced_reads.fastq.gz --out-dir metamdbg --threads 16
 ```
 
-### Assembly statistics
+</p>
+</details>
+
+### 2. Check the assembly with seqkit stats (env Assembly)
+
+<details><summary>Solution</summary>
+<p>
 
 Let's inspect the assembly quality with seqkit ([GitHub](https://github.com/shenwei356/seqkit), [documentation](https://bioinf.shenwei.me/seqkit/usage/)). The result will be printed to the terminal.
 
@@ -70,14 +68,19 @@ cd ~/Projects/Cheese_Tuto
 seqkit stats -a metamdbg/contigs.fasta.gz
 ```
 
+</p>
+</details>
+
 > **Questions**
 >
 > - What does `-a` do?
 > - What are the more informative columns?
 > - How's the quality of the assembly looking?
 
+### 3. Mapping with minimap2 (env LongReads)
 
-## Mapping
+<details><summary>Solution</summary>
+<p>
 
 Next, we need to determine the coverage of each contig by mapping the reads back to the assembly. This will be used for binning.
 
@@ -90,8 +93,6 @@ conda activate LongReads
 mkdir mapping
 ```
 
-### Map reads to contigs
-
 While for short reads bwa-mem is often used, for long reads minimap2 is the preferred mapper. We will use the `map-hifi` preset, which is optimized for PacBio HiFi reads.
 
 ```bash
@@ -99,7 +100,13 @@ cd ~/Projects/Cheese_Tuto
 minimap2 -t 16 -ax map-hifi metamdbg/contigs.fasta.gz data/cheese_balanced_reads.fastq.gz > mapping/reads.sam
 ```
 
-### Convert, sort and index
+</p>
+</details>
+
+### 4. Use samtools to get a bam file, sort it and index it (env LongReads)
+
+<details><summary>Solution</summary>
+<p>
 
 ```bash
 cd ~/Projects/Cheese_Tuto
@@ -110,14 +117,20 @@ samtools sort -@ 16 -o mapping/reads.bam mapping/reads.unsorted.bam
 samtools index mapping/reads.bam
 ```
 
-## Binning
+</p>
+</details>
+
+### 5. Run MetaBAT2 and check the bins with seqkit stats (env binning)
+
+The `binning` environment contains MetaBAT2, REMAG and BUSCO, but not seqkit. Install it first:
 
 ```bash
 conda activate binning
-mamba install bioconda::seqkit
+mamba install -y bioconda::seqkit
 ```
 
-### MetaBAT2
+<details><summary>Solution</summary>
+<p>
 
 [MetaBAT2](https://bitbucket.org/berkeleylab/metabat) is a widely used binning tool. It uses the coverage of contigs across samples and the tetranucleotide frequencies of contigs to cluster them into bins. We need to calculate the coverage of each contig first, which is done with the `jgi_summarize_bam_contig_depths` script from MetaBAT2.
 
@@ -130,27 +143,54 @@ metabat2 -i metamdbg/contigs.fasta.gz -a mapping/depth.tsv -o metabat2/bin -t 16
 seqkit stats -a metabat2/*.fa
 ```
 
+</p>
+</details>
+
+## REMAG
+
+[REMAG](https://github.com/danielzmbp/remag) is a tool we've developed for automated binning of eukaryotic MAGs. 
+
+### Exercise: build the REMAG command
+
+Use the help page of REMAG to build the command yourself. It is in the `binning` environment.
+
+```bash
+remag --help
+```
+
+Your command should:
+
+1. Use the metaMDBG assembly (`metamdbg/contigs.fasta.gz`) as input
+2. Use the sorted BAM file (`mapping/reads.bam`) for coverage
+3. Write the results to a folder called `remag`
+4. Only bin contigs of at least 10,000 bp
+5. Train the model for 20 epochs
+6. Use 42 as the random seed, so that the training is reproducible
+7. Use 16 threads
+8. Keep the intermediate files, which we will inspect afterwards
+
+Then check the resulting bins with `seqkit stats`, like you did for MetaBAT2.
+
+<details><summary>Solution</summary>
+<p>
+
+```bash
+cd ~/Projects/Cheese_Tuto
+remag metamdbg/contigs.fasta.gz -c mapping/reads.bam -o remag --min-contig-length 10000 --epochs 20 --random-seed 42 --threads 16 -k
+
+seqkit stats -a remag/bins/*
+```
 
 </p>
 </details>
 
-
-### REMAG
-
-[REMAG](https://github.com/danielzmbp/remag) is a tool we've developed for automated binning of eukaryotic MAGs. 
-
-```bash
-cd ~/Projects/Cheese_Tuto
-remag metamdbg/contigs.fasta.gz -c mapping/reads.bam -o remag --min-contig-length 10000 --random-seed 42 --threads 16 -k
-
-seqkit stats -a remag/bins/*
-```
+While REMAG is running, let's have a look at how it works.
 
 ![REMAG workflow](Figures/remag_fig1.jpg)
 
 _REMAG workflow. Figure 1 from the [REMAG preprint](https://doi.org/10.64898/2026.03.05.709928)._
 
-#### Inspecting REMAG output
+### Inspecting REMAG output
 From the extended output of REMAG (flag `-k`) we can see several things. The filtered eukaryotic sequences are stored in `remag/contigs.fasta_eukaryotic_filtered.fasta`.
 
 ```bash
@@ -175,7 +215,7 @@ Finally, REMAG stores the learned embedding of each contig in `remag/embeddings.
 
 ![UMAP of REMAG contig embeddings](Figures/remag_umap.png)
 
-_UMAP of the REMAG contig embeddings from an example run, coloured by bin. Point size is proportional to contig length. Your bins may differ slightly._
+_UMAP of the REMAG contig embeddings from an example run, coloured by bin. Point size is proportional to contig length._
 
 > **Questions**
 >
@@ -196,21 +236,59 @@ _UMAP of tetranucleotide frequencies and coverage for all contigs ≥2.5 kb from
 
 ## Bin quality
 
-To measure the quality of the bins, we will use two tools: BUSCO and EukCC. Both tools assess the completeness and contamination of the bins based on the presence of single-copy orthologs.
+To assess the quality of the eukaryotic bins, we will use two tools: BUSCO and EukCC. Both look for conserved single-copy marker genes. BUSCO reports how many markers are complete, duplicated, fragmented or missing, while EukCC estimates completeness and contamination.
 
 ### BUSCO
 
-Let's run BUSCO ([GitLab](https://gitlab.com/ezlab/busco), [user guide](https://busco.ezlab.org/busco_userguide.html)) with the standard eukaryota database on the 2 largest MetaBAT2 and the REMAG bins.
+Let's run BUSCO ([GitLab](https://gitlab.com/ezlab/busco), [user guide](https://busco.ezlab.org/busco_userguide.html)) on the REMAG bins and on the two largest MetaBAT2 bins. BUSCO is in the `binning` environment.
+
+#### Exercise: run BUSCO
+
+1. Find the two largest MetaBAT2 bins. Hint: look at the `sum_len` column of `seqkit stats`.
+2. Use `busco --help` to build the commands. Each run should:
+   - analyse a genome (not proteins or a transcriptome)
+   - use the `eukaryota` lineage dataset
+   - use 16 threads
+   - have its own output name (`-o`), so the runs don't overwrite each other
+3. Run BUSCO on the whole `remag/bins` folder, and separately on each of the two MetaBAT2 bins.
+
+<details><summary>Solution</summary>
+<p>
 
 ```bash
 cd ~/Projects/Cheese_Tuto
-busco -i remag/bins -m genome -l eukaryota -c 16
-busco -i metabat2/bin.4.fa -m genome -l eukaryota -c 16
+conda activate binning
+
+seqkit stats metabat2/*.fa
 ```
+
+In our example run, the two largest MetaBAT2 bins were `bin.4.fa` and `bin.8.fa`. Your bin numbers may differ.
+
+```bash
+busco -i remag/bins -o busco_remag -m genome -l eukaryota -c 16
+
+busco -i metabat2/bin.4.fa -o busco_metabat2_bin.4 -m genome -l eukaryota -c 16
+busco -i metabat2/bin.8.fa -o busco_metabat2_bin.8 -m genome -l eukaryota -c 16
+```
+
+Look at the results. For a folder of bins, BUSCO writes a `batch_summary.txt`; for a single bin, a `short_summary` file.
+
+```bash
+cat busco_remag/batch_summary.txt
+grep "C:" busco_metabat2_bin.*/short_summary*.txt
+```
+
+</p>
+</details>
+
+> **Questions**
+>
+> - How complete are the bins? How many BUSCO genes are duplicated?
+> - Do the REMAG bins and the two MetaBAT2 bins give similar results?
 
 ### EukCC
 
-Let's also run EukCC ([GitHub](https://github.com/EBI-Metagenomics/EukCC), [documentation](https://eukcc.readthedocs.io/))
+Let's also run EukCC ([GitHub](https://github.com/EBI-Metagenomics/EukCC), [documentation](https://eukcc.readthedocs.io/)). EukCC uses a set of eukaryotic single-copy core genes to assess the completeness and contamination of eukaryotic genomes. It also reports the lineage of the marker set it used for each bin (`ncbi_lng`, as NCBI taxonomy IDs), which gives a rough taxonomic placement.
 
 #### Download the database
 
@@ -221,6 +299,7 @@ cd databases/eukccdb
 wget http://ftp.ebi.ac.uk/pub/databases/metagenomics/eukcc/eukcc2_db_ver_1.2.tar.gz
 tar -xzvf eukcc2_db_ver_1.2.tar.gz
 export EUKCC2_DB=$(realpath eukcc2_db_ver_1.2)
+echo "export EUKCC2_DB=$EUKCC2_DB" >> ~/.bashrc
 cd ../..
 ```
 
@@ -238,17 +317,16 @@ eukcc folder --threads 16 --n_combine 0 -o eukcc_remag remag/bins
 > - What does `--n_combine 0` do?
 
 #### Results
-Inspect the EukCC results. The output is a CSV file with the completeness and contamination estimates for each bin, including the taxonomy ID's of the reference markers used for the assessment.
+Inspect the EukCC results. The output is a tab-separated file (`eukcc.tsv`) with the completeness and contamination estimates for each bin, including the taxonomy IDs of the reference markers used for the assessment.
 ```bash
 cd ~/Projects/Cheese_Tuto
-cat eukcc_remag/eukcc.csv
-cat eukcc_metabat2/eukcc.csv
+cat eukcc_remag/eukcc.tsv
+cat eukcc_metabat2/eukcc.tsv
 ```
 
 > **Questions**
 >
-> - Which binner looks better?
-> - What happened in the other one?
+> - Compare completeness and contamination of the REMAG and MetaBAT2 bins for each genome. Which bins would you keep?
 > - What taxonomy did EukCC assign to the bins? 
 
 ## Comparison to references
@@ -288,11 +366,12 @@ ls ref/genomes
 
 ```bash
 cd ~/Projects/Cheese_Tuto
-skani dist -t 16 -q metabat2/bin.*.fa remag/bins/* -r ref/genomes/*.fna -o skani_bins.tsv
+skani dist -t 16 -q metabat2/*.fa remag/bins/* -r ref/genomes/*.fna -o skani_bins.tsv
 ```
 
-### Add the taxonomy
-Inspect the skani output and add the taxonomy from the reference_taxonomy.tsv file.
+### Check the taxonomy
+
+Inspect the skani output and compare it with the reference taxonomy in `reference_taxonomy.tsv`.
 
 ```bash
 cd ~/Projects/Cheese_Tuto
