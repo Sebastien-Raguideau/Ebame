@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - remag>=0.6.0
+  - remag==0.6.0
   - busco>=6.1.0
   - metabat2
   - seqkit
