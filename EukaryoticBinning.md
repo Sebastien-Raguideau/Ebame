@@ -18,10 +18,10 @@ The goal of this tutorial is to demonstrate how to bin eukaryotic genomes from m
 
 Now for the next 15 minutes, please try to use what you learned in the previous sessions to 
 
-1. Assembly with metamdbg
-2. mapping with minimap2
-3. use samtools to get a bam file, sort it and index it
-4. run metabat2
+1. Assembly with metamdbg (env Assembly)
+2. mapping with minimap2 (env LongReads)
+3. use samtools to get a bam file, sort it and index it (env LongReads)
+4. run metabat2 (env LongReads)
 
 <details><summary>Full solution is here, please try first</summary>
 <p>
@@ -151,11 +151,11 @@ seqkit stats -a remag/bins/*
 _REMAG workflow. Figure 1 from the [REMAG preprint](https://doi.org/10.64898/2026.03.05.709928)._
 
 #### Inspecting REMAG output
-From the extended output of REMAG (flag `-k`) we can see several things. The filtered eukaryotic sequences are stored in `remag/contigs_eukaryotic_filtered.fasta`.
+From the extended output of REMAG (flag `-k`) we can see several things. The filtered eukaryotic sequences are stored in `remag/contigs.fasta_eukaryotic_filtered.fasta`.
 
 ```bash
 cd ~/Projects/Cheese_Tuto
-seqkit stats -a remag/contigs_eukaryotic_filtered.fasta
+seqkit stats -a remag/contigs.fasta_eukaryotic_filtered.fasta
 ```
 
 We can also see a summary of the eukaryotic single-copy core genes (markers) found in each bin. REMAG maps these markers to the contigs with miniprot and uses them to guide the clustering (steps 5 and 6 in the figure above). The marker statistics for the final bins are stored in `remag/core_gene_duplication_results.json`.
