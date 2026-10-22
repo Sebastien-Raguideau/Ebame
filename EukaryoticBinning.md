@@ -112,8 +112,6 @@ seqkit stats -a metamdbg/contigs.fasta.gz
 
 ### 3. Use the course assembly
 
-Assemblers like metaMDBG do not always produce exactly the same output: contig names and a few contigs can differ between runs. REMAG is sensitive to such small differences, so to make sure everyone gets the same bins, replace your assembly with the one we prepared from the same reads. Note that we do not use `wget -c` here, so that the existing file is overwritten.
-
 ```bash
 cd ~/Projects/Cheese_Tuto
 wget -O metamdbg/contigs.fasta.gz https://zenodo.org/records/23511123/files/cheese_metamdbg_assembly.fasta.gz
