@@ -2,6 +2,7 @@
 2. Gaetan intro to assembly should come first
 3. binning tutorial ~2h if seb goes fast
 4. Daniel tuto needs its own env, it needs databases and datasets to be given to christophe beforehand
+- Tutorial lasted 2 hours, bottlenecks: download eukcc (add to vm), remag (some people can't reproduce properly the 2 bins), busco. 
 5. don't forget tisannes (herbal tea)
 
 Assembly notes:
