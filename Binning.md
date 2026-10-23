@@ -410,6 +410,23 @@ rule Hello_world:
 ```
 What does happen if threads is bigger than available cores on the vm? 
 
+## Don't have a cow over snakemake
+To illustrate containerisation and test cowsay, let's design a small rule. First, lest install singularity:
+```bash
+mamba install conda-forge::singularity
+export SINGULARITY_BINDPATH="/home/ubuntu"
+```
+The docker container is :
+```bash
+docker://community.wave.seqera.io/library/cowpy:1.1.5--3db457ae1977a273
+```
+And a typical command for cowpy is :
+```bash
+cowpy -r "Hello world from Snakemake!"
+```
+
+
+
 ## Hand on snakemake
 ### desiging a rule
 For a set task, identify files you want snakemake to keep track of
