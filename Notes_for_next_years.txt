@@ -4,3 +4,6 @@
 4. Daniel tuto needs its own env, it needs databases and datasets to be given to christophe beforehand
 5. don't forget tisannes (herbal tea)
 
+Assembly notes:
+- Autocycler and the work of Ryan Wick on bacterial isolates should be mentioned (an autocycler for metagenomics would be great in the future)
+- in the talk on long read sequencing or assembly we should talk about sequencing error specific to long reads (chimeric reads, strand bias, non random errors, same plasmid genome repeated multiple time in a read)
