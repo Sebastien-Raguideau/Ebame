@@ -1,5 +1,6 @@
 1. Discussed with Lois, structuration centered around mini project on Plankton dataset, group by 5-6 and let them decide on protocol or interest group (viruses/euk/strains)
 2. Gaetan intro to assembly should come first
 3. binning tutorial ~2h if seb goes fast
-4. don't forget tisannes
+4. Daniel tuto needs its own env, it needs databases and datasets to be given to christophe beforehand
+5. don't forget tisannes (herbal tea)
 
